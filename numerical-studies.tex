@@ -23,7 +23,14 @@ Let $\X$ be our design matrix where each row of $\X$ is independently generated 
 To generate our response data, let $\mu = \X \bbeta^* = \U \bgamma^*$ where $\bgamma^* = \D \V^T \bbeta^*$. Then the classes $\y$ come from a Bernoulli distribution with parameter $\p = \frac{\text{exp}(\U \bgamma^*)}{1 + \text{exp}(\U \bgamma^*)} = \frac{\text{exp}(\mu)}{1 + \text{exp}(\mu)}$. Therefore the response data is dependent on $\bgamma^*$ and the data $\X$. We make a variety of choices for $\bgamma^*$ (denoted just as $\bgamma$ below) which have varying amounts of sparsity and created varying levels of linear separability.
 
 \subsection{Performance of RgPCC on Simulated Data}
-Here we fit RgPCC, logistic regression and PC logistic regression to our simulated data. To test the quality of the fit, we see how well our models predict the true probability vector $\p$ (the parameter of the Bernoulli distribution above) over a test set of size $5N$. We fit the models using samples of size $N$ for dimension $p$ from Figure \ref{figure:params}. We also vary the nonzero components of the true $\bgamma$. We neglect the case where $N < p$, although there are no theoretical issues in this case and will be covered in further research.
+Here we fit RgPCC, logistic regression and PC logistic regression to our simulated data. To test the quality of the fit, we see how well our models predict the true probability vector $\p$ (the parameter of the Bernoulli distribution above) over a test set of size $5N$. We measure the accuracy of our predicted $\widehat{\p}$ using the 1-norm, 2-norm and EGKL. These are defined as follows:
+
+\begin{align*}
+	||v||_1 &= \\
+	||v||_2 &= \\
+	EGKL(v) &= 
+\end{align*}
+We fit the models using samples of size $N$ for dimension $p$ from Figure \ref{figure:params}. We also vary the nonzero components of the true $\bgamma$. We neglect the case where $N < p$, although there are no theoretical issues in this case and will be covered in further research.
 
 We use the following values for the true $\bgamma$:
 \begin{figure}[H]
@@ -37,13 +44,19 @@ We use the following values for the true $\bgamma$:
 	\end{tabular}
 \end{figure}
 
-First, we look at the classification errors over each case. We perform our fittings on 100 replicates of the simulated data and take the averages.
-
+Below we show only a few cases of all the tests. The rest of the results are present in the last section but have the same conclusion as the one presented here.
 \begin{figure}[H]
     \centering
-    \includegraphics[width =  \textwidth]{new-tables/(sparsity1-100,12)_metrics.pdf}
-    \includegraphics[width =  \textwidth]{new-tables/(sparsity1-200,12)_metrics.pdf}
-    \label{fig:my_label}
+    \includegraphics[width =  \textwidth]{simulated/(sparsity3-nonlead,12)_metrics.pdf}
+    \caption{For $\bgamma_2'$ and $p = 12$.}
+    \label{fig:simulated2-12}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width =  \textwidth]{simulated/(sparsity3-nonlead,50)_metrics.pdf}
+    \caption{For $\bgamma_2'$ and $p = 50$.}
+    \label{fig:simulated2-50}
 \end{figure}
 
 Overall, we can see that RgPCC provides slight improvements to logistic regression and principal component logistic regression when the true $\bgamma$ is nonzero in the leading principal components. However, when the nonzero components of $\bgamma$ are not the leading principal components we see a significant different between principal component logistic regression and our other methods.
@@ -126,8 +139,8 @@ When running the Tukey's multiple pairwise comparisons we noticed that in most c
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width =  0.49\textwidth]{general-images/audit.risk-5CV-errors graph.pdf}
-    \includegraphics[width =  0.49\textwidth]{general-images/Cryotherapy-5CV-errors graph.pdf}
+    \includegraphics[width =  0.49\textwidth]{realworld/audit.risk-5CV-errors graph.pdf}
+    \includegraphics[width =  0.49\textwidth]{realworld/Cryotherapy-5CV-errors graph.pdf}
     \label{fig:my_label}
 \end{figure}
 
