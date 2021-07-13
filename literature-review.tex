@@ -24,7 +24,7 @@ where $\bgamma = \D \V^T \bbeta$ and $d_j$ is the $j^{\text{th}}$ diagonal entry
 
 There are three main advantages to (\ref{RgPCR_def}). First, the regularization helps prevent overfitting. Secondly, the use of PCA and the orthogonality of $U$ allows for this minimizer to be calculated component-wise. Lastly, the penalty allows the variable selection to be determined by large variance in the predictors and the association with the response of principal components (we can see this by the presence of $\hat{\gamma}^{\text{ols}}_j$ in the following). 
 
-The orthogonality of $\U$ allows us to solve (\ref{RgPCR_def}) componentwise. In particular,
+The orthogonality of $\U$ allows us to solve (\ref{RgPCR_def}) component-wise. In particular,
 
 \begin{align}
     \hat{\gamma}_j = \argmin_{\gamma_j}  \left ( \hat{\gamma}^{\text{ols}}_j - \gamma_j \right )^2 + p_\lambda \left ( \frac{\gamma_j}{d_j} \right ).  \label{RgPCR_def_j}
