@@ -1,0 +1,18 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\section{Further Research}
+As we continue work on RgPCC, we plan to investigate and improve a in a few key areas.
+
+\subsection{Speed}
+This method of RgPCC improves upon testing error in binary classification compared to logistic regression. We also believe that this use of principal component analysis should improve the speed of the computation, especially when there is sparsity in the solution with respect to the principal components. We wish to further explore this, especially in higher dimensions and when $p > N$.
+
+\subsection{$C_p$-type Statistic for Parameter Tuning}
+Using cross-validation for parameter selection is data and time intensive. In Zou and Lang's paper \cite{langzou}, the regularization parameter in RgPCR can be selected using Stein's unbiased risk estimation. In later works, we will also investigate if this method can be generalized to RgPCC.
+
+\subsection{Further Generalization}
+In many cases, data is not presented in a manner such that classes are linearly separable. Kernel methods embed data in higher dimensional spaces in a way that makes classes linearly separable, without have to work in the higher dimensional space directly. We would like to be able to apply RgPCC in these nonlinear cases as well.
+
+We would also like to extend this to multiclass classification through ideas from logistic regression for multiclass classification. We can also take the ideas from \cite{wangleng} to generalize this method to other classifiers such as SVM.
+
+\end{document}

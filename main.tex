@@ -1,0 +1,173 @@
+\documentclass[11pt, english]{article}
+\usepackage[margin = 1in]{geometry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PACKAGES
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[shortlabels]{enumitem}
+\usepackage{amsmath, amssymb,url,xspace, amsmath, floatrow, hyperref, graphicx}
+\usepackage{subfiles}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{diagbox}
+\usepackage{color, colortbl}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+
+
+\usepackage{subcaption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CUSTOM COMMANDS
+\newcommand{\argmin}{\text{arg} \min}
+\newcommand{\sgn}[1]{\text{sgn} \left ( #1 \right )}
+\newcommand{\p}{\mathbf{p}}
+\newcommand{\W}{\mathbf{W}}
+\newcommand{\U}{\mathbf{U}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\V}{\mathbf{V}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\z}{\mathbf{z}}
+\newcommand{\bbeta}{\boldsymbol \beta}
+\newcommand{\bgamma}{\boldsymbol \gamma}
+\newcommand{\old}{\text{old}}
+\newcommand{\new}{\text{new}}
+\newcommand{\ridge}{\text{ridge}}
+\newcommand{\lasso}{\text{lasso}}
+\newcommand{\RgPCR}{\text{RgPCR}}
+\newcommand{\RgPCC}{\text{RgPCC}}
+\newcommand{\ols}{\text{ols}}
+\renewcommand{\exp}[1]{\text{exp} \left ( #1 \right )}
+
+\newcommand{\gammaone}{\bgamma_1 = (25, 0, \ldots , 0)}
+\newcommand{\gammatwo}{\bgamma_2 = (20, 10, 10, 0, \ldots , 0)}
+\newcommand{\gammathree}{\bgamma_3 = (15, 10, 5, 5, 3, 0, \ldots , 0)}
+
+\renewcommand{\tilde}[1]{\widetilde{#1}}
+\renewcommand{\hat}[1]{\widehat{#1}}
+
+\def\meta#1{$\langle${\it #1}$\rangle$}
+\newcommand{\myast}{($\star$)\ }
+\makeatletter
+       \def\ps@copyright{\ps@empty
+    \def\@oddfoot{\hfil\small RTG Mini-Conference}}
+\makeatother
+
+\newcommand{\BibTeX}{{\scshape Bib}\kern-.08em\TeX}
+\newcommand{\T}{\S\kern .15em\relax }
+\newcommand{\AMS}{$\mathcal{A}$\kern-.1667em\lower.5ex\hbox
+        {$\mathcal{M}$}\kern-.125em$\mathcal{S}$}
+\newcommand{\resp}{\emph{resp}.\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SETTINGS
+\tolerance 400
+\pretolerance 200
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE
+\title{Response-guided Principal Component Classification}
+\date {Nov 2020}
+\author{Duncan Bennett \\ Adviser : Hao Helen Zhang}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+\def\smfbyname{}
+
+
+\maketitle
+\begin{abstract}
+Response-guided principal component regression (RgPCR) is a generalization of ridge regression. This method improves upon principal component regression (PCR) by taking the response values into account during variable selection. In this paper, we will modify RgPCR for binary classification problems using ideas from logistic regression. This technique is called \textit{response-guided principal component classification (RgPCC)}.
+\end{abstract}
+\tableofcontents
+
+
+\subfile{intro} 
+
+
+\subfile{literature-review} 
+
+
+\subfile{RgPCC}
+
+
+\subfile{numerical-studies}
+
+
+\subfile{further-research}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\refname{Bibliography}
+\begin{thebibliography}{99}
+
+\bibitem {elemstatlearn}
+ {\sc T. \ Hastie, \ R. \ Tibshirani, \ and \ J. \ Friedman (2009)} ---
+ {\it The Elements of Statistical Learning : Data Mining, Inference, and Prediction
+ (second edition)}, New York, NY: Springer.
+
+ \bibitem {langzou}
+ {\sc W. \ Lang, \ and \ H. \ Zou (2020)} ---
+ {\it A simple method to improve principal components regression},
+ WILEY, \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/sta4.288}{https://onlinelibrary.wiley.com/doi/abs/10.1002/sta4.288}
+
+ \bibitem {wangleng}
+ {\sc H. \ Wang \ and \ C. \ Leng (2007)} ---
+ {\it Unified LASSO Estimation by Least Squares Approximation},
+ Journal of the American Statistical Association, 102:479, 1039-1048, DOI; 10.1198/016214507000000509, \href{https://doi.org/10.1198/016214507000000509}{https://doi.org/10.1198/016214507000000509}
+
+\end{thebibliography}
+
+\newgeometry{top=0.75in,bottom=0.75in,right=0.75in,left=0.75in}
+
+\section{Figures}
+\subfile{figures}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% unused figures
+
+%=========================================================== old results tables
+
+%\begin{figure}[H]
+%	\begin{tabular}{c|c|c|c|c}
+%		$N = $ sample size & $\bgamma_i$ & $\lambda$ & $MSE(\hat{\p}^{\log})$ & $MSE(\hat{\p}^{\RgPCC})$ \\ \hline
+%		100 & $\bgamma_1$ & 43 & 0.04490677 & 0.00129034\\
+%		200 & $\bgamma_1$ & 114 & 0.02896408 & 0.0006097103\\
+%		100 & $\bgamma_2$ & 19 & 0.04305285 & 0.006591401 \\
+%		200 & $\bgamma_2$ & 38 & 0.0281505 & 0.005462017 \\
+%		100 & $\bgamma_3$ & 26 & 0.04519566  & 0.008713318  \\
+%		200 & $\bgamma_3$ & 54 & 0.02590808 & 0.005361949
+%	\end{tabular}
+%\caption{Testing error for dimension $p = 12$}
+%\end{figure}
+
+
+% \begin{figure}[H]
+% 	\begin{tabular}{c|c|c|c|c}
+% 		sample size & $\bgamma_i$ & $\lambda$ & $MSE(\hat{\p}^{\log})$ & $MSE(\hat{\p}^{\RgPCC})$ \\ \hline
+% 		200 & $\bgamma_1$ & 43 & 0.04490677 & 0.00129034\\
+% 		500 & $\bgamma_1$ & 114 & 0.02896408 & 0.0006097103\\
+% 		200 & $\bgamma_2$ & 19 & 0.04305285 & 0.006591401 \\
+% 		500 & $\bgamma_2$ & 38 & 0.0281505 & 0.005462017 \\
+% 		200 & $\bgamma_3$ & 26 & 0.04519566  & 0.008713318  \\
+% 		500 & $\bgamma_3$ & 54 & 0.02590808 & 0.005361949
+% 	\end{tabular}
+% \caption{Testing error for dimension $p = 100$ (to be updated)}
+% \end{figure}
+
+

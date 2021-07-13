@@ -1,0 +1,83 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\section{Literature Review}
+Here we describe two supervised learning methods that have motivated RgPCC. First, we summarized RgPCR, a method developed by Lang and Zou \cite{langzou}.  Then we summarized logistic regression for binary classification.
+
+\subsection{PCA}
+
+
+\subsection{RgPCR}
+RgPCR is a generalization of ridge regression which we will briefly summarize. Let $\X = \U \D \V^T$ be the singular value decomposition of an $N \times p$ design matrix $\X$. Then with response $y$ we can write the ridge regression solution as
+\begin{align}
+    \hat{\bbeta}^{\ridge} = \argmin_{\bbeta} ||\y - \X \bbeta||_2^2 + \lambda \sum_{j = 1}^p \beta_j^2.
+\end{align}
+We may rewrite this as
+\begin{align}
+    \hat{\bgamma}^{\ridge} = \argmin_{\bgamma} ||\y - \U \bgamma||^2_2 + \lambda \sum_{j = 1}^p \frac{\gamma_j^2}{d_j^2}. \label{RgPCR_ridge}
+\end{align}
+where $\bgamma = \D \V^T \bbeta$ and $d_j$ is the $j^{\text{th}}$ diagonal entry of $\D$. Hence, ridge regression can be viewed as a weighted $L_2$ penalized regression in the space of principal components. The RgPCR generalization comes from replacing the $L_2$ penalization with an arbitrary non-decreasing function $p_{\lambda}(\cdot)$. Some examples of these are LASSO, SCAD and MCP. In general, we write this RgPCR solution as
+
+\begin{align}
+    \hat{\bgamma} = \argmin_{\bgamma} ||\y - \U \bgamma||^2_2 + \sum_{j = 1}^p p_\lambda \left ( \frac{\gamma_j}{d_j} \right ), \label{RgPCR_def}
+\end{align}
+
+There are three main advantages to (\ref{RgPCR_def}). First, the regularization helps prevent overfitting. Secondly, the use of PCA and the orthogonality of $U$ allows for this minimizer to be calculated component-wise. Lastly, the penalty allows the variable selection to be determined by large variance in the predictors and the association with the response of principal components (we can see this by the presence of $\hat{\gamma}^{\text{ols}}_j$ in the following). 
+
+The orthogonality of $\U$ allows us to solve (\ref{RgPCR_def}) componentwise. In particular,
+
+\begin{align}
+    \hat{\gamma}_j = \argmin_{\gamma_j}  \left ( \hat{\gamma}^{\text{ols}}_j - \gamma_j \right )^2 + p_\lambda \left ( \frac{\gamma_j}{d_j} \right ).  \label{RgPCR_def_j}
+\end{align}
+
+where $\hat{\gamma}^{\text{ols}}_j = \y^T U_j$ (equation (\ref{RgPCR_def_j}) follows from the orthogonality of $\U$ and a calculation can be found in \cite{langzou}). When $p_{\lambda}(t) = |t|$, the LASSO penalty, then we can find a closed form of (\ref{RgPCR_def_j}),
+
+\begin{align}
+	\hat{\gamma}_j^{\lasso} = \left ( |\gamma_j^{\ols}| - \frac{\lambda}{2d_j} \right )^+ \cdot \sgn{\hat{\gamma_j}^{\ols}}.
+\end{align}
+
+We can recover the solution in the original coordinates by
+
+\begin{align}
+	\hat{\bbeta} = \sum_{j = 1}^p \tilde{V}_j \frac{\hat{\gamma}_j}{d_j}
+\end{align}
+
+\subsection{Logistic Regression}
+Logistic regression is a common technique for classification. For now we consider binary classification. Let $\X$ be an $N \times p$ design matrix with $\y$ the $N \times 1$ classifications. Then if we assume that
+\begin{align}
+    \log \left ( \dfrac{Pr(G = 1 | X = x)}{Pr(G = 0|X = x)}\right ) = \bbeta^Tx \label{log-odds}
+\end{align}
+the log-odds are linear, then we may calculate the conditional probability
+\begin{align}
+    Pr(G = 1 | X = x) = \dfrac{\text{exp}(\bbeta^Tx)}{1 + \text{exp}(\bbeta^Tx)}.
+\end{align}
+Note that we may compute all probabilities for the data simultaneously by
+
+\begin{align}
+	\p = \dfrac{\text{exp}(\X \bbeta)}{1 + \text{exp}(\X \bbeta)}.
+\end{align}
+
+where $p_i$ is the probability that $x_i$ is in class 1.
+
+To fit such a line for the log-odds (\ref{log-odds}), we fit by maximizing the log-likelihood,
+\begin{align}
+	\ell(\X, \beta) = \sum_{i = 1}^N \left [ y_i \log (p(x_i; \bbeta)) + (1-y_i) \log(1 - p(x_i; \bbeta))\right ] \label{loglikelihood}
+\end{align}
+This maximization can be found in \cite{elemstatlearn} and has a convenient interpretation. When maximizing by the Newton-Ralphson method, each iteration can be interpreted as solving a weighted least squares problem. That is
+\begin{align}
+    \bbeta^{\new} &= \bbeta^{\old} + (\X^T \W \X)^{-1} \X^T(\y - \p) \\
+    &= (\X^T \W \X)^{-1} \X^T \W \z
+\end{align}
+where
+\begin{align}
+	\p &= \dfrac{\text{exp}(\X \bbeta)}{1 + \text{exp}(\X \bbeta)} \label{pdef}\\
+    \W &= \text{diag}[p_i(1-p_i)] \label{Wdef}\\
+    \z &= \X \bbeta + \W^{-1}(\y - \p). \label{zdef}
+\end{align}
+In particular, $\bbeta^{\new}$ is the solution to a weighted least squares problem with response $\z$, design $\X$ and weights $\W$.
+
+For our purposes, it will be more convenient to state this as the following equivalent problem,  $\bbeta^{\new}$ estimates the minimizer of
+\begin{align}
+    \bbeta^{\new} =  \argmin_{\bbeta} ||\W^{1/2}(\z - \X \bbeta)||^2
+\end{align}
+\end{document}

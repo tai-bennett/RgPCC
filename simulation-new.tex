@@ -1,0 +1,107 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\section{Simulation}
+
+In this section we compare RgPCC with LASSO penalty to conventional logistic regression. We first summarize how our simulated data was created and then discuss the results of the methods mentioned previously. We will consider a variety of sample sizes, dimensions and sparsity in $\bgamma$ and compare error rates in $\p, \bbeta, \bgamma$ and classification. We will tune the parameter $\lambda$ using cross validation, information criterion and a tuning set. As before, please note that $p$ is the number of predictors while $\p$ is a vector of probabilities.
+
+\begin{figure}[H]
+	\begin{tabular}{c|c|c}
+		$p$ & $N$ & $\bgamma$ sparsity \\ \hline
+		12 & 100, 200 & 1, 3, 5 \\
+		50 & 200, 500 & 1, 3 \\
+		100 & 200, 500 & 1, 3
+	\end{tabular}
+	\caption{Parameters of data creation.}
+	\label{figure:params}
+\end{figure}
+
+The convergence of our algorithm is based on the tolerance of $\varepsilon = 0.1$, which means we will terminate our Newton-Ralphson method when $$\frac{||\bbeta^{(k)} - \bbeta^{(k+1)}||}{||\bbeta^{(k)}||} < 0.1.$$
+
+\subsection{Creation of Simulated Data}
+Let $\X$ be our design matrix where each row of $\X$ is independently generated from $N(0, \Sigma)$ where $\Sigma_{ij} = \rho^{|i - j|}$ with $\rho = 0.8$.
+
+To generate our response data, let $\mu = \X \bbeta^* = \U \bgamma^*$ where $\X = \U \D \V^T$ (SVD decomposition) and $\bgamma^* = \D \V^T \bbeta^*$. Then the classes $\y$ come from a Bernoulli distribution with parameter $\p = \frac{\text{exp}(\U \bgamma^*)}{1 + \text{exp}(\U \bgamma^*)} = \frac{\text{exp}(\mu)}{1 + \text{exp}(\mu)}$. Therefore the response data is dependent on $\bgamma^*$ and the data $\X$. We make a variety of choices for $\bgamma^*$ (denoted just as $\bgamma$ below) which have varying amounts of sparsity and created varying levels of linear separability. We wish to see if RgPCC improves classification error as well as detects the sparsity in $\bgamma^*$.
+
+\subsection{Applying RgPCC with LASSO Penalty}
+Here we fit RgPCC and logistic regression to our simulated data. To test the quality of the fit, we see how well our models predict the true probability vector $\p$ (the parameter of the Bernoulli distribution above) and the testing classification error. To fit the model we use a variety of tuning methods: AIC, BIC, cross validation as well as tuning classification error and tuning $MSE(\hat{\p})$. We fit the models using samples of size $N$ for dimension $p$ from Figure \ref{figure:params}. Our tuning set will be of size $N$ as well. We then use these models to predict the true $\p$ of a testing sample that is 5 times as large as the training sample. We neglect the case where $N < p$, although there are no theoretical issues in this case and will be covered in further research.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{images(1,12)/( 1 , 12 )=(gamma,p)_final_results_tuning_optimaltrim.pdf}
+    \caption{The optimal $\lambda$'s for each tuning method and the corresponding testing errors.}
+    \label{fig:1,12tuning_optimaltrim}
+\end{figure}
+
+
+The following table is taken over 100 replications of data sets. For example, for a fixed $\bgamma$, $N$ and $p$ we take 100 samples and average the testing $MSE(\hat{\p}^{\RgPCC})$ and $MSE(\hat{\p}^{\log})$ over those 100 samples. We find the parameter $\lambda$ by minimizing the testing error of $\p$ of a fixed testing set of size $5N$. Graphs of this parameter tuning can be found in Tables and Figures section.
+
+
+
+% \begin{figure}[H]
+% \begin{tabular}{c|c|c|c}
+% 	$\bgamma$ & $\bgamma_1$ & $\bgamma_2$ & $\bgamma_3$ \\ \hline
+% 	$\lambda$ & 43 & 19 & 26 \\
+% 	$MSE(\hat{\p})$ & 0.001222 & 0.006893 & 0.008759 \\
+% 	$MSE_{\log}(\hat{\p})$ & 0.04491 & 0.04305 & 0.04520 \\
+% 	$MSE(\hat{\y})$ & 0.28384 & 0.29610 & 0.35166 \\
+% 	$MSE_{\log}(\hat{\y})$ & 0.39854 & 0.29916 & 0.35166 \\
+% 	(Bayes) $MSE(\y^*)$ & 0.278 & 0.280 & 0.340 \\
+% 	$MSE(\hat{\bbeta})$ & 101.3245 & 188.101 & 145.204  \\
+% 	$MSE_{\log}(\hat{\bbeta})$ & 107.649 & 198.882 & 154.484
+% \end{tabular}
+% \caption{For $N = 100$, $p = 12$ over 100 replications. Parameter $\lambda$ tuned by $\min MSE(\hat{\p})$ testing error. }
+% \label{figure:100-12-table}
+% \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|} \hline \\
+         &  \\
+         & 
+    \end{tabular}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
+
+where
+
+\begin{figure}[H]
+	\begin{tabular}{c}
+		$\bgamma_1 = (25, 0, 0, 0, 0, 0, \ldots , 0)$ \\
+		$\bgamma_2 = (20, 10, 10, 0, 0, 0, \ldots , 0)$ \\
+		$\bgamma_3 = (15, 10, 5, 5, 3, 0, \ldots , 0)$
+	\end{tabular}
+\end{figure}
+We can see that the testing error for $\p$ is improved with RgPCC by at least a factor of 4 in each case. RgPCC avoids overfitting the data as much as logistic regression does. In particular, there is drastic improvement in classification when $\bgamma^*$ is very sparse (that is for $\bgamma_1$). Similar results occur when $N = 200$ but are left in the table and results section.
+
+We also run a few examples for higher dimensional data. Our method should excel in this via its use of principal components and sparsity in $\bgamma$.
+
+\begin{figure}[H]
+	\begin{tabular}{c|c|c}
+		$\bgamma$ & $\bgamma_1$ & $\bgamma_2$ \\ \hline
+		$\lambda$ & 240 & 260\\
+		$MSE(\hat{\p})$ & 0.025 & 0.007 \\
+		$MSE_{\log}(\hat{\p})$ & 0.25 & 0.246 \\
+		$MSE(\hat{\y})$ & 0.419 &  0.448 \\
+		$MSE_{\log}(\hat{\y})$ & 0.431 & 0.459 \\
+		(Bayes) $MSE(\y^*)$ & 0.315 & 332  \\
+		$MSE(\hat{\bbeta})$ & 70.562 & 17.445 \\
+		$MSE_{\log}(\hat{\bbeta})$ & 73.446 & 19.523
+	\end{tabular}
+	\caption{}
+	\label{figure:200-100-table}
+\end{figure}
+
+where
+
+\begin{figure}[H]
+	\begin{tabular}{c}
+		$\bgamma_1 = (25, 0, 0, 0, 0, 0, \ldots , 0)$ \\
+		$\bgamma_2 = (10, 5, 5, 0, 0, 0, \ldots , 0)$
+	\end{tabular}
+\end{figure}
+
+Here we see similar results as in the low dimensional case. At this point, we know that RgPCC performs better, if no just as well, as logistic regression does. However, there are still many aspect of the method we wish to study.
+
+\end{document}

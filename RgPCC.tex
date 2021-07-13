@@ -1,0 +1,137 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\section{Response-guided Principal Component Classification}
+
+First, a note on notation. We let $p$ denote the number of predictors in our data, $p_{\lambda}$ to a non-decreasing penalty function and $p_i$ to be the $i^{\text{th}}$ component of a vector of probabilities $\p$.
+
+Suppose we have a classification problem with design $\X$ and classes $\y$. In logistic regression we fit by maximizing the log-likelihood, we take the opposite of this and penalize the coefficients as such,
+
+\begin{align}
+	\bbeta^{\text{RgPCC}} = \argmin_{\bbeta} - \ell(\X, \bbeta) + \sum_{j = 1}^p p_{\lambda}(\beta_j) \label{RgPCC_obj}
+\end{align}
+
+\subsection{Method}
+To solve (\ref{RgPCC_obj}), we can approximate the log-likelihood $\ell(\X, \bbeta)$ with a quadratic approximation centered at $\bbeta^*$ (the minimizer of $- \ell(\X, \bbeta)$). This quadratic approximation can be interpreted as the least squares error
+
+\begin{align}
+	- \ell(\X, \bbeta) \approx ||\W^{1/2} (\z - \X \bbeta)||^2 = || \widetilde{\y} - \widetilde{\X} \bbeta ||^2
+\end{align}
+
+where $\W$, and $\z$ are as in (\ref{pdef} - \ref{zdef}) with (\ref{pdef}) evaluated at $\bbeta = \bbeta^*$ and $\W^{1/2} \X = \tilde{\X}$, $\tilde{\y} = \W^{1/2} \z$. The derivation of this approximation can be found in \cite{wangleng}. Note that, we may often refer to $\tilde{\X}$ and $\tilde{\y}$ as the \emph{pseudo data} and \emph{pseudo response} respectively.
+
+Equation (\ref{RgPCC_obj}) can be rewritten as an approximate RgPCR problem
+
+\begin{align}
+	\argmin_{\bbeta} || \widetilde{\y} - \widetilde{\X} \bbeta ||^2 + \sum_{j = 1}^p p_{\lambda}(\beta_j) \label{RgPCC_obj2}
+\end{align}
+
+For particular choices of $p_{\lambda}$, this may be solved using techniques from \cite{langzou}. That is, by viewing the above in terms of principal components we may solve the equivalent problem
+
+\begin{align}
+	\argmin_{\bgamma} ||\tilde{\y} - \tilde{\U} \bgamma ||^2 + \sum_{j = 1}^p p_{\lambda} \left (\frac{\gamma_j}{d_j} \right )
+\end{align}
+
+where $\tilde{\X} = \tilde{\U} \tilde{\D} \tilde{\V}^T$ is the SVD decomposition of $\tilde{\X}$ and $\bgamma = \tilde{\D} \tilde{\V}^T \bbeta$. The matrices $\tilde{\U}$ and $\tilde{\V}$ are orthogonal matrices and are $N \times p$ and $p \times p$ matrices respectively. Let $d_j$ denotes the diagonal entries of $\tilde{\D}$ for $1 \leq j \leq p$. For our description here, we assume that $\tilde{\X}$ has full rank, but the following still holds with a thin SVD decomposition.
+
+As with RgPCR, we may take advantage of the orthogonality of $\tilde{\U}$ and optimize componentwise. That is, with $\hat{\gamma}^{\text{ols}}_j = \y^T \tilde{U}_j$,
+
+\begin{align}
+	 \argmin_{\gamma_j} (\hat{\gamma}_j^{\text{ols}} - \gamma_j)^2 + p_{\lambda} \left (\frac{\gamma_j}{d_j} \right ). \label{RgPCC_princ}
+\end{align}
+
+From \cite{langzou}, when $p_\lambda(t) = |t|$ is the LASSO penalty, we have the closed form solution of (\ref{RgPCC_princ})
+
+\begin{align}
+	\hat{\gamma_j} = \left ( |\hat{\gamma}^{\text{ols}}_j| - \frac{\lambda}{d_j} \right )^+ \cdot \sgn{\hat{\gamma}^{\text{ols}}_j},
+\end{align}
+
+where $a^+$ denotes the positive real part of a real number $a$. We can then rewrite this in the original coordinates using
+
+\begin{align}
+	\hat{\bbeta} = \sum_{j = 1}^p \tilde{V}_j \frac{\hat{\gamma}_j}{d_j}.
+\end{align}
+
+\subsection{Iterative Approximations}
+
+In practice, a single quadratic approximation of $- \ell(\X, \bbeta)$ may not produce a minimum close to the true minimum. Just as in logistic regression, we take the quadratic approximations iteratively to improve our approximation of the minimum. That is, for some approximate minimizer $\bbeta^{(n)}$, we solve
+
+\begin{align}
+	\argmin_{\bbeta} - \ell(\X, \bbeta) + \sum_{j = 1}^p p_{\lambda}(\beta_j)
+\end{align}
+
+which can be approximated by
+
+\begin{align}
+	- \ell(\X, \bbeta) \approx || \widetilde{\y}^{(n)} - \widetilde{\X}^{(n)} \bbeta ||^2 \label{RgPCC_iter}
+\end{align}
+
+where
+\begin{align}
+	\p^{(n)} &= \dfrac{\text{exp}(\X \bbeta^{(n)})}{1 + \text{exp}(\X \bbeta^{(n)})} \label{pdef}\\
+    \W^{(n)} &= \text{diag}[p_i^{(n)}(1-p_i^{(n)})] \label{Wdef}\\
+    \z^{(n)} &= \X \bbeta^{(n)} + (\W^{(n)})^{-1}(\y - \p^{(n)}). \label{zdef} \\
+	\tilde{\X}^{(n)} &= (\W^{(n)})^{1/2} \X \\
+	\tilde{\y}^{(n)} &= (\W^{(n)})^{1/2} \z^{(n)}
+\end{align}
+
+As with the first iteration, we can solve
+
+\begin{align}
+	\argmin_{\bbeta} || \widetilde{\y}^{(n)} - \widetilde{\X}^{(n)} \bbeta ||^2 + \sum_{j = 1}^p p_{\lambda}(\beta_j)
+\end{align}
+
+to estimate the solution to (\ref{RgPCC_iter}). Then, as with the first iteration, we can express the above using principal components
+
+\begin{align}
+	\argmin_{\bgamma} ||\tilde{\y}^{(n)} - \tilde{\U}^{(n)} \bgamma ||^2 + \sum_{j = 1}^p p_{\lambda} \left (\frac{\gamma_j}{d_j^{(n)}} \right )
+\end{align}
+
+and take advantage of the orthogonality of $\tilde{\U}$ so solve componentwise
+
+\begin{align}
+	\argmin_{\gamma_j} (\hat{\gamma}_j^{\text{ols}, (n)} - \gamma_j)^2 + p_{\lambda} \left (\frac{\gamma_j}{d_j^{(n)}} \right ). \label{RgPCC_princ_iter}
+\end{align}
+
+\subsection{Algorithm for LASSO penalty}
+
+Here, we will briefly describe the algorithm used to approximate a solution to (\ref{RgPCC_obj}) when we use the LASSO penalty. This will generalize to any penalty that has an RgPCR closed form solution.
+
+\begin{enumerate}[(Step 1)]
+	\item Guess an initial $\hat{\beta}^{(0)}$
+	\item With $\hat{\beta}^{(0)}$ calculate the following
+		\begin{align*}
+			\p^{(0)} &= \dfrac{\text{exp}(\X \bbeta^{(0)})}{1 + \text{exp}(\X \bbeta^{(0)})} = \dfrac{\text{exp}(\U \bgamma^{(0)})}{1 + \text{exp}(\U \bgamma^{(0)})}\\
+			\W^{(0)} &= \text{diag}[p_i^{(0)}(1-p_i^{(0)})] \\
+			\z^{(0)} &= \X \bbeta^{(0)} + (\W^{(0)})^{-1}(\y - \p^{(0)}).
+		\end{align*}
+	\item Compute the solution to the RgPCR problem
+	\begin{align}
+		\argmin_{\bgamma} ||\tilde{\y}^{(0)} - \tilde{\U}^{(0)} \bgamma ||^2 + \lambda \sum_{j = 1}^p  \left | \frac{\gamma_j}{d_j^{(0)}} \right |
+	\end{align}
+	using the closed form solution
+	\begin{align}
+		\hat{\gamma_j}^{(1)} = \left ( |\hat{\gamma}^{\text{ols}}_j| - \frac{\lambda}{d_j} \right )^+ \cdot \sgn{\hat{\gamma}^{\text{ols}}_j},
+	\end{align}
+	where $\hat{\gamma}^{\text{ols}}_j = \tilde{y}^{(0)} \tilde{U}^{(0)}_j$
+	\item repeat steps 2 and 3 using $\hat{\bgamma}^{(1)}$ and similarly using $\hat{\bgamma}^{(k)}$ until $\varepsilon^{(k)} = \frac{|| \bbeta^{(k)} - \bbeta^{(k+1)}||}{||\bbeta^{(k)}||} < \varepsilon$ for some desired tolerance $\varepsilon$.
+	\item Recover the solution in the original coordinates with $$\hat{\bbeta}^{(n)} = \sum_{j = 1}^p \tilde{V}^{(n)}_j \frac{\hat{\gamma}_j^{(n)}}{d_j^{(n)}}.$$
+\end{enumerate}
+
+% \begin{algorithm}[H]
+% \SetAlgoLined
+% \KwResult{RgPCC}
+%  initialization\;
+%  \While{While condition}{
+%   instructions\;
+%   \eIf{condition}{
+%   instructions1\;
+%   instructions2\;
+%   }{
+%   instructions3\;
+%   }
+%  }
+%  \caption{How to write algorithms}
+% \end{algorithm}
+
+\end{document}
