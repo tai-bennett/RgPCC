@@ -1,18 +1,23 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Literature Review}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{PCA}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{RgPCR}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Logistic Regression}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Response-guided Principal Component Classification}{}% 6
-\BOOKMARK [2][-]{subsection.3.1}{Method}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.2}{Iterative Approximations}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.3}{Algorithm for LASSO penalty}{section.3}% 9
-\BOOKMARK [1][-]{section.4}{Numerical Studies}{}% 10
-\BOOKMARK [2][-]{subsection.4.1}{Creation of Simulated Data}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.2}{Performance of RgPCC on Simulated Data}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.3}{Performance of RgPCC on Realworld Data}{section.4}% 13
-\BOOKMARK [1][-]{section.5}{Further Research}{}% 14
-\BOOKMARK [2][-]{subsection.5.1}{Speed}{section.5}% 15
-\BOOKMARK [2][-]{subsection.5.2}{Cp-type Statistic for Parameter Tuning}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.3}{Further Generalization}{section.5}% 17
-\BOOKMARK [1][-]{section.6}{Figures}{}% 18
+\BOOKMARK [1][-]{section*.4}{Abstract}{}% 1
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.2}{Literature Review}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Principal Component Analysis \(PCA\)}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{Response-guided Principal Component Regression \(RgPCR\)}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{Logistic Regression}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Response-guided Principal Component Classification}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Method}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Iterative Approximations}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Algorithm for LASSO penalty}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Numerical Studies}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Creation of Simulated Data}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Performance of RgPCC on Simulated Data}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Performance of RgPCC on Realworld Data}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Conclusions and Further Research}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Conclusions}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.2}{Speed}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.3}{Cp-type Statistic for Parameter Tuning}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.4}{Further Generalization}{section.5}% 19
+\BOOKMARK [1][-]{section.6}{Figures}{}% 20
+\BOOKMARK [2][-]{subsection.6.1}{Tables of Simulated Results}{section.6}% 21
+\BOOKMARK [2][-]{subsection.6.2}{Graphs of Tuning}{section.6}% 22
+\BOOKMARK [1][-]{subsection.6.2}{References}{}% 23

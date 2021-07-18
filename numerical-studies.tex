@@ -18,9 +18,9 @@ In this section we compare RgPCC with LASSO penalty to conventional logistic reg
 The convergence of our algorithm is based on the tolerance of $\varepsilon = 0.1$, which means we will terminate our Newton-Ralphson method when $$\varepsilon^{(k)} = \frac{||\bbeta^{(k)} - \bbeta^{(k+1)}||}{||\bbeta^{(k)}||} < 0.1.$$
 
 \subsection{Creation of Simulated Data}
-Let $\X$ be our design matrix where each row of $\X$ is independently generated from $N(0, \Sigma)$ where $\Sigma_{ij} = \rho^{|i - j|}$ with $\rho = 0.8$.
+Let $\gls{X}$ be our design matrix where each row of $\gls{X}$ is independently generated from $N(0, \Sigma)$ where $\Sigma_{ij} = \rho^{|i - j|}$ with $\rho = 0.8$.
 
-To generate our response data, let $\mu = \X \bbeta^* = \U \bgamma^*$ where $\bgamma^* = \D \V^T \bbeta^*$. Then the classes $\y$ come from a Bernoulli distribution with parameter $\p = \frac{\text{exp}(\U \bgamma^*)}{1 + \text{exp}(\U \bgamma^*)} = \frac{\text{exp}(\mu)}{1 + \text{exp}(\mu)}$. Therefore the response data is dependent on $\bgamma^*$ and the data $\X$. We make a variety of choices for $\bgamma^*$ (denoted just as $\bgamma$ below) which have varying amounts of sparsity and created varying levels of linear separability.
+To generate our response data, let $\mu = \gls{X} \bbeta^* = \gls{U} \bgamma^*$ where $\bgamma^* = \gls{D} \gls{V}^T \bbeta^*$. Then the classes $\y$ come from a Bernoulli distribution with parameter $\p = \frac{\text{exp}(\U \bgamma^*)}{1 + \text{exp}(\U \bgamma^*)} = \frac{\text{exp}(\mu)}{1 + \text{exp}(\mu)}$. Therefore the response data is dependent on $\bgamma^*$ and the data $\gls{X}$. We make a variety of choices for $\bgamma^*$ (denoted just as $\bgamma$ below) which have varying amounts of sparsity and created varying levels of linear separability.
 
 \subsection{Performance of RgPCC on Simulated Data}
 Here we fit RgPCC, logistic regression and PC logistic regression to our simulated data. To test the quality of the fit, we see how well our models predict the true probability vector $\p$ (the parameter of the Bernoulli distribution above) over a test set of size $5N$. We measure the accuracy of our predicted $\widehat{\p}$ using the 1-norm, 2-norm and EGKL. These are defined as follows:

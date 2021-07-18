@@ -4,10 +4,10 @@
 \section{Literature Review}
 Here we describe two supervised learning methods that have motivated RgPCC. First, we summarized RgPCR, a method developed by Lang and Zou \cite{langzou}.  Then we summarized logistic regression for binary classification.
 
-\subsection{PCA}
+\subsection{Principal Component Analysis (PCA)}
 
 
-\subsection{RgPCR}
+\subsection{Response-guided Principal Component Regression (RgPCR)}
 RgPCR is a generalization of ridge regression which we will briefly summarize. Let $\X = \U \D \V^T$ be the singular value decomposition of an $N \times p$ design matrix $\X$. Then with response $y$ we can write the ridge regression solution as
 \begin{align}
     \hat{\bbeta}^{\ridge} = \argmin_{\bbeta} ||\y - \X \bbeta||_2^2 + \lambda \sum_{j = 1}^p \beta_j^2.
@@ -65,7 +65,7 @@ To fit such a line for the log-odds (\ref{log-odds}), we fit by maximizing the l
 \end{align}
 This maximization can be found in \cite{elemstatlearn} and has a convenient interpretation. When maximizing by the Newton-Ralphson method, each iteration can be interpreted as solving a weighted least squares problem. That is
 \begin{align}
-    \bbeta^{\new} &= \bbeta^{\old} + (\X^T \W \X)^{-1} \X^T(\y - \p) \\
+    \bbeta^{\new} &= \bbeta^{\old} + (\X^T \gls{W} \X)^{-1} \X^T(\y - \p) \\
     &= (\X^T \W \X)^{-1} \X^T \W \z
 \end{align}
 where

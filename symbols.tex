@@ -1,0 +1,30 @@
+\usepackage[sort = def, nonumberlist]{glossaries}
+\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
+\newglossary{symbols}{sym}{sbl}{List of Abbreviations and Symbols}
+\makeglossary
+
+
+
+% data stuff
+\newglossaryentry{X}{type=symbols,name={\ensuremath{\X}},
+	description={a design matrix, usually with dimensions $N \times p$}}
+
+\newglossaryentry{y}{type=symbols,name={\ensuremath{\y}},
+	description={a response vector of the binary classes}}
+
+\newglossaryentry{U}{type=symbols,name={\ensuremath{\U}},
+	description={of the svd of $\X = \U \D \V^T$}}
+
+\newglossaryentry{D}{type=symbols,name={\ensuremath{\D}},
+	description={of the svd of $\X = \U \D \V^T$}}
+
+\newglossaryentry{V}{type=symbols,name={\ensuremath{\V}},
+	description={of the svd of $\X = \U \D \V^T$}}
+
+\newglossaryentry{W}{type=symbols,name={\ensuremath{\W}},
+	description={a weight matrix}}
+
+\newglossaryentry{z}{type=symbols,name={\ensuremath{\z}},
+	description={a psuedo response based on the weight $\W$}}
+
+% coef stuff

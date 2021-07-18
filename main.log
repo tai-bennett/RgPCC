@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.7.13)  13 JUL 2021 15:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.7.13)  18 JUL 2021 12:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -8,8 +8,8 @@ LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-04-06>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
 \c@part=\count167
 \c@section=\count168
@@ -472,24 +472,242 @@ Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
 \everycr=\toks28
 \minrowclearance=\skip92
 )
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2020/01/28 v0.5q Insert pages of external PDF documents (AM)
+
+(/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
+)
+\AM@pagewidth=\dimen190
+\AM@pageheight=\dimen191
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2020/01/28 v0.5q Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box64
+\AM@global@opts=\toks29
+\AM@pagecnt=\count286
+\AM@toc@title=\toks30
+\c@AM@survey=\count287
+\AM@templatesizebox=\box65
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 22.
+
 (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/01/03 v3.4h Customizing captions (AR)
-\c@caption@flags=\count286
-\c@continuedfloat=\count287
+\c@caption@flags=\count288
+\c@continuedfloat=\count289
 Package caption Info: float package is loaded.
 Package caption Info: floatrow package is loaded.
 Package caption Info: hyperref package is loaded.
 )
-\c@subfigure=\count288
-\c@subtable=\count289
+\c@subfigure=\count290
+\c@subtable=\count291
+) (./symbols.tex
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+Package: glossaries 2020/03/19 v4.46 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks31
+\XKV@tempa@toks=\toks32
 )
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+\XKV@depth=\count292
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
+Package: mfirstuc 2017/11/14 v2.06 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count293
+)
+\@glsmfirst=\toks33
+\@glsmrest=\toks34
+)
+(/usr/share/texlive/texmf-dist/tex/latex/textcase/textcase.sty
+Package: textcase 2019/09/14 v1.00 Text only upper/lower case changing (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xfor/xfor.sty
+Package: xfor 2009/02/05 v1.05 (NLCT)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/datatool/datatool-base.sty
+Package: datatool-base 2019/09/27 v2.32 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/substr/substr.sty
+Package: substr 2009/10/20 v1.2 Handle substrings
+\c@su@anzahl=\count294
+)
+(/usr/share/texlive/texmf-dist/tex/latex/datatool/datatool-fp.sty
+Package: datatool-fp 2019/09/27 v2.32 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp.sty
+Package: fp 1995/04/02
+
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(/usr/share/texlive/texmf-dist/tex/latex/fp/defpattern.sty
+Package: defpattern 1994/10/12
+\actioncount=\count295
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-basic.sty
+Package: fp-basic 1996/05/13
+\FP@xs=\count296
+\FP@xia=\count297
+\FP@xib=\count298
+\FP@xfa=\count299
+\FP@xfb=\count300
+\FP@rega=\count301
+\FP@regb=\count302
+\FP@regs=\count303
+\FP@times=\count304
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-addons.sty
+Package: fp-addons 1995/03/15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-snap.sty
+Package: fp-snap 1995/04/05
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-exp.sty
+Package: fp-exp 1995/04/03
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-trigo.sty
+Package: fp-trigo 1995/04/14
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-pas.sty
+Package: fp-pas 1994/08/29
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-random.sty
+Package: fp-random 1995/02/23
+\FPseed=\count305
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eqn.sty
+Package: fp-eqn 1995/04/03
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-upn.sty
+Package: fp-upn 1996/10/21
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eval.sty
+Package: fp-eval 1995/04/03
+)))
+\@dtl@toks=\toks35
+\@dtl@tmpcount=\count306
+\dtl@tmplength=\skip93
+\dtl@sortresult=\count307
+\@dtl@numgrpsepcount=\count308
+\@dtl@datatype=\count309
+\dtl@codeA=\count310
+\dtl@codeB=\count311
+\@dtl@foreach@level=\count312
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-
+307.sty
+Package: glossaries-compatible-307 2020/03/19 v4.46 (NLCT)
+) (/usr/share/texlive/texmf-dist/tex/latex/tracklang/tracklang.sty
+Package: tracklang 2019/11/30 v1.4 (NLCT) Track Languages
+
+(/usr/share/texlive/texmf-dist/tex/generic/tracklang/tracklang.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/translator/translator.sty
+Package: translator 2019-05-31 v1.12a Easy translation of strings in LaTeX
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries-english/glossaries-english.
+ldf
+File: glossaries-english.ldf 2014/11/23 v1.0
+)
+\glossary@main@sortcount=\count313
+\gls@level=\count314
+\@gls@tmpb=\toks36
+\gls@tmplen=\skip94
+\glskeylisttok=\toks37
+\glslabeltok=\toks38
+\glsshorttok=\toks39
+\glslongtok=\toks40
+
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.st
+y
+Package: glossary-hypernav 2020/03/19 v4.46 (NLCT)
+) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
+Package: glossary-list 2020/03/19 v4.46 (NLCT)
+\glslistdottedwidth=\skip95
+) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+Package: glossary-long 2020/03/19 v4.46 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip96
+\LTright=\skip97
+\LTpre=\skip98
+\LTpost=\skip99
+\LTchunksize=\count315
+\LTcapwidth=\dimen192
+\LT@head=\box66
+\LT@firsthead=\box67
+\LT@foot=\box68
+\LT@lastfoot=\box69
+\LT@cols=\count316
+\LT@rows=\count317
+\c@LT@tables=\count318
+\c@LT@chunks=\count319
+\LT@p@ftn=\toks41
+)
+\glsdescwidth=\skip100
+\glspagelistwidth=\skip101
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+Package: glossary-super 2020/03/19 v4.46 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/supertabular/supertabular.sty
+Package: supertabular 2020/02/02 v4.1g the supertabular environment
+\c@tracingst=\count320
+\ST@wd=\dimen193
+\ST@rightskip=\skip102
+\ST@leftskip=\skip103
+\ST@parfillskip=\skip104
+\ST@pageleft=\dimen194
+\ST@headht=\dimen195
+\ST@tailht=\dimen196
+\ST@pagesofar=\dimen197
+\ST@pboxht=\dimen198
+\ST@lineht=\dimen256
+\ST@prevht=\dimen257
+\ST@toadd=\dimen258
+\ST@dimen=\dimen259
+\ST@pbox=\box70
+))
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
+Package: glossary-tree 2020/03/19 v4.46 (NLCT)
+\glstreeindent=\skip105
+))
+\glossary@symbols@sortcount=\count321
+
+
+Package glossaries Warning: Use of \makeglossary with glossaries.sty is 
+(glossaries)                deprecated. Use \makeglossaries instead. If you 
+(glossaries)                need the original definition of \makeglossary use 
+(glossaries)                the package options kernelglossredefs=false (to 
+(glossaries)                restore the former definition of \makeglossary) and
+ 
+(glossaries)                nomain (if the file extensions cause a conflict) on
+ input line 4.
+
+\glswrite=\write3
+\glo@main@file=\write4
+\openout4 = `main.glo'.
+
+Package glossaries Info: Writing glossary file main.glo on input line 4.
+\glo@symbols@file=\write5
+\openout5 = `main.sbl'.
+
+Package glossaries Info: Writing glossary file main.sbl on input line 4.
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count290
-\l__pdf_internal_box=\box64
+\l__kernel_color_stack_int=\count322
+\l__pdf_internal_box=\box71
 )
 (./main.aux
 
@@ -501,28 +719,25 @@ LaTeX Warning: Label `Wdef' multiply defined.
 
 LaTeX Warning: Label `zdef' multiply defined.
 
-
-LaTeX Warning: Label `fig:my_label' multiply defined.
-
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -532,23 +747,23 @@ LaTeX Font Info:    ... okay on input line 70.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* h-part:(L,W,R)=(108.405pt, 397.485pt, 108.405pt)
+* v-part:(T,H,B)=(108.405pt, 578.15999pt, 108.405pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
+* \textwidth=397.485pt
+* \textheight=578.15999pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-0.86499pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=11.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=59.0pt
+* \marginparwidth=44.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -559,9 +774,24 @@ LaTeX Font Info:    ... okay on input line 70.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: longtable package is loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2018/08/26 v1.4a longtable captions (AR)
+)
+Package caption Info: Fixing longtable code of `floatrow' package.
+Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box65
-Package hyperref Info: Link coloring OFF on input line 70.
+
+(/usr/share/texlive/texmf-dist/tex/latex/floatrow/fr-longtable.sty
+Package: fr-longtable 2007/11/28 v0.1b (beta) floatrow: additions for longtable
+
+\flrow@LT@lasthead=\box72
+\flrow@LT@prelastfoot=\box73
+\c@FBLTpage=\count323
+)
+\AtBeginShipoutBox=\box74
+Package hyperref Info: Link coloring ON on input line 86.
+
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -571,30 +801,30 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count291
+\c@section@level=\count324
 )
-LaTeX Info: Redefining \ref on input line 70.
-LaTeX Info: Redefining \pageref on input line 70.
-LaTeX Info: Redefining \nameref on input line 70.
+LaTeX Info: Redefining \ref on input line 86.
+LaTeX Info: Redefining \pageref on input line 86.
+LaTeX Info: Redefining \nameref on input line 86.
 
 (./main.out) (./main.out)
-\@outlinefile=\write3
-\openout3 = `main.out'.
+\@outlinefile=\write6
+\openout6 = `main.out'.
 
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count292
-\scratchdimen=\dimen190
-\scratchbox=\box66
-\nofMPsegments=\count293
-\nofMParguments=\count294
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count295
-\MPscratchDim=\dimen191
-\MPnumerator=\count296
-\makeMPintoPDFobject=\count297
-\everyMPtoPDFconversion=\toks30
+\scratchcounter=\count325
+\scratchdimen=\dimen260
+\scratchbox=\box75
+\nofMPsegments=\count326
+\nofMParguments=\count327
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count328
+\MPscratchDim=\dimen261
+\MPnumerator=\count329
+\makeMPintoPDFobject=\count330
+\everyMPtoPDFconversion=\toks43
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -604,130 +834,196 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
+(/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
 
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+) (./main.glsdefs)
+
+Package pdfpages Warning: Option `page' is unknow to \includepdf.
+(pdfpages)                Did you mean `pages'? (Note the `s'!)
+(pdfpages)                OK, I'll proceed as if it were `pages'.
+
+<titlepage.pdf, id=95, 614.295pt x 794.97pt>
+File: titlepage.pdf Graphic file (type pdf)
+<use titlepage.pdf>
+Package pdftex.def Info: titlepage.pdf  used on input line 89.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: titlepage.pdf Graphic file (type pdf)
+<use titlepage.pdf>
+Package pdftex.def Info: titlepage.pdf  used on input line 89.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+<titlepage.pdf, id=98, page=1, 614.295pt x 794.97pt>
+File: titlepage.pdf Graphic file (type pdf)
+<use titlepage.pdf, page 1>
+Package pdftex.def Info: titlepage.pdf , page1 used on input line 89.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: titlepage.pdf Graphic file (type pdf)
+<use titlepage.pdf, page 1>
+Package pdftex.def Info: titlepage.pdf , page1 used on input line 89.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: titlepage.pdf Graphic file (type pdf)
+<use titlepage.pdf, page 1>
+Package pdftex.def Info: titlepage.pdf , page1 used on input line 89.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: titlepage.pdf Graphic file (type pdf)
+<use titlepage.pdf, page 1>
+Package pdftex.def Info: titlepage.pdf , page1 used on input line 89.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: titlepage.pdf Graphic file (type pdf)
+<use titlepage.pdf, page 1>
+Package pdftex.def Info: titlepage.pdf , page1 used on input line 89.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+[1
+
+\openout3 = `main.ist'.
+
+ <./titlepage.pdf>] [2{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pd
+ftex.map}] (./acknowledgement.tex) [3] (./main.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./main.toc)
-\tf@toc=\write4
-\openout4 = `main.toc'.
+))
+\tf@toc=\write7
+\openout7 = `main.toc'.
 
+ [4] (./main.gls)
+(./main.sym) [5] (./main.lof)
+\tf@lof=\write8
+\openout8 = `main.lof'.
 
-(./intro.tex [1
-
-{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}]) (./literat
-ure-review.tex [2] [3]) (./RgPCC.tex [4] [5] [6])
-(./numerical-studies.tex [7]
-<simulated/(sparsity3-nonlead,12)_metrics.pdf, id=216, 561.09625pt x 317.185pt>
+ [6] [7] (./intro.tex) (./literature-review.tex
+[8] [9] [10]) (./RgPCC.tex [11] [12] [13]) (./numerical-studies.tex [14]
+[15]
+<simulated/(sparsity3-nonlead,12)_metrics.pdf, id=312, 561.09625pt x 317.185pt>
 
 File: simulated/(sparsity3-nonlead,12)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity3-nonlead,12)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity3-nonlead,12)_metrics.pdf  used on 
 input line 50.
-(pdftex.def)             Requested size: 469.75502pt x 265.54787pt.
-<simulated/(sparsity3-nonlead,50)_metrics.pdf, id=217, 561.09625pt x 317.185pt>
+(pdftex.def)             Requested size: 397.485pt x 224.69472pt.
+<simulated/(sparsity3-nonlead,50)_metrics.pdf, id=313, 561.09625pt x 317.185pt>
 
 File: simulated/(sparsity3-nonlead,50)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity3-nonlead,50)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity3-nonlead,50)_metrics.pdf  used on 
 input line 57.
-(pdftex.def)             Requested size: 469.75502pt x 265.54787pt.
- [8 <./simulated/(sparsity3-nonlead,12)_metrics.pdf>] [9 <./simulated/(sparsity
-3-nonlead,50)_metrics.pdf>]
-<realworld/audit.risk-5CV-errors graph.pdf, id=245, 454.69875pt x 341.275pt>
+(pdftex.def)             Requested size: 397.485pt x 224.69472pt.
+ [16 <./simulated/(sparsity3-nonlead,12)_metrics.pdf>] [17 <./simulated/(sparsi
+ty3-nonlead,50)_metrics.pdf>]
+<realworld/audit.risk-5CV-errors graph.pdf, id=338, 454.69875pt x 341.275pt>
 File: realworld/audit.risk-5CV-errors graph.pdf Graphic file (type pdf)
 <use realworld/audit.risk-5CV-errors graph.pdf>
 Package pdftex.def Info: realworld/audit.risk-5CV-errors graph.pdf  used on inp
-ut line 142.
-(pdftex.def)             Requested size: 230.18253pt x 172.7669pt.
-<realworld/Cryotherapy-5CV-errors graph.pdf, id=246, 454.69875pt x 341.275pt>
+ut line 144.
+(pdftex.def)             Requested size: 194.76982pt x 146.18298pt.
+<realworld/Cryotherapy-5CV-errors graph.pdf, id=339, 454.69875pt x 341.275pt>
 File: realworld/Cryotherapy-5CV-errors graph.pdf Graphic file (type pdf)
 <use realworld/Cryotherapy-5CV-errors graph.pdf>
 Package pdftex.def Info: realworld/Cryotherapy-5CV-errors graph.pdf  used on in
-put line 143.
-(pdftex.def)             Requested size: 230.18253pt x 172.7669pt.
-)
-(./further-research.tex [10 <./realworld/audit.risk-5CV-errors graph.pdf> <./re
-alworld/Cryotherapy-5CV-errors graph.pdf>]
+put line 145.
+(pdftex.def)             Requested size: 194.76982pt x 146.18298pt.
+ [18]) (./further-research.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 10.
+(hyperref)                removing `math shift' on input line 12.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 10.
+(hyperref)                removing `subscript' on input line 12.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 10.
+(hyperref)                removing `math shift' on input line 12.
 
-) [11]
-*geometry* verbose mode - [ newgeometry ] result:
-* driver: pdftex
-* paper: <default>
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(54.2025pt, 505.89pt, 54.2025pt)
-* v-part:(T,H,B)=(54.2025pt, 686.56499pt, 54.2025pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=505.89pt
-* \textheight=686.56499pt
-* \oddsidemargin=-18.06749pt
-* \evensidemargin=-18.06749pt
-* \topmargin=-55.06749pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=11.0pt
-* \footskip=30.0pt
-* \marginparwidth=59.0pt
-* \marginparsep=10.0pt
-* \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+[19 <./realworld/audit.risk-5CV-errors graph.pdf> <./realworld/Cryotherapy-5CV-
+errors graph.pdf>]) (./figures.tex
+<simulated/(sparsity1-100,12)_metrics.pdf, id=364, 548.0475pt x 168.63pt>
+File: simulated/(sparsity1-100,12)_metrics.pdf Graphic file (type pdf)
+<use simulated/(sparsity1-100,12)_metrics.pdf>
+Package pdftex.def Info: simulated/(sparsity1-100,12)_metrics.pdf  used on inpu
+t line 11.
+(pdftex.def)             Requested size: 397.485pt x 122.30635pt.
+<simulated/(sparsity1-200,12)_metrics.pdf, id=365, 548.0475pt x 168.63pt>
+File: simulated/(sparsity1-200,12)_metrics.pdf Graphic file (type pdf)
+<use simulated/(sparsity1-200,12)_metrics.pdf>
+Package pdftex.def Info: simulated/(sparsity1-200,12)_metrics.pdf  used on inpu
+t line 12.
+(pdftex.def)             Requested size: 397.485pt x 122.30635pt.
+<simulated/(sparsity1-100,50)_metrics.pdf, id=366, 554.07pt x 168.63pt>
+File: simulated/(sparsity1-100,50)_metrics.pdf Graphic file (type pdf)
+<use simulated/(sparsity1-100,50)_metrics.pdf>
+Package pdftex.def Info: simulated/(sparsity1-100,50)_metrics.pdf  used on inpu
+t line 19.
+(pdftex.def)             Requested size: 397.485pt x 120.9735pt.
+<simulated/(sparsity1-200,50)_metrics.pdf, id=367, 554.07pt x 168.63pt>
+File: simulated/(sparsity1-200,50)_metrics.pdf Graphic file (type pdf)
+<use simulated/(sparsity1-200,50)_metrics.pdf>
+Package pdftex.def Info: simulated/(sparsity1-200,50)_metrics.pdf  used on inpu
+t line 20.
+(pdftex.def)             Requested size: 397.485pt x 120.9735pt.
+ [20 <./simulated/(sparsity1-100,12)_metrics.pdf> <./simulated/(sparsity1-200,1
+2)_metrics.pdf>]
+<simulated/(sparsity1-100,80)_metrics.pdf, id=386, 561.09625pt x 168.63pt>
+File: simulated/(sparsity1-100,80)_metrics.pdf Graphic file (type pdf)
+<use simulated/(sparsity1-100,80)_metrics.pdf>
+Package pdftex.def Info: simulated/(sparsity1-100,80)_metrics.pdf  used on inpu
+t line 27.
+(pdftex.def)             Requested size: 397.485pt x 119.45795pt.
+<simulated/(sparsity1-200,80)_metrics.pdf, id=387, 554.07pt x 168.63pt>
+File: simulated/(sparsity1-200,80)_metrics.pdf Graphic file (type pdf)
+<use simulated/(sparsity1-200,80)_metrics.pdf>
+Package pdftex.def Info: simulated/(sparsity1-200,80)_metrics.pdf  used on inpu
+t line 28.
+(pdftex.def)             Requested size: 397.485pt x 120.9735pt.
+) [21 <./simulated/(sparsity1-100,50)_metrics.pdf> <./simulated/(sparsity1-200,
+50)_metrics.pdf> <./simulated/(sparsity1-100,80)_metrics.pdf> <./simulated/(spa
+rsity1-200,80)_metrics.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 149--152
+[]\T1/cmr/m/sc/12 W.  Lang,  and  H.  Zou (2020) \T1/cmr/m/n/12 --- \T1/cmr/m/i
+t/12 A sim-ple
+ []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 125.
- [12
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 125.
+Underfull \hbox (badness 10000) in paragraph at lines 149--152
+\T1/cmr/m/it/12 method to im-prove prin-ci-pal com-po-nents re-gres-sion\T1/cmr
+/m/n/12 , WI-LEY,
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 161.
+[22]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 125.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 125.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BD0BE093BD63BB5DF4825B3CF8B50AD9;1177.
+(rerunfilecheck)             Checksum: 89D2F515854461155B0D128F7778A111;1577.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 125.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
  ) 
 Here is how much of TeX's memory you used:
- 11256 strings out of 480623
- 169813 string characters out of 5906692
- 467654 words of memory out of 6000000
- 26827 multiletter control sequences out of 15000+600000
- 552472 words of font info for 73 fonts, out of 8000000 for 9000
+ 18379 strings out of 480623
+ 301469 string characters out of 5906692
+ 645557 words of memory out of 6000000
+ 33751 multiletter control sequences out of 15000+600000
+ 553371 words of font info for 79 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 42i,16n,51p,874b,546s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,18n,89p,1056b,546s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr
 /share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texli
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
@@ -736,26 +1032,24 @@ f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
 /amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 extra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/cm-super/sfbx1095.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-s
-uper/sfcc1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sf
-rm0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on main.pdf (12 pages, 415982 bytes).
+dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-s
+uper/sfcc1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sf
+rm0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on main.pdf (22 pages, 437808 bytes).
 PDF statistics:
- 387 PDF objects out of 1000 (max. 8388607)
- 334 compressed objects within 4 object streams
- 83 named destinations out of 1000 (max. 500000)
- 165 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 535 PDF objects out of 1000 (max. 8388607)
+ 454 compressed objects within 5 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 255 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,5 +1,5 @@
-\documentclass[11pt, english]{article}
-\usepackage[margin = 1in]{geometry}
+\documentclass[12pt, english]{article}
+\usepackage[margin = 1.5in]{geometry}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PACKAGES
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
@@ -10,6 +10,16 @@
 \usepackage{diagbox}
 \usepackage{color, colortbl}
 \definecolor{LightCyan}{rgb}{0.88,1,1}
+
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	citecolor=red
+}
 
 
 \usepackage{subcaption}
@@ -60,22 +70,48 @@
 \tolerance 400
 \pretolerance 200
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% NOTATION AND LIST OF SYMBOLS STUFF
+
+
+\input{symbols}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE
-\title{Response-guided Principal Component Classification}
-\date {Nov 2020}
-\author{Duncan Bennett \\ Adviser : Hao Helen Zhang}
+%\title{Response-guided Principal Component Classification}
+%\date {Nov 2020}
+%\author{Duncan Bennett \\ Adviser : Hao Helen Zhang}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
 \begin{document}
 \def\smfbyname{}
 
+\includepdf[page={1}]{titlepage.pdf} 
 
-\maketitle
-\begin{abstract}
-Response-guided principal component regression (RgPCR) is a generalization of ridge regression. This method improves upon principal component regression (PCR) by taking the response values into account during variable selection. In this paper, we will modify RgPCR for binary classification problems using ideas from logistic regression. This technique is called \textit{response-guided principal component classification (RgPCC)}.
-\end{abstract}
+place holder for signature page
+\newpage
+
+\input{acknowledgement.tex}
+
+\newpage
+
 \tableofcontents
+\newpage
+
+\printglossaries
+\newpage
+
+\listoffigures
+\newpage
+
+%\listoftables
+%\newpage
+
+\begin{abstract}
+\addcontentsline{toc}{section}{Abstract}
+	Response-guided principal component regression (RgPCR) is a generalization of ridge regression. This method improves upon principal component regression (PCR) by taking the response values into account during variable selection. In this paper, we will modify RgPCR for binary classification problems using ideas from logistic regression. This technique is called \textit{response-guided principal component classification (RgPCC)}.
+\end{abstract}
+\newpage
 
 
 \subfile{intro} 
@@ -92,11 +128,16 @@ Response-guided principal component regression (RgPCR) is a generalization of ri
 
 \subfile{further-research}
 
+%\newgeometry{top=0.75in,bottom=0.75in,right=0.75in,left=0.75in}
+
+\section{Figures}
+\subfile{figures}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\refname{Bibliography}
+\addcontentsline{toc}{section}{References}
+%\def\refname{Bibliography}
 \begin{thebibliography}{99}
 
 \bibitem {elemstatlearn}
@@ -115,11 +156,6 @@ Response-guided principal component regression (RgPCR) is a generalization of ri
  Journal of the American Statistical Association, 102:479, 1039-1048, DOI; 10.1198/016214507000000509, \href{https://doi.org/10.1198/016214507000000509}{https://doi.org/10.1198/016214507000000509}
 
 \end{thebibliography}
-
-\newgeometry{top=0.75in,bottom=0.75in,right=0.75in,left=0.75in}
-
-\section{Figures}
-%\subfile{figures}
 
 
 \end{document}
