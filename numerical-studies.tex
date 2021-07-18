@@ -5,11 +5,13 @@
 In this section we compare RgPCC with LASSO penalty to conventional logistic regression. We first summarize how our simulated data was created and then discuss the results of the methods mentioned previously. We will consider a variety of sample sizes, dimensions and sparsities in $\bgamma$ and compare error rates in $\p, \bbeta, \bgamma$ and classification. We will also vary which components of $\bgamma$ are nonzero. Again, please note that $p$ is the number of predictors while $\p$ is a vector of probabilities.
 
 \begin{figure}[H]
-	\begin{tabular}{c|c|c}
+	\begin{tabular}{l l l} \hline
 		$p$ & $N$ & $\bgamma$ sparsity \\ \hline
+		\rowcolor{LightCyan}
 		12 & 100, 200 & 1, 3, 5 \\
 		50 & 100, 200 & 1, 3 \\
-		80 & 100, 200 & 1
+		\rowcolor{LightCyan}
+		80 & 100, 200 & 1 \\ \hline
 	\end{tabular}
 	\caption{Parameters of data creation.}
 	\label{figure:params}
@@ -23,12 +25,12 @@ Let $\gls{X}$ be our design matrix where each row of $\gls{X}$ is independently 
 To generate our response data, let $\mu = \gls{X} \bbeta^* = \gls{U} \bgamma^*$ where $\bgamma^* = \gls{D} \gls{V}^T \bbeta^*$. Then the classes $\y$ come from a Bernoulli distribution with parameter $\p = \frac{\text{exp}(\U \bgamma^*)}{1 + \text{exp}(\U \bgamma^*)} = \frac{\text{exp}(\mu)}{1 + \text{exp}(\mu)}$. Therefore the response data is dependent on $\bgamma^*$ and the data $\gls{X}$. We make a variety of choices for $\bgamma^*$ (denoted just as $\bgamma$ below) which have varying amounts of sparsity and created varying levels of linear separability.
 
 \subsection{Performance of RgPCC on Simulated Data}
-Here we fit RgPCC, logistic regression and PC logistic regression to our simulated data. To test the quality of the fit, we see how well our models predict the true probability vector $\p$ (the parameter of the Bernoulli distribution above) over a test set of size $5N$. We measure the accuracy of our predicted $\widehat{\p}$ using the 1-norm, 2-norm and EGKL. These are defined as follows:
+Here we fit RgPCC, logistic regression and PC logistic regression to our simulated data. To test the quality of the fit, we see how well our models predict the true probability vector $\p$ (the parameter of the Bernoulli distribution above) over a test set of size $5N$. We measure the accuracy of our predicted \gls{probhat} using the 1-norm, 2-norm and EGKL. These are defined as follows:
 
 \begin{align*}
-	||v||_1 &= \\
-	||v||_2 &= \\
-	EGKL(v) &= 
+	\text{1-norm error} & \hspace{1cm} \sum_{i = 1}^N |\widehat{\p}_i - \p_i| \\
+	\text{2-norm error} & \hspace{1cm} \sum_{i = 1}^N (\widehat{\p}_i - \p_i)^2 \\
+	\text{EGKL loss} & \hspace{1cm} \sum_{i = 1}^N \p_i \log \left ( \frac{\p_i}{\widehat{\p}_i} \right )
 \end{align*}
 We fit the models using samples of size $N$ for dimension $p$ from Figure \ref{figure:params}. We also vary the nonzero components of the true $\bgamma$. We neglect the case where $N < p$, although there are no theoretical issues in this case and will be covered in further research.
 
@@ -48,14 +50,14 @@ Below we show only a few cases of all the tests. The rest of the results are pre
 \begin{figure}[H]
     \centering
     \includegraphics[width =  \textwidth]{simulated/(sparsity3-nonlead,12)_metrics.pdf}
-    \caption{For $\bgamma_2'$ and $p = 12$.}
+    \caption{Simulated results for RgPCC with parameters $\bgamma_2'$ and $p = 12$.}
     \label{fig:simulated2-12}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
     \includegraphics[width =  \textwidth]{simulated/(sparsity3-nonlead,50)_metrics.pdf}
-    \caption{For $\bgamma_2'$ and $p = 50$.}
+    \caption{Simulated results for RgPCC with parameters $\bgamma_2'$ and $p = 50$.}
     \label{fig:simulated2-50}
 \end{figure}
 

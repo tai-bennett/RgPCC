@@ -3,7 +3,7 @@
 \begin{document}
 \section{Response-guided Principal Component Classification}
 
-First, a note on notation. We let $p$ denote the number of predictors in our data, $p_{\lambda}$ to a non-decreasing penalty function and $p_i$ to be the $i^{\text{th}}$ component of a vector of probabilities $\p$.
+First, a note on notation. We let $p$ denote the number of predictors in our data, $p_{\lambda}$ to a non-decreasing penalty function and $p_i$ to be the $i^{\text{th}}$ component of a vector of probabilities \gls{prob}.
 
 Suppose we have a classification problem with design $\X$ and classes $\y$. In logistic regression we fit by maximizing the log-likelihood, we take the opposite of this and penalize the coefficients as such,
 
@@ -23,7 +23,7 @@ where $\W$, and $\z$ are as in (\ref{pdef} - \ref{zdef}) with (\ref{pdef}) evalu
 Equation (\ref{RgPCC_obj}) can be rewritten as an approximate RgPCR problem
 
 \begin{align}
-	\argmin_{\bbeta} || \widetilde{\y} - \widetilde{\X} \bbeta ||^2 + \sum_{j = 1}^p p_{\lambda}(\beta_j) \label{RgPCC_obj2}
+	\argmin_{\bbeta} || \widetilde{\y} - \gls{pseudoX} \bbeta ||^2 + \sum_{j = 1}^p p_{\lambda}(\beta_j) \label{RgPCC_obj2}
 \end{align}
 
 For particular choices of $p_{\lambda}$, this may be solved using techniques from \cite{langzou}. That is, by viewing the above in terms of principal components we may solve the equivalent problem

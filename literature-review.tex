@@ -10,13 +10,13 @@ Here we describe two supervised learning methods that have motivated RgPCC. Firs
 \subsection{Response-guided Principal Component Regression (RgPCR)}
 RgPCR is a generalization of ridge regression which we will briefly summarize. Let $\X = \U \D \V^T$ be the singular value decomposition of an $N \times p$ design matrix $\X$. Then with response $y$ we can write the ridge regression solution as
 \begin{align}
-    \hat{\bbeta}^{\ridge} = \argmin_{\bbeta} ||\y - \X \bbeta||_2^2 + \lambda \sum_{j = 1}^p \beta_j^2.
+    \gls{betahat}^{\ridge} = \argmin_{\bbeta} ||\y - \X \gls{beta}||_2^2 + \lambda \sum_{j = 1}^p \beta_j^2.
 \end{align}
 We may rewrite this as
 \begin{align}
-    \hat{\bgamma}^{\ridge} = \argmin_{\bgamma} ||\y - \U \bgamma||^2_2 + \lambda \sum_{j = 1}^p \frac{\gamma_j^2}{d_j^2}. \label{RgPCR_ridge}
+    \gls{gammahat}^{\ridge} = \argmin_{\bgamma} ||\y - \U \gls{gamma}||^2_2 + \lambda \sum_{j = 1}^p \frac{\gamma_j^2}{d_j^2}. \label{RgPCR_ridge}
 \end{align}
-where $\bgamma = \D \V^T \bbeta$ and $d_j$ is the $j^{\text{th}}$ diagonal entry of $\D$. Hence, ridge regression can be viewed as a weighted $L_2$ penalized regression in the space of principal components. The RgPCR generalization comes from replacing the $L_2$ penalization with an arbitrary non-decreasing function $p_{\lambda}(\cdot)$. Some examples of these are LASSO, SCAD and MCP. In general, we write this RgPCR solution as
+where $\bgamma = \D \V^T \bbeta$ and $d_j$ is the $j^{\text{th}}$ diagonal entry of $\D$. Hence, ridge regression can be viewed as a weighted $L_2$ penalized regression in the space of principal components. The RgPCR generalization comes from replacing the $L_2$ penalization with an arbitrary non-decreasing function $\gls{penalty}(\cdot)$. Some examples of these are LASSO, SCAD and MCP. In general, we write this RgPCR solution as
 
 \begin{align}
     \hat{\bgamma} = \argmin_{\bgamma} ||\y - \U \bgamma||^2_2 + \sum_{j = 1}^p p_\lambda \left ( \frac{\gamma_j}{d_j} \right ), \label{RgPCR_def}
@@ -61,7 +61,7 @@ where $p_i$ is the probability that $x_i$ is in class 1.
 
 To fit such a line for the log-odds (\ref{log-odds}), we fit by maximizing the log-likelihood,
 \begin{align}
-	\ell(\X, \beta) = \sum_{i = 1}^N \left [ y_i \log (p(x_i; \bbeta)) + (1-y_i) \log(1 - p(x_i; \bbeta))\right ] \label{loglikelihood}
+	\gls{loglike}(\X, \beta) = \sum_{i = 1}^N \left [ y_i \log (p(x_i; \bbeta)) + (1-y_i) \log(1 - p(x_i; \bbeta))\right ] \label{loglikelihood}
 \end{align}
 This maximization can be found in \cite{elemstatlearn} and has a convenient interpretation. When maximizing by the Newton-Ralphson method, each iteration can be interpreted as solving a weighted least squares problem. That is
 \begin{align}
