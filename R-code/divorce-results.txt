@@ -1,0 +1,75 @@
+$finalerror
+            RgPCC.AIC  RgPCC.BIC   logistic
+finalerror 0.02352941 0.02352941 0.05882353
+           PCA.logistic      Ridge
+finalerror   0.03529412 0.02352941
+
+$lambda.hat.AIC.indices
+[1] 20 11 10 41 25
+
+$lambda.hat.BIC.indices
+[1] 20 45 45 41 25
+
+$lambda.set
+[1] "(0, 0.1, ..., 5)"
+
+$error.results
+      cverror method
+1  0.02702703      1
+2  0.02702703      1
+3  0.00000000      1
+4  0.02564103      1
+5  0.03448276      1
+6  0.02702703      2
+7  0.02702703      2
+8  0.00000000      2
+9  0.02564103      2
+10 0.03448276      2
+11 0.05405405      3
+12 0.05405405      3
+13 0.03571429      3
+14 0.10256410      3
+15 0.03448276      3
+16 0.02702703      4
+17 0.02702703      4
+18 0.00000000      4
+19 0.05128205      4
+20 0.06896552      4
+21 0.02702703      5
+22 0.02702703      5
+23 0.00000000      5
+24 0.02564103      5
+25 0.03448276      5
+
+$anova
+Call:
+   aov(formula = cverror ~ as.factor(method), data = error.results)
+
+Terms:
+                as.factor(method)   Residuals
+Sum of Squares        0.004222374 0.007921323
+Deg. of Freedom                 4          20
+
+Residual standard error: 0.01990141
+Estimated effects may be unbalanced
+
+$pwtukey
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = cverror ~ as.factor(method), data = error.results)
+
+$`as.factor(method)`
+             diff          lwr         upr     p adj
+2-1 -1.040834e-17 -0.037664292 0.037664292 1.0000000
+3-1  3.333828e-02 -0.004326009 0.071002575 0.0987425
+4-1  1.202476e-02 -0.025639535 0.049689049 0.8715415
+5-1 -1.040834e-17 -0.037664292 0.037664292 1.0000000
+3-2  3.333828e-02 -0.004326009 0.071002575 0.0987425
+4-2  1.202476e-02 -0.025639535 0.049689049 0.8715415
+5-2  0.000000e+00 -0.037664292 0.037664292 1.0000000
+4-3 -2.131353e-02 -0.058977818 0.016350765 0.4599111
+5-3 -3.333828e-02 -0.071002575 0.004326009 0.0987425
+5-4 -1.202476e-02 -0.049689049 0.025639535 0.8715415
+
+
