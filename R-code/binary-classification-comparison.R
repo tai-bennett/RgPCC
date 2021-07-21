@@ -11,6 +11,7 @@ bin.method.comp <- function(X, Y, lambda.set, fold.size = 5, myseed, name, wd = 
   library(gridExtra)
   library(dplyr)
   library(multcomp)
+  library(stargazer)
   
   #source("D:/Dropbox/UA Documents/RTG_duncan_bennett/R_files_spring/RgPCC_lasso_experimental.R")
   #source("D:/Dropbox/UA Documents/RTG_duncan_bennett/R_files_spring/RTG_functions.R")
@@ -22,7 +23,7 @@ bin.method.comp <- function(X, Y, lambda.set, fold.size = 5, myseed, name, wd = 
   #source("C:/Users/benne/Dropbox/UA Documents/RTG_duncan_bennett/R_files_spring/RgPCC_lasso_experimental.R")
   #source("C:/Users/benne/Dropbox/UA Documents/RTG_duncan_bennett/R_files_spring/RTG_functions.R")
   
-  time_units <- "sec"
+  time_units <- "min"
   
   colnames(Y) <- "class"
   
@@ -30,7 +31,7 @@ bin.method.comp <- function(X, Y, lambda.set, fold.size = 5, myseed, name, wd = 
   
   YX <- cbind(Y,X)
   
-  Y <- as.matrix(Y)
+  Y <<- as.matrix(Y)
   
   # taken out, need to do PCA after folds
   #pca <- princomp(X[-which(folds == j)], cor=F)
@@ -45,7 +46,7 @@ bin.method.comp <- function(X, Y, lambda.set, fold.size = 5, myseed, name, wd = 
 # ----------------------------------------------------------------------------------- initializing for 5-fold cv loop
   
   set.seed(myseed)
-  folds <- sample(fold.size, nrow(X), replace = T)
+  folds <<- sample(fold.size, nrow(X), replace = T)
   
   N <- nrow(X)
   p <- ncol(X)
@@ -96,11 +97,17 @@ y.hat.log <- rep(0, N)
 y.hat.pcalog <- rep(0, N)
 y.hat.enet <- rep(0, N)
 
+p.hat.AIC <<- rep(0, N) # vector of predicted class based on LOO models
+p.hat.BIC <<- rep(0, N)
+p.hat.log <- rep(0, N)
+p.hat.pcalog <- rep(0, N)
+p.hat.enet <<- rep(0, N)
+
 AIC.data <- data.frame(row.names=1:4)
 BIC.data <- data.frame(row.names=1:4)
 
 for (j in c(1:fold.size)){ # cycle through each LOO
-  
+start_time <- Sys.time()
   AIC.vec <- rep(0, length(lambda.set))# AIC values for data-jth predictor over all lambdas
   BIC.vec <- rep(0, length(lambda.set))
   beta.matrix <- matrix(0, p, length(lambda.set))
@@ -109,8 +116,8 @@ for (j in c(1:fold.size)){ # cycle through each LOO
   
   for (i in seq(1, length(lambda.set))) { #through each lambda for TUNING
 
-    if (i == 1) {start_time <- Sys.time(); 
-    if (i == 1 & track==TRUE)cat("\n", "fold", j, "\n", "|")}
+    
+    if (i == 1 & track==TRUE) {cat("\n", "fold", j, "\n", "|")}
     if (0 == i%%1 & track==TRUE) {cat("=")}
     if (0 == i%%10 & track==TRUE) {cat("|")}
     modelRgPCC.LOO <- RgPCC_lasso_experimental_v2(X[-which(folds == j),], Y[-which(folds == j),], lambda.set[i], 0.1, print)
@@ -136,10 +143,10 @@ for (j in c(1:fold.size)){ # cycle through each LOO
   lambda.hat.AIC[j] <- which.min(AIC.vec)
   lambda.hat.BIC[j] <- which.min(BIC.vec)
   
-  p.hat.AIC <- mylogistic(X[which(folds == j),],beta.matrix[, lambda.hat.AIC[j]])
-  p.hat.BIC <- mylogistic(X[which(folds == j),],beta.matrix[, lambda.hat.BIC[j]])
-  loglike.results[j,] <- c(sum(Y[which(folds == j),] * log(p.hat.AIC) + (1-Y[which(folds == j),]) * log(1-p.hat.AIC)),1)
-  loglike.results[j+5,] <- c(sum(Y[which(folds == j),] * log(p.hat.BIC) + (1-Y[which(folds == j),]) * log(1-p.hat.BIC)),2)
+  p.hat.AIC[which(folds == j)] <- mylogistic(X[which(folds == j),],beta.matrix[, lambda.hat.AIC[j]])
+  p.hat.BIC[which(folds == j)] <- mylogistic(X[which(folds == j),],beta.matrix[, lambda.hat.BIC[j]])
+  #loglike.results[j,] <- c(sum(Y[which(folds == j),] * log(p.hat.AIC) + (1-Y[which(folds == j),]) * log(1-p.hat.AIC)),1)
+  #loglike.results[j+5,] <- c(sum(Y[which(folds == j),] * log(p.hat.BIC) + (1-Y[which(folds == j),]) * log(1-p.hat.BIC)),2)
   
   
   y.hat.AIC[which(folds == j)] <- I(mylogistic(X[which(folds == j),],beta.matrix[, lambda.hat.AIC[j]]) > 0.5)
@@ -157,8 +164,8 @@ for (j in c(1:fold.size)){ # cycle through each LOO
   
   logistic_fit <- glm(class ~ . -1 , data=as.data.frame(YX[-which(folds == j),]), family=binomial(link="logit"))
   
-  p.hat.log <- as.numeric(predict(logistic_fit, as.data.frame(YX[which(folds == j),]), type = "response"))
-  loglike.results[j+10,] <- c(sum(Y[which(folds == j),] * log(p.hat.log) + (1-Y[which(folds == j),]) * log(1-p.hat.log)),3)
+  p.hat.log[which(folds == j)] <- as.numeric(predict(logistic_fit, as.data.frame(YX[which(folds == j),]), type = "response"))
+  #loglike.results[j+10,] <- c(sum(Y[which(folds == j),] * log(p.hat.log) + (1-Y[which(folds == j),]) * log(1-p.hat.log)),3)
   
   y.hat.log[which(folds == j)] <- I(as.numeric(predict(logistic_fit, as.data.frame(YX[which(folds == j),]), type = "response")) > 0.5)
   error.results[j+10,] <- c(
@@ -185,14 +192,17 @@ for (j in c(1:fold.size)){ # cycle through each LOO
   
   # convert testing data into eigenbasis and truncate by num.pc
   if(num.pc != 1){
-    p.hat.pcalog <- as.numeric(predict(pca.logistic_fit, jfolddata[,c(1:num.pc)], type = "response"))
-    loglike.results[j+15,] <- c(sum(Y[which(folds == j),] * log(p.hat.pcalog) + (1-Y[which(folds == j),]) * log(1-p.hat.pcalog)),4)
-    y.hat.pcalog[which(folds == j)] <- I(as.numeric(predict(pca.logistic_fit, jfolddata[,c(1:num.pc)], type = "response")) > 0.5)
+    p.hat.pcalog[which(folds == j)] <- 
+		as.numeric(predict(pca.logistic_fit, jfolddata[,c(1:num.pc)], type = "response"))
+    #loglike.results[j+15,] <- 
+	# 	c(sum(Y[which(folds == j),] * log(p.hat.pcalog) + (1-Y[which(folds == j),]) * log(1-p.hat.pcalog)),4)
+    y.hat.pcalog[which(folds == j)] <- 
+		I(as.numeric(predict(pca.logistic_fit, jfolddata[,c(1:num.pc)], type = "response")) > 0.5)
   }
   
   if(num.pc == 1){
-    p.hat.pcalog <- as.numeric(predict(pca.logistic_fit, as.data.frame(t(jfolddata[,1])), type = "response"))
-    loglike.results[j+15,] <- c(sum(Y[which(folds == j),] * log(p.hat.pcalog) + (1-Y[which(folds == j),]) * log(1-p.hat.pcalog)),4)
+    p.hat.pcalog[which(folds == j)] <- as.numeric(predict(pca.logistic_fit, as.data.frame(t(jfolddata[,1])), type = "response"))
+    #loglike.results[j+15,] <- c(sum(Y[which(folds == j),] * log(p.hat.pcalog) + (1-Y[which(folds == j),]) * log(1-p.hat.pcalog)),4)
     y.hat.pcalog[which(folds == j)] <- I(as.numeric(predict(pca.logistic_fit, as.data.frame(t(jfolddata[,1])), type = "response")) > 0.5)
   }
   
@@ -205,13 +215,66 @@ for (j in c(1:fold.size)){ # cycle through each LOO
   enet.fit <<- train(x = X[-which(folds == j),], y = as.factor(Y[-which(folds == j),]), 
                     method = "glmnet", trControl = cv_5, tuneGrid = ridge.grid)
   
-  cat("\n", names(enet.fit))
-  cat("\n", enet.fit$pred)
+  #cat("\n", names(enet.fit))
+  #cat("\n", enet.fit$pred)
   y.hat.enet[which(folds == j)] <- predict(enet.fit, newdata = X[which(folds == j),])
   error.results[j+20,] <- c(
     mean(I(y.hat.enet[which(folds == j)] != t(Y+1)[which(folds == j)])),
     5)
+  p.hat.enet[which(folds == j)] <- predict(enet.fit, newdata = X[which(folds == j),], type = "prob")[[2]]
+  #loglike.results[j+20,] <- c(sum(Y[which(folds == j),] * log(p.hat.enet) 
+	#+ (1-Y[which(folds == j),]) * log(1-p.hat.enet)),5)
+  #cat("\n", p.hat.enet)
+  
+end_time <- Sys.time()
+cat(" time :", difftime(end_time, start_time, units = time_units), time_units, "\n")
 }
+
+
+#loglike <- c(
+#	sum(Y[which(folds == j),] * log(p.hat.AIC) + (1-Y[which(folds == j),]) * log(1-p.hat.AIC)),
+#	sum(Y[which(folds == j),] * log(p.hat.BIC) + (1-Y[which(folds == j),]) * log(1-p.hat.BIC)),
+#	sum(Y[which(folds == j),] * log(p.hat.log) + (1-Y[which(folds == j),]) * log(1-p.hat.log)),
+#	sum(Y[which(folds == j),] * log(p.hat.pcalog) + (1-Y[which(folds == j),]) * log(1-p.hat.pcalog)),
+#	sum(Y[which(folds == j),] * log(as.numeric(p.hat.enet)) + 
+#		(1-Y[which(folds == j),]) * log(1-as.numeric(p.hat.enet)))
+#)
+
+p.hat.enet <- as.numeric(p.hat.enet)
+
+p.hat.AIC[which(p.hat.AIC == 1)] <- 0.9999
+p.hat.BIC[which(p.hat.BIC == 1)] <- 0.9999
+p.hat.log[which(p.hat.log == 1)] <- 0.9999
+p.hat.pcalog[which(p.hat.pcalog == 1)] <- 0.9999
+p.hat.enet[which(p.hat.enet == 1)] <- 0.9999
+
+loglike <<- c(
+	sum(Y * log(p.hat.AIC) + (1-Y) * log(1-p.hat.AIC)),
+	sum(Y * log(p.hat.BIC) + (1-Y) * log(1-p.hat.BIC)),
+	sum(Y * log(p.hat.log) + (1-Y) * log(1-p.hat.log)),
+	sum(Y * log(p.hat.pcalog) + (1-Y) * log(1-p.hat.pcalog)),
+	sum(Y * log(as.numeric(p.hat.enet)) + 
+		(1-Y) * log(1-as.numeric(p.hat.enet)))
+)
+
+#------------------
+# troubleshooting prob
+
+prob.mat <<- cbind(p.hat.AIC, p.hat.BIC, p.hat.log, p.hat.pcalog, as.numeric(p.hat.enet))
+names(prob.mat) <- c("p.hat.AIC", "p.hat.BIC", "p.hat.log", "p.hat.pcalog", "p.hat.enet")
+stargazer::stargazer(prob.mat, type = "text", title = "All Probabilities", 
+	out = paste(name, "probs.txt", sep = ""))
+#------------------
+loglike <- t(as.data.frame(loglike))
+
+colnames(loglike) <- c("RgPCC.AIC", "RgPCC.BIC", "logistic", "PCA.logistic", "Ridge")
+
+g1 <- tableGrob(loglike)
+
+h <- grid::convertHeight(sum(g1$heights), "mm", TRUE)
+w <- grid::convertHeight(sum(g1$widths), "mm", TRUE)
+ggplot2::ggsave(paste(name, "loglike.pdf", sep = ""), g1, height = h, width = w + 3, units = "mm")
+
 
 y.hat.enet <- y.hat.enet - 1
 #lambda.hat.AIC
@@ -236,10 +299,9 @@ g1 <- tableGrob(finalerror)
 
 h <- grid::convertHeight(sum(g1$heights), "mm", TRUE)
 w <- grid::convertHeight(sum(g1$widths), "mm", TRUE)
-ggplot2::ggsave(paste(name, ".pdf"), g1, height = h, width = w + 3, units = "mm")
+ggplot2::ggsave(paste(name, "error.pdf", sep = ""), g1, height = h, width = w + 3, units = "mm")
 
-end_time <- Sys.time()
-cat(" time :", difftime(end_time, start_time, units = time_units), time_units, "\n")
+
 
 
 
@@ -254,8 +316,9 @@ ggplot(error.results, aes(x=method, y=cverror)) +
     geom_point()+
     stat_summary(aes(y = cverror,group=1), fun=mean, colour="red", geom="line",group=1)+
     stat_summary(fun.data = mean_se, geom = "errorbar", colour="red")+
-    labs(title = name, caption = paste("1 = RgPCC.AIC, 2 = RgPCC.BIC, 3 = logreg, 4 = pcalogreg.90 ( #PC = ", num.pc,  "), 5 = ridge"))
-ggsave(paste(name, "graph.pdf"), height = 12, width = 16, units = "cm")
+    labs(title = name, caption = paste("1 = RgPCC.AIC, 2 = RgPCC.BIC, 3 = logreg, 4 = pcalogreg.90 ( #PC = ", 
+	num.pc,  "), 5 = ridge"))
+ggsave(paste(name, "graph.pdf", sep = ""), height = 12, width = 16, units = "cm")
 
 # plot the AIC data
 
@@ -264,7 +327,7 @@ ggplot(AIC.data, aes(x = lambda, y = AIC, group = fold, color = as.factor(fold))
   geom_point() + 
   geom_line() +
   labs(color = "Folds")
-ggsave(paste(name, "AIC.pdf"), height = 12, width = 16, units = "cm")
+ggsave(paste(name, "AIC.pdf", sep = ""), height = 12, width = 16, units = "cm")
 
 # plot the BIC data
 
@@ -273,19 +336,26 @@ ggplot(BIC.data, aes(x = lambda, y = BIC, group = fold, color = as.factor(fold))
   geom_point() + 
   geom_line() +
   labs(color = "Folds")
-ggsave(paste(name, "BIC.pdf"), height = 12, width = 16, units = "cm")
+ggsave(paste(name, "BIC.pdf", sep = ""), height = 12, width = 16, units = "cm")
 
 # ======================================================================================== outputs
 
 output <- list(finalerror, 
                lambda.hat.AIC, 
                lambda.hat.BIC, 
-               paste("(", lambda.set[1], ", ", lambda.set[2], ", ..., ", lambda.set[length(lambda.set)], ")", sep = ""),
+               paste("(", lambda.set[1], ", ", lambda.set[2], 
+				", ..., ", lambda.set[length(lambda.set)], ")", sep = ""),
                error.results, 
                anova, 
                tukey)
 
-names(output) <- c("finalerror", "lambda.hat.AIC.indices", "lambda.hat.BIC.indices", "lambda.set", "error.results", "anova", "pwtukey")
+names(output) <- c("finalerror", 
+	"lambda.hat.AIC.indices", 
+	"lambda.hat.BIC.indices", 
+	"lambda.set", 
+	"error.results", 
+	"anova", 
+	"pwtukey")
 
 setwd(original.wd)
 
