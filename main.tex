@@ -75,6 +75,10 @@
 
 \input{symbols}
 
+\usepackage{natbib} %Bibliography.
+\setcitestyle{numbers} %Cite as numbers or author-year.
+\bibliographystyle{vancouver} %Reference style.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE
 %\title{Response-guided Principal Component Classification}
@@ -136,29 +140,34 @@ place holder for signature page
 %%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\vskip 0.2in
 \addcontentsline{toc}{section}{References}
-%\def\refname{Bibliography}
-\begin{thebibliography}{99}
 
-\bibitem {elemstatlearn}
- {\sc T. \ Hastie, \ R. \ Tibshirani, \ and \ J. \ Friedman (2009)} ---
- {\it The Elements of Statistical Learning : Data Mining, Inference, and Prediction
- (second edition)}, New York, NY: Springer.
+\def\refname{References}
+\bibliography{ref}
 
- \bibitem {langzou}
- {\sc W. \ Lang, \ and \ H. \ Zou (2020)} ---
- {\it A simple method to improve principal components regression},
- WILEY, \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/sta4.288}{https://onlinelibrary.wiley.com/doi/abs/10.1002/sta4.288}
 
- \bibitem {wangleng}
- {\sc H. \ Wang \ and \ C. \ Leng (2007)} ---
- {\it Unified LASSO Estimation by Least Squares Approximation},
- Journal of the American Statistical Association, 102:479, 1039-1048, DOI; 10.1198/016214507000000509, \href{https://doi.org/10.1198/016214507000000509}{https://doi.org/10.1198/016214507000000509}
+%\begin{thebibliography}{99}
+
+%\bibitem {elemstatlearn}
+% {\sc T. \ Hastie, \ R. \ Tibshirani, \ and \ J. \ Friedman (2009)} ---
+% {\it The Elements of Statistical Learning : Data Mining, Inference, and Prediction
+% (second edition)}, New York, NY: Springer.
+
+% \bibitem {langzou}
+% {\sc W. \ Lang, \ and \ H. \ Zou (2020)} ---
+% {\it A simple method to improve principal components regression},
+% WILEY, \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/sta4.288}{https://onlinelibrary.wiley.com/doi/abs/10.1002/sta4.288}
+
+% \bibitem {wangleng}
+% {\sc H. \ Wang \ and \ C. \ Leng (2007)} ---
+% {\it Unified LASSO Estimation by Least Squares Approximation},
+% Journal of the American Statistical Association, 102:479, 1039-1048, DOI; 10.1198/016214507000000509, \href{https://doi.org/10.1198/016214507000000509}{https://doi.org/10.1198/016214507000000509}
 
 % add data sources from UCI data repository
 % add R packages?
 
-\end{thebibliography}
+%\end{thebibliography}
 
 
 \end{document}
