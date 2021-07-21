@@ -2,10 +2,10 @@
 
 \begin{document}
 \section{Literature Review}
-Here we describe two supervised learning methods that have motivated RgPCC. First, we summarized RgPCR, a method developed by Lang and Zou \cite{langzou}.  Then we summarized logistic regression for binary classification.
+Here we describe two supervised learning methods that have motivated RgPCC. First, we summarize some basis ideas of PCA. Then we summarized RgPCR, a method developed by Lang and Zou \cite{langzou}.  Lastly, we summarized logistic regression for binary classification.
 
 \subsection{Principal Component Analysis (PCA)}
-
+Let $\X$ be a $N \times p$ design matrix such that each column has mean 0. The sample covariance matrix is given by $\Sigma = (n-1)^{-1} \X^T \X$. Then we define the principal components to be the matrix $\V$ of the eigenvalue decomposistion $\V \D \V^T = \Sigma$, one can show that up to permutation of the columns, that this $\V$ satisfies $\X = \U \D \V^T$ of the singular value decomposition.
 
 \subsection{Response-guided Principal Component Regression (RgPCR)}
 RgPCR is a generalization of ridge regression which we will briefly summarize. Let $\X = \U \D \V^T$ be the singular value decomposition of an $N \times p$ design matrix $\X$. Then with response $y$ we can write the ridge regression solution as

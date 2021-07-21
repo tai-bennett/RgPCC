@@ -28,11 +28,11 @@ library(readxl)
   
 
 data4 = T # divorce data (YES but ties) : this results in a 3 way tie between AIC BIC and ENET
-data9 = F # audit data (YES) : pretty good results
-data12 = F # cryotherapy data (YES but ties) :
-data14 = F # ecoli data (OK)
+data9 = F # audit data (YES) : pretty good results, some issues with loglike
+data12 = T # cryotherapy data (YES but ties) :
+data14 = F # ecoli data (OK), some issues with loglike
 
-## ======================================================================================================
+# ======================================================================================================
 ## 4 DIVORCE DATA
 ## ======================================================================================================
 
@@ -59,7 +59,7 @@ if (data4 == TRUE){
     lambda.set = seq(0, 5, 0.1),
     fold.size = 5,
     myseed = 120043,
-    "divorce-5CV-errors", 
+    "divorce-5CV", 
     wd = "data",
     track = TRUE,
     print = TRUE
@@ -91,10 +91,10 @@ audit.risk.data <- scale(audit.risk.data, center = TRUE, scale = FALSE) # center
 audit.risk.results <- bin.method.comp(
   X = audit.risk.data, 
   Y = audit.risk.class,
-  lambda.set = seq(0, 2, 0.1),
+  lambda.set = seq(0, 10, 0.5),
   fold.size = 5,
   myseed = 111,
-  "audit.risk-5CV-errors", 
+  "audit.risk-5CV", 
   wd = 'data',
   track = TRUE,
   print = TRUE
@@ -129,7 +129,7 @@ if (data12 == TRUE){
     lambda.set = seq(0, 1, 0.01),
     fold.size = 5,
     myseed = 111,
-    "Cryotherapy-5CV-errors", 
+    "Cryotherapy-5CV", 
     wd = 'data',
     track = TRUE,
     print = TRUE
@@ -165,7 +165,7 @@ if (data14 == TRUE){
     lambda.set = seq(0, 1, 0.1),
     fold.size = 5,
     myseed = 111,
-    "ecoli-5CV-errors", 
+    "ecoli-5CV", 
     wd = "data",
     track = TRUE,
     print = TRUE
