@@ -2,20 +2,21 @@
 \contentsline {figure}{\numberline {1}{\ignorespaces Parameters of data creation.\relax }}{15}{figure.caption.5}%
 \contentsline {figure}{\numberline {2}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2'$ and $p = 12$.\relax }}{17}{figure.caption.7}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2'$ and $p = 50$.\relax }}{17}{figure.caption.8}%
-\contentsline {figure}{\numberline {4}{\ignorespaces The mean classification errors over each of the 5 folds.\relax }}{19}{figure.caption.10}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Results from analyzing audit risk data\relax }}{20}{figure.caption.11}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Results from analyzing cryotherapy data\relax }}{20}{figure.caption.12}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Results from analyzing divorce survey data\relax }}{21}{figure.caption.13}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Results from analyzing ecoli data\relax }}{21}{figure.caption.14}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1$ and $p = 12$.\relax }}{23}{figure.caption.15}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1$ and $p = 50$.\relax }}{24}{figure.caption.16}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1$ and $p = 80$.\relax }}{24}{figure.caption.17}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1'$ and $p = 12$.\relax }}{25}{figure.caption.18}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1'$ and $p = 50$.\relax }}{25}{figure.caption.19}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2$ and $p = 12$.\relax }}{26}{figure.caption.20}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2$ and $p = 50$.\relax }}{26}{figure.caption.21}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2'$ and $p = 12$.\relax }}{27}{figure.caption.22}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2'$ and $p = 50$.\relax }}{27}{figure.caption.23}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _3$ and $p = 12$.\relax }}{28}{figure.caption.24}%
-\contentsline {figure}{\numberline {19}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _3$ and $p = 50$.\relax }}{28}{figure.caption.25}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _3'$ and $p = 12$.\relax }}{29}{figure.caption.26}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2$ and $p = 80$.\relax }}{19}{figure.caption.10}%
+\contentsline {figure}{\numberline {5}{\ignorespaces The mean classification errors over each of the 5 folds.\relax }}{20}{figure.caption.11}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Results from analyzing audit risk data\relax }}{21}{figure.caption.12}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Results from analyzing cryotherapy data\relax }}{21}{figure.caption.13}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Results from analyzing divorce survey data\relax }}{22}{figure.caption.14}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Results from analyzing ecoli data\relax }}{22}{figure.caption.15}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1$ and $p = 12$.\relax }}{24}{figure.caption.16}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1$ and $p = 50$.\relax }}{25}{figure.caption.17}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1$ and $p = 80$.\relax }}{25}{figure.caption.18}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1'$ and $p = 12$.\relax }}{26}{figure.caption.19}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _1'$ and $p = 50$.\relax }}{26}{figure.caption.20}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2$ and $p = 12$.\relax }}{27}{figure.caption.21}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2$ and $p = 50$.\relax }}{27}{figure.caption.22}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2'$ and $p = 12$.\relax }}{28}{figure.caption.23}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _2'$ and $p = 50$.\relax }}{28}{figure.caption.24}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _3$ and $p = 12$.\relax }}{29}{figure.caption.25}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _3$ and $p = 50$.\relax }}{29}{figure.caption.26}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Simulated results for RgPCC with parameters $\boldsymbol \gamma _3'$ and $p = 12$.\relax }}{30}{figure.caption.27}%

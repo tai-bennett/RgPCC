@@ -13,14 +13,14 @@
 \contentsline {subsection}{\numberline {4.1}Parameters of Experiments}{15}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Creation of Simulated Data}{16}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Performance of RgPCC on Simulated Data}{16}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Performance of RgPCC on Realworld Data}{18}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Conclusions and Further Research}{21}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Conclusions}{22}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Further Research}{22}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Speed}{22}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}$C_p$-type Statistic for Parameter Tuning}{22}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}Further Generalization}{22}{subsubsection.5.2.3}%
-\contentsline {section}{\numberline {6}Figures}{23}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Tables of Simulated Results}{23}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Graphs of Tuning}{29}{subsection.6.2}%
-\contentsline {section}{References}{29}{subsection.6.2}%
+\contentsline {subsection}{\numberline {4.4}Performance of RgPCC on Realworld Data}{19}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Conclusions and Further Research}{22}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Conclusions}{23}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Further Research}{23}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Speed}{23}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}$C_p$-type Statistic for Parameter Tuning}{23}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Further Generalization}{23}{subsubsection.5.2.3}%
+\contentsline {section}{\numberline {6}Figures}{24}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Tables of Simulated Results}{24}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Graphs of Tuning}{30}{subsection.6.2}%
+\contentsline {section}{References}{30}{subsection.6.2}%
