@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.7.13)  22 JUL 2021 11:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.7.13)  22 JUL 2021 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -907,97 +907,97 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [6] [7] (./intro.tex [8])
 (./literature-review.tex
-Overfull \hbox (12.14473pt too wide) in paragraph at lines 10--10
+Overfull \hbox (12.14473pt too wide) in paragraph at lines 38--38
 []\OT1/cmr/bx/n/14.4 Response-guided Prin-ci-pal Com-po-nent Re-gres-sion (Rg-
  []
 
 [9] [10]) (./RgPCC.tex [11] [12] [13] [14]) (./numerical-studies.tex [15]
 [16]
-<simulated/(sparsity3-nonlead,12)_metrics.pdf, id=374, 561.09625pt x 317.185pt>
+<simulated/(sparsity3-nonlead,12)_metrics.pdf, id=375, 561.09625pt x 317.185pt>
 
 File: simulated/(sparsity3-nonlead,12)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity3-nonlead,12)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity3-nonlead,12)_metrics.pdf  used on 
 input line 78.
 (pdftex.def)             Requested size: 411.9399pt x 232.86438pt.
-<simulated/(sparsity3-nonlead,50)_metrics.pdf, id=375, 561.09625pt x 317.185pt>
+ [17]
+<simulated/(sparsity3-nonlead,50)_metrics.pdf, id=381, 561.09625pt x 317.185pt>
 
 File: simulated/(sparsity3-nonlead,50)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity3-nonlead,50)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity3-nonlead,50)_metrics.pdf  used on 
 input line 85.
 (pdftex.def)             Requested size: 411.9399pt x 232.86438pt.
- [17 <./simulated/(sparsity3-nonlead,12)_metrics.pdf>] [18 <./simulated/(sparsi
-ty3-nonlead,50)_metrics.pdf>]
+ [18 <./simulated/(sparsity3-nonlead,12)_metrics.pdf> <./simulated/(sparsity3-n
+onlead,50)_metrics.pdf>]
 <simulated/(sparsity3,80)_metrics.pdf, id=400, 568.1225pt x 317.185pt>
 File: simulated/(sparsity3,80)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity3,80)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity3,80)_metrics.pdf  used on input li
 ne 111.
 (pdftex.def)             Requested size: 411.9399pt x 229.99435pt.
- [19 <./simulated/(sparsity3,80)_metrics.pdf>]
+ [19 <./simulated/(sparsity3,80)_metrics.pdf>] [20]
 
 Package caption Warning: \label without proper reference on input line 188.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:divorce' on page 20 undefined on input line 164.
+LaTeX Warning: Reference `fig:divorce' on page 21 undefined on input line 164.
 
-<R-code/data/audit.risk-5CVgraph.pdf, id=422, 454.69875pt x 341.275pt>
+<R-code/data/audit.risk-5CVgraph.pdf, id=429, 454.69875pt x 341.275pt>
 File: R-code/data/audit.risk-5CVgraph.pdf Graphic file (type pdf)
 <use R-code/data/audit.risk-5CVgraph.pdf>
 Package pdftex.def Info: R-code/data/audit.risk-5CVgraph.pdf  used on input lin
 e 168.
 (pdftex.def)             Requested size: 205.96994pt x 154.59297pt.
-<R-code/data/audit.risk-5CVloglike.pdf, id=423, 647.41875pt x 40.15pt>
+<R-code/data/audit.risk-5CVloglike.pdf, id=430, 647.41875pt x 40.15pt>
 File: R-code/data/audit.risk-5CVloglike.pdf Graphic file (type pdf)
 <use R-code/data/audit.risk-5CVloglike.pdf>
 Package pdftex.def Info: R-code/data/audit.risk-5CVloglike.pdf  used on input l
 ine 169.
 (pdftex.def)             Requested size: 411.9399pt x 25.54703pt.
-[20]
-<R-code/data/Cryotherapy-5CVgraph.pdf, id=430, 454.69875pt x 341.275pt>
+<R-code/data/Cryotherapy-5CVgraph.pdf, id=431, 454.69875pt x 341.275pt>
 File: R-code/data/Cryotherapy-5CVgraph.pdf Graphic file (type pdf)
 <use R-code/data/Cryotherapy-5CVgraph.pdf>
 Package pdftex.def Info: R-code/data/Cryotherapy-5CVgraph.pdf  used on input li
 ne 177.
 (pdftex.def)             Requested size: 205.96994pt x 154.59297pt.
-<R-code/data/Cryotherapy-5CVloglike.pdf, id=431, 653.44125pt x 40.15pt>
+<R-code/data/Cryotherapy-5CVloglike.pdf, id=432, 653.44125pt x 40.15pt>
 File: R-code/data/Cryotherapy-5CVloglike.pdf Graphic file (type pdf)
 <use R-code/data/Cryotherapy-5CVloglike.pdf>
 Package pdftex.def Info: R-code/data/Cryotherapy-5CVloglike.pdf  used on input 
 line 178.
 (pdftex.def)             Requested size: 411.9399pt x 25.31116pt.
-<R-code/data/divorce-5CVgraph.pdf, id=432, 454.69875pt x 341.275pt>
+[21 <./R-code/data/audit.risk-5CVgraph.pdf> <./R-code/data/audit.risk-5CVloglik
+e.pdf>]
+<R-code/data/divorce-5CVgraph.pdf, id=449, 454.69875pt x 341.275pt>
 File: R-code/data/divorce-5CVgraph.pdf Graphic file (type pdf)
 <use R-code/data/divorce-5CVgraph.pdf>
 Package pdftex.def Info: R-code/data/divorce-5CVgraph.pdf  used on input line 1
 86.
 (pdftex.def)             Requested size: 205.96994pt x 154.59297pt.
-<R-code/data/divorce-5CVloglike.pdf, id=433, 647.41875pt x 40.15pt>
+<R-code/data/divorce-5CVloglike.pdf, id=450, 647.41875pt x 40.15pt>
 File: R-code/data/divorce-5CVloglike.pdf Graphic file (type pdf)
 <use R-code/data/divorce-5CVloglike.pdf>
 Package pdftex.def Info: R-code/data/divorce-5CVloglike.pdf  used on input line
  187.
 (pdftex.def)             Requested size: 411.9399pt x 25.54703pt.
- [21 <./R-code/data/audit.risk-5CVgraph.pdf> <./R-code/data/audit.risk-5CVlogli
-ke.pdf> <./R-code/data/Cryotherapy-5CVgraph.pdf> <./R-code/data/Cryotherapy-5CV
-loglike.pdf>]
-<R-code/data/ecoli-5CVgraph.pdf, id=462, 454.69875pt x 341.275pt>
+<R-code/data/ecoli-5CVgraph.pdf, id=451, 454.69875pt x 341.275pt>
 File: R-code/data/ecoli-5CVgraph.pdf Graphic file (type pdf)
 <use R-code/data/ecoli-5CVgraph.pdf>
 Package pdftex.def Info: R-code/data/ecoli-5CVgraph.pdf  used on input line 195
 .
 (pdftex.def)             Requested size: 205.96994pt x 154.59297pt.
-<R-code/data/ecoli-5CVloglike.pdf, id=463, 653.44125pt x 40.15pt>
+<R-code/data/ecoli-5CVloglike.pdf, id=452, 653.44125pt x 40.15pt>
 File: R-code/data/ecoli-5CVloglike.pdf Graphic file (type pdf)
 <use R-code/data/ecoli-5CVloglike.pdf>
 Package pdftex.def Info: R-code/data/ecoli-5CVloglike.pdf  used on input line 1
 96.
 (pdftex.def)             Requested size: 411.9399pt x 25.31116pt.
-) (./further-research.tex [22 <./R-code/data/divorce-5CVgraph.pdf> <./R-code/da
-ta/divorce-5CVloglike.pdf> <./R-code/data/ecoli-5CVgraph.pdf> <./R-code/data/ec
-oli-5CVloglike.pdf>]
+ [22 <./R-code/data/Cryotherapy-5CVgraph.pdf> <./R-code/data/Cryotherapy-5CVlog
+like.pdf> <./R-code/data/divorce-5CVgraph.pdf> <./R-code/data/divorce-5CVloglik
+e.pdf>]) (./further-research.tex [23 <./R-code/data/ecoli-5CVgraph.pdf> <./R-co
+de/data/ecoli-5CVloglike.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 18.
@@ -1011,70 +1011,70 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 18.
 
 ) (./figures.tex
-<simulated/(sparsity1-100,12)_metrics.pdf, id=494, 548.0475pt x 168.63pt>
+<simulated/(sparsity1-100,12)_metrics.pdf, id=499, 548.0475pt x 168.63pt>
 File: simulated/(sparsity1-100,12)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity1-100,12)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity1-100,12)_metrics.pdf  used on inpu
 t line 11.
 (pdftex.def)             Requested size: 411.9399pt x 126.75264pt.
-<simulated/(sparsity1-200,12)_metrics.pdf, id=495, 548.0475pt x 168.63pt>
+<simulated/(sparsity1-200,12)_metrics.pdf, id=500, 548.0475pt x 168.63pt>
 File: simulated/(sparsity1-200,12)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity1-200,12)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity1-200,12)_metrics.pdf  used on inpu
 t line 12.
 (pdftex.def)             Requested size: 411.9399pt x 126.75264pt.
- [23]
-<simulated/(sparsity1-100,50)_metrics.pdf, id=500, 554.07pt x 168.63pt>
+ [24]
+<simulated/(sparsity1-100,50)_metrics.pdf, id=505, 554.07pt x 168.63pt>
 File: simulated/(sparsity1-100,50)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity1-100,50)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity1-100,50)_metrics.pdf  used on inpu
 t line 19.
 (pdftex.def)             Requested size: 411.9399pt x 125.37347pt.
-<simulated/(sparsity1-200,50)_metrics.pdf, id=501, 554.07pt x 168.63pt>
+<simulated/(sparsity1-200,50)_metrics.pdf, id=506, 554.07pt x 168.63pt>
 File: simulated/(sparsity1-200,50)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity1-200,50)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity1-200,50)_metrics.pdf  used on inpu
 t line 20.
 (pdftex.def)             Requested size: 411.9399pt x 125.37347pt.
- [24 <./simulated/(sparsity1-100,12)_metrics.pdf> <./simulated/(sparsity1-200,1
+ [25 <./simulated/(sparsity1-100,12)_metrics.pdf> <./simulated/(sparsity1-200,1
 2)_metrics.pdf>]
-<simulated/(sparsity1-100,80)_metrics.pdf, id=520, 561.09625pt x 168.63pt>
+<simulated/(sparsity1-100,80)_metrics.pdf, id=526, 561.09625pt x 168.63pt>
 File: simulated/(sparsity1-100,80)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity1-100,80)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity1-100,80)_metrics.pdf  used on inpu
 t line 27.
 (pdftex.def)             Requested size: 411.9399pt x 123.80132pt.
-<simulated/(sparsity1-200,80)_metrics.pdf, id=521, 554.07pt x 168.63pt>
+<simulated/(sparsity1-200,80)_metrics.pdf, id=527, 554.07pt x 168.63pt>
 File: simulated/(sparsity1-200,80)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity1-200,80)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity1-200,80)_metrics.pdf  used on inpu
 t line 28.
 (pdftex.def)             Requested size: 411.9399pt x 125.37347pt.
-<simulated/(sparsity1-nonlead,12)_metrics.pdf, id=522, 561.09625pt x 317.185pt>
+<simulated/(sparsity1-nonlead,12)_metrics.pdf, id=528, 561.09625pt x 317.185pt>
 
 File: simulated/(sparsity1-nonlead,12)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity1-nonlead,12)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity1-nonlead,12)_metrics.pdf  used on 
 input line 35.
 (pdftex.def)             Requested size: 411.9399pt x 232.86438pt.
- [25 <./simulated/(sparsity1-100,50)_metrics.pdf> <./simulated/(sparsity1-200,5
+ [26 <./simulated/(sparsity1-100,50)_metrics.pdf> <./simulated/(sparsity1-200,5
 0)_metrics.pdf> <./simulated/(sparsity1-100,80)_metrics.pdf> <./simulated/(spar
 sity1-200,80)_metrics.pdf>]
-<simulated/(sparsity1-nonlead,50)_metrics.pdf, id=557, 568.1225pt x 317.185pt>
+<simulated/(sparsity1-nonlead,50)_metrics.pdf, id=562, 568.1225pt x 317.185pt>
 File: simulated/(sparsity1-nonlead,50)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity1-nonlead,50)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity1-nonlead,50)_metrics.pdf  used on 
 input line 42.
 (pdftex.def)             Requested size: 411.9399pt x 229.99435pt.
-<simulated/(sparsity3,12)_metrics.pdf, id=558, 554.07pt x 317.185pt>
+<simulated/(sparsity3,12)_metrics.pdf, id=563, 554.07pt x 317.185pt>
 File: simulated/(sparsity3,12)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity3,12)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity3,12)_metrics.pdf  used on input li
 ne 49.
 (pdftex.def)             Requested size: 411.9399pt x 235.82153pt.
- [26 <./simulated/(sparsity1-nonlead,12)_metrics.pdf> <./simulated/(sparsity1-n
+ [27 <./simulated/(sparsity1-nonlead,12)_metrics.pdf> <./simulated/(sparsity1-n
 onlead,50)_metrics.pdf>]
-<simulated/(sparsity3,50)_metrics.pdf, id=577, 561.09625pt x 317.185pt>
+<simulated/(sparsity3,50)_metrics.pdf, id=582, 561.09625pt x 317.185pt>
 File: simulated/(sparsity3,50)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity3,50)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity3,50)_metrics.pdf  used on input li
@@ -1085,34 +1085,34 @@ File: simulated/(sparsity3-nonlead,12)_metrics.pdf Graphic file (type pdf)
 Package pdftex.def Info: simulated/(sparsity3-nonlead,12)_metrics.pdf  used on 
 input line 63.
 (pdftex.def)             Requested size: 411.9399pt x 232.86438pt.
- [27 <./simulated/(sparsity3,12)_metrics.pdf> <./simulated/(sparsity3,50)_metri
+ [28 <./simulated/(sparsity3,12)_metrics.pdf> <./simulated/(sparsity3,50)_metri
 cs.pdf>]
 File: simulated/(sparsity3-nonlead,50)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity3-nonlead,50)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity3-nonlead,50)_metrics.pdf  used on 
 input line 70.
 (pdftex.def)             Requested size: 411.9399pt x 232.86438pt.
-<simulated/(sparsity5,12)_metrics.pdf, id=596, 554.07pt x 317.185pt>
+<simulated/(sparsity5,12)_metrics.pdf, id=601, 554.07pt x 317.185pt>
 File: simulated/(sparsity5,12)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity5,12)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity5,12)_metrics.pdf  used on input li
 ne 77.
 (pdftex.def)             Requested size: 411.9399pt x 235.82153pt.
- [28]
-<simulated/(sparsity5,50)_metrics.pdf, id=601, 561.09625pt x 317.185pt>
+ [29]
+<simulated/(sparsity5,50)_metrics.pdf, id=606, 561.09625pt x 317.185pt>
 File: simulated/(sparsity5,50)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity5,50)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity5,50)_metrics.pdf  used on input li
 ne 84.
 (pdftex.def)             Requested size: 411.9399pt x 232.86438pt.
-<simulated/(sparsity5-nonlead,12)_metrics.pdf, id=602, 561.09625pt x 317.185pt>
+<simulated/(sparsity5-nonlead,12)_metrics.pdf, id=607, 561.09625pt x 317.185pt>
 
 File: simulated/(sparsity5-nonlead,12)_metrics.pdf Graphic file (type pdf)
 <use simulated/(sparsity5-nonlead,12)_metrics.pdf>
 Package pdftex.def Info: simulated/(sparsity5-nonlead,12)_metrics.pdf  used on 
 input line 91.
 (pdftex.def)             Requested size: 411.9399pt x 232.86438pt.
- [29 <./simulated/(sparsity5,12)_metrics.pdf> <./simulated/(sparsity5,50)_metri
+ [30 <./simulated/(sparsity5,12)_metrics.pdf> <./simulated/(sparsity5,50)_metri
 cs.pdf>]) (./main.bbl
 Underfull \hbox (badness 3128) in paragraph at lines 20--24
 []\OT1/cmr/m/n/12 Wang H, Leng C.  Uni-fied LASSO Es-ti-ma-tion by Least Square
@@ -1137,9 +1137,9 @@ Underfull \hbox (badness 1062) in paragraph at lines 36--39
 ive . ics . uci . edu / ml / datasets /
  []
 
-[30 <./simulated/(sparsity5-nonlead,12)_metrics.pdf>])
+[31 <./simulated/(sparsity5-nonlead,12)_metrics.pdf>])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 174.
- [31]
+ [32]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 174.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 174.
@@ -1156,13 +1156,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 174.
  ) 
 Here is how much of TeX's memory you used:
- 18906 strings out of 480623
- 312680 string characters out of 5906692
- 655950 words of memory out of 6000000
+ 18907 strings out of 480623
+ 312687 string characters out of 5906692
+ 656951 words of memory out of 6000000
  34233 multiletter control sequences out of 15000+600000
  542770 words of font info for 61 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 54i,18n,89p,1056b,647s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,18n,89p,1056b,650s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texl
@@ -1183,10 +1183,10 @@ dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/cm-super/sfrm1200.pfb>
-Output written on main.pdf (31 pages, 399803 bytes).
+Output written on main.pdf (32 pages, 401734 bytes).
 PDF statistics:
- 744 PDF objects out of 1000 (max. 8388607)
- 623 compressed objects within 7 object streams
- 145 named destinations out of 1000 (max. 500000)
+ 749 PDF objects out of 1000 (max. 8388607)
+ 627 compressed objects within 7 object streams
+ 146 named destinations out of 1000 (max. 500000)
  341 words of extra memory for PDF output out of 10000 (max. 10000000)
 
