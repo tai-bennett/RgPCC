@@ -5,7 +5,7 @@
 
 First, a note on notation. We let $p$ denote the number of predictors in our data, $p_{\lambda}$ to a non-decreasing penalty function and $p_i$ to be the $i^{\text{th}}$ component of a vector of probabilities \gls{prob}.
 
-Suppose we have a classification problem with design $\X$ and classes $\y$. In logistic regression we fit by maximizing the log-likelihood, we take the opposite of this and penalize the coefficients as such,
+Suppose we have a binary classification problem with design $\X$ and classes $\y$. In logistic regression we fit by maximizing the log-likelihood, or equivalently, by minimizing the negative log-likelihood. We propose that we penalize this objective function to get the following problem:
 
 \begin{align}
 	\bbeta^{\text{RgPCC}} = \argmin_{\bbeta} - \ell(\X, \bbeta) + \sum_{j = 1}^p p_{\lambda}(\beta_j) \label{RgPCC_obj}
@@ -45,8 +45,7 @@ From \cite{langzou}, when $p_\lambda(t) = |t|$ is the LASSO penalty, we have the
 \begin{align}
 	\hat{\gamma_j} = \left ( |\hat{\gamma}^{\text{ols}}_j| - \frac{\lambda}{d_j} \right )^+ \cdot \sgn{\hat{\gamma}^{\text{ols}}_j},
 \end{align}
-
-where $a^+$ denotes the positive real part of a real number $a$. We can then rewrite this in the original coordinates using
+We can then rewrite this in the original coordinates using
 
 \begin{align}
 	\hat{\bbeta} = \sum_{j = 1}^p \tilde{V}_j \frac{\hat{\gamma}_j}{d_j}.
@@ -68,9 +67,9 @@ which can be approximated by
 
 where
 \begin{align}
-	\p^{(n)} &= \dfrac{\text{exp}(\X \bbeta^{(n)})}{1 + \text{exp}(\X \bbeta^{(n)})} \label{pdef}\\
+	\p^{(n)} &= \dfrac{\text{exp}(\X \bbeta^{(n-1)})}{1 + \text{exp}(\X \bbeta^{(n-1)})} \label{pdef}\\
     \W^{(n)} &= \text{diag}[p_i^{(n)}(1-p_i^{(n)})] \label{Wdef}\\
-    \z^{(n)} &= \X \bbeta^{(n)} + (\W^{(n)})^{-1}(\y - \p^{(n)}). \label{zdef} \\
+    \z^{(n)} &= \X \bbeta^{(n-1)} + (\W^{(n)})^{-1}(\y - \p^{(n)}). \label{zdef} \\
 	\tilde{\X}^{(n)} &= (\W^{(n)})^{1/2} \X \\
 	\tilde{\y}^{(n)} &= (\W^{(n)})^{1/2} \z^{(n)}
 \end{align}
@@ -101,9 +100,11 @@ Here, we will briefly describe the algorithm used to approximate a solution to (
 	\item Guess an initial $\hat{\beta}^{(0)}$
 	\item With $\hat{\beta}^{(0)}$ calculate the following
 		\begin{align*}
-			\p^{(0)} &= \dfrac{\text{exp}(\X \bbeta^{(0)})}{1 + \text{exp}(\X \bbeta^{(0)})} = \dfrac{\text{exp}(\U \bgamma^{(0)})}{1 + \text{exp}(\U \bgamma^{(0)})}\\
-			\W^{(0)} &= \text{diag}[p_i^{(0)}(1-p_i^{(0)})] \\
-			\z^{(0)} &= \X \bbeta^{(0)} + (\W^{(0)})^{-1}(\y - \p^{(0)}).
+			\p^{(1)} &= \dfrac{\text{exp}(\X \bbeta^{(0)})}{1 + \text{exp}(\X \bbeta^{(0)})} = \dfrac{\text{exp}(\U \bgamma^{(0)})}{1 + \text{exp}(\U \bgamma^{(0)})}\\
+			\W^{(1)} &= \text{diag}[p_i^{(1)}(1-p_i^{(1)})] \\
+			\z^{(1)} &= \X \bbeta^{(0)} + (\W^{(1)})^{-1}(\y - \p^{(1)})\\
+			\tilde{\X}^{(1)} &= (\W^{(1)})^{1/2} \X \\
+			\tilde{\y}^{(1)} &= (\W^{(1)})^{1/2} \z^{(1)}
 		\end{align*}
 	\item Compute the solution to the RgPCR problem
 	\begin{align}
@@ -113,7 +114,7 @@ Here, we will briefly describe the algorithm used to approximate a solution to (
 	\begin{align}
 		\hat{\gamma_j}^{(1)} = \left ( |\hat{\gamma}^{\text{ols}}_j| - \frac{\lambda}{d_j} \right )^+ \cdot \sgn{\hat{\gamma}^{\text{ols}}_j},
 	\end{align}
-	where $\hat{\gamma}^{\text{ols}}_j = \tilde{y}^{(0)} \tilde{U}^{(0)}_j$
+	where $\hat{\gamma}^{\text{ols}}_j = \tilde{y}^{(1)} \tilde{U}^{(1)}_j$
 	\item repeat steps 2 and 3 using $\hat{\bgamma}^{(1)}$ and similarly using $\hat{\bgamma}^{(k)}$ until $\varepsilon^{(k)} = \frac{|| \bbeta^{(k)} - \bbeta^{(k+1)}||}{||\bbeta^{(k)}||} < \varepsilon$ for some desired tolerance $\varepsilon$.
 	\item Recover the solution in the original coordinates with $$\hat{\bbeta}^{(n)} = \sum_{j = 1}^p \tilde{V}^{(n)}_j \frac{\hat{\gamma}_j^{(n)}}{d_j^{(n)}}.$$
 \end{enumerate}

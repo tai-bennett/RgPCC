@@ -2,13 +2,13 @@
 
 \begin{document}
 \section{Literature Review}
-Here we describe two supervised learning methods that have motivated RgPCC. First, we summarize some basis ideas of PCA. Then we summarized RgPCR, a method developed by Lang and Zou \cite{langzou}.  Lastly, we summarized logistic regression for binary classification.
+Here we describe some learning methods that have motivated RgPCC. In section 2.1 and 2.2 we summarize PCA and logistic regression respectively. In section 2.3 we motivate and outline RgPCR, a method by Lang and Zou \citep{langzou}.
 
 \subsection{Principal Component Analysis (PCA)}
 Let $\X$ be a $N \times p$ design matrix such that each column has mean 0. The sample covariance matrix is given by $\Sigma = (n-1)^{-1} \X^T \X$. Then we define the principal components to be the matrix $\V$ of the eigenvalue decomposistion $\V \D \V^T = \Sigma$, one can show that up to permutation of the columns, that this $\V$ satisfies $\X = \U \D \V^T$ of the singular value decomposition.
 
 \subsection{Response-guided Principal Component Regression (RgPCR)}
-RgPCR is a generalization of ridge regression which we will briefly summarize. Let $\X = \U \D \V^T$ be the singular value decomposition of an $N \times p$ design matrix $\X$. Then with response $y$ we can write the ridge regression solution as
+RgPCR is a generalization of ridge regression which we will briefly summarize. Let $\X = \U \D \V^T$ be the singular value decomposition of an $N \times p$ design matrix $\X$. Then with response $\y$ we can write the ridge regression solution as
 \begin{align}
     \gls{betahat}^{\ridge} = \argmin_{\bbeta} ||\y - \X \gls{beta}||_2^2 + \lambda \sum_{j = 1}^p \beta_j^2.
 \end{align}
@@ -30,13 +30,13 @@ The orthogonality of $\U$ allows us to solve (\ref{RgPCR_def}) component-wise. I
     \hat{\gamma}_j = \argmin_{\gamma_j}  \left ( \hat{\gamma}^{\text{ols}}_j - \gamma_j \right )^2 + p_\lambda \left ( \frac{\gamma_j}{d_j} \right ).  \label{RgPCR_def_j}
 \end{align}
 
-where $\hat{\gamma}^{\text{ols}}_j = \y^T U_j$ (equation (\ref{RgPCR_def_j}) follows from the orthogonality of $\U$ and a calculation can be found in \cite{langzou}). When $p_{\lambda}(t) = |t|$, the LASSO penalty, then we can find a closed form of (\ref{RgPCR_def_j}),
+where $\hat{\gamma}^{\text{ols}}_j = \y^T U_j$ (a calculation can be found in \cite{langzou}). When $p_{\lambda}(t) = |t|$, the LASSO penalty, then we can find a closed form of (\ref{RgPCR_def_j}),
 
 \begin{align}
 	\hat{\gamma}_j^{\lasso} = \left ( |\gamma_j^{\ols}| - \frac{\lambda}{2d_j} \right )^+ \cdot \sgn{\hat{\gamma_j}^{\ols}}.
 \end{align}
 
-We can recover the solution in the original coordinates by
+where $a^+$ denotes the positive real part of a real number $a$. We can recover the solution in the original coordinates by
 
 \begin{align}
 	\hat{\bbeta} = \sum_{j = 1}^p \tilde{V}_j \frac{\hat{\gamma}_j}{d_j}
@@ -63,20 +63,20 @@ To fit such a line for the log-odds (\ref{log-odds}), we fit by maximizing the l
 \begin{align}
 	\gls{loglike}(\X, \beta) = \sum_{i = 1}^N \left [ y_i \log (p(x_i; \bbeta)) + (1-y_i) \log(1 - p(x_i; \bbeta))\right ] \label{loglikelihood}
 \end{align}
-This maximization can be found in \citep{ESL} and has a convenient interpretation. When maximizing by the Newton-Ralphson method, each iteration can be interpreted as solving a weighted least squares problem. That is
+This calculation can be found in \citep{ESL} and has a convenient interpretation. When maximizing by the Newton-Ralphson method, each iteration can be interpreted as solving a weighted least squares problem. That is
 \begin{align}
     \bbeta^{\new} &= \bbeta^{\old} + (\X^T \gls{W} \X)^{-1} \X^T(\y - \p) \\
     &= (\X^T \W \X)^{-1} \X^T \W \z
 \end{align}
 where
 \begin{align}
-	\p &= \dfrac{\text{exp}(\X \bbeta)}{1 + \text{exp}(\X \bbeta)} \label{pdef}\\
+	\p &= \dfrac{\text{exp}(\X \bbeta^{\old})}{1 + \text{exp}(\X \bbeta^{\old})} \label{pdef}\\
     \W &= \text{diag}[p_i(1-p_i)] \label{Wdef}\\
-    \z &= \X \bbeta + \W^{-1}(\y - \p). \label{zdef}
+    \z &= \X \bbeta^{\old} + \W^{-1}(\y - \p). \label{zdef}
 \end{align}
 In particular, $\bbeta^{\new}$ is the solution to a weighted least squares problem with response $\z$, design $\X$ and weights $\W$.
 
-For our purposes, it will be more convenient to state this as the following equivalent problem,  $\bbeta^{\new}$ estimates the minimizer of
+For our purposes, it will be more convenient to state this as the following equivalent problem,
 \begin{align}
     \bbeta^{\new} =  \argmin_{\bbeta} ||\W^{1/2}(\z - \X \bbeta)||^2
 \end{align}

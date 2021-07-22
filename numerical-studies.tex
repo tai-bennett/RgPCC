@@ -2,7 +2,16 @@
 
 \begin{document}
 \section{Numerical Studies}
-In this section we compare RgPCC with LASSO penalty to conventional logistic regression. We first summarize how our simulated data was created and then discuss the results of the methods mentioned previously. We will consider a variety of sample sizes, dimensions and sparsities in $\bgamma$ and compare error rates in $\p, \bbeta, \bgamma$ and classification. We will also vary which components of $\bgamma$ are nonzero. Again, please note that $p$ is the number of predictors while $\p$ is a vector of probabilities.
+In this section we compare RgPCC with LASSO penalty to conventional logistic regression and other classification methods. This section is meant to be a ``proof of concept" for the RgPCC method. At the very least it shows that this method is comparable to other methods used in term so prediction performation and probability density estimation.
+
+In section 4.1 we discuss parameters of our experiments and why we chose such parameters. In sections 4.2 and 4.3 we presented the simulated and realworld experiments respectively and discuss the results of those experiments and how we measured the performance of each method. 
+
+
+
+
+\subsection{Parameters of Experiments}
+
+We will consider a variety of sample sizes, dimensions and sparsities in $\bgamma$ and compare error rates in $\p$ and classification. We will also vary which principal components of $\bgamma$ are nonzero. The following gives the parameters for our simulated data:
 
 \begin{figure}[H]
 	\begin{tabular}{l l l} \hline
@@ -22,7 +31,24 @@ The convergence of our algorithm is based on the tolerance of $\varepsilon = 0.1
 \subsection{Creation of Simulated Data}
 Let $\gls{X}$ be our design matrix where each row of $\gls{X}$ is independently generated from $N(0, \Sigma)$ where $\Sigma_{ij} = \rho^{|i - j|}$ with $\rho = 0.8$.
 
+
 To generate our response data, let $\mu = \gls{X} \bbeta^* = \gls{U} \bgamma^*$ where $\bgamma^* = \gls{D} \gls{V}^T \bbeta^*$. Then the classes $\y$ come from a Bernoulli distribution with parameter $\p = \frac{\text{exp}(\U \bgamma^*)}{1 + \text{exp}(\U \bgamma^*)} = \frac{\text{exp}(\mu)}{1 + \text{exp}(\mu)}$. Therefore the response data is dependent on $\bgamma^*$ and the data $\gls{X}$. We make a variety of choices for $\bgamma^*$ (denoted just as $\bgamma$ below) which have varying amounts of sparsity and created varying levels of linear separability.
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 \subsection{Performance of RgPCC on Simulated Data}
 Here we fit RgPCC, logistic regression and PC logistic regression to our simulated data. To test the quality of the fit, we see how well our models predict the true probability vector $\p$ (the parameter of the Bernoulli distribution above) over a test set of size $5N$. We measure the accuracy of our predicted \gls{probhat} using the 1-norm, 2-norm and EGKL. These are defined as follows:
@@ -61,39 +87,9 @@ Below we show only a few cases of all the tests. The rest of the results are pre
     \label{fig:simulated2-50}
 \end{figure}
 
-Overall, we see that RgPCC provides a slight improvement in the testing classification error compared to logistic regression and PC logistic regression. However, the real improvement in in the accuracy of our prediction of $\p$.
+Overall, we see that RgPCC provides a slight improvement in the testing classification error compared to logistic regression and PC logistic regression. However, the real improvement is in the accuracy of our prediction of $\p$.
 
 Overall, we can see that RgPCC provides slight improvements in the classification error to logistic regression and principal component logistic regression when the true $\bgamma$ is nonzero in the leading principal components. However, when the nonzero components of $\bgamma$ are not the leading principal components we see a significant different between principal component logistic regression and our other methods.
-
-% \begin{table}[H]
-% % (N, p) = (100, 500)
-% \begin{subtable}{0.5 \linewidth}
-% \begin{tabular}{l|lll} \hline
-% 	 & $\bgamma_1$ & $\bgamma_2$ & $\bgamma_3$ \\ \hline
-% 	\rowcolor{LightCyan}
-% 	RgPCC AIC &&& \\
-% 	RgPCC BIC &&&  \\
-% 	\rowcolor{LightCyan}
-% 	Logistic &&& \\
-% 	PC Logistic &&& \\ \hline
-% \end{tabular}
-% \caption{$N = 100$}
-% \end{subtable}%
-% % (N, p) = (100, 500)
-% \begin{subtable}{0.5 \linewidth}
-% \begin{tabular}{l|lll} \hline
-% 	 & $\bgamma_1$ & $\bgamma_2$ & $\bgamma_3$ \\ \hline
-% 	\rowcolor{LightCyan}
-% 	RgPCC AIC &&& \\
-% 	RgPCC BIC &&& \\
-% 	\rowcolor{LightCyan}
-% 	Logistic &&& \\
-% 	PC Logistic &&& \\ \hline
-% \end{tabular}
-% \caption{$N = 200$}
-% \end{subtable}%
-% \caption{p = 100}
-% \end{table}
 
 We can see that the testing error for $\p$ is improved with RgPCC by at least a factor of 4 in each case. RgPCC avoids overfitting the data as much as logistic regression does. In particular, there is drastic improvement in classification when $\bgamma^*$ is very sparse (that is for $\bgamma_1$). Similar results occur when $N = 200$ but are left in the table and results section.
 
@@ -110,19 +106,37 @@ where
 
 Here we see similar results as in the low dimensional case. At this point, we know that RgPCC performs better, if no just as well, as logistic regression does. However, there are still many aspect of the method we wish to study.
 
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
 \subsection{Performance of RgPCC on Realworld Data}
 
-In this section we apply four real datasets to compare the prediction performance of RgPCC with conventional binary classification methods. We look at the following data sets.
+In this section we apply four real datasets to compare the prediction performance of RgPCC with conventional binary classification methods. We look at the following data sets. These data sets can be found in the UCI data repository and are cited in the references.
 \begin{itemize}
-    \item Divorce Predictors (170 instances, 54 predictors, binary response)
-    \item Cryotherapy (90 instances, 7 predictors, binary response)
-    \item Audit (777 instances, 18 predictors, binary response)
-    \item Ecoli (336 instances, 8 predictors, binary response)
+	\item Audit (777 instances, 18 predictors, binary response) This data set contains information about the risk factors of fraud firms. The response is whether or not the firm has committed fraud. \cite{audit}
+    \item Cryotherapy (90 instances, 7 predictors, binary response) This data set contains information about the use of cryotherapy to treat a variety of warts. The response is whether or not the treatment was successful. \cite{cryo}
+    \item Divorce Predictors (170 instances, 54 predictors, binary response) This data set contains numerical answers from a questionnaire to individuals regarding their marriage. The response is whether or not the marriage ended in divorce. \cite{divorce}
+    \item Ecoli (336 instances, 8 predictors, binary response) This data set contains information about ecoli signal sequencing. The response is the localization size of the ecoli. \cite{ecoli}
 \end{itemize}
 
 We will compare the methods RgPCC, logistic, PCA logistic and ridge regression. We will tune RgPCC by AIC and BIC. Thus we will compare a total of five different methods. 
 
-To compare the performance of our binary classification methods based on the error of each fold of 5-fold cross validation. We then perform Tukey's multiple pairwise comparison to test if the methods differ significantly or not.
+To compare the performance of our binary classification methods based on the error of each fold of 5-fold cross validation. We then perform Tukey's multiple pairwise comparison to test if the methods differ significantly or not. We also compare these methods as probability density estimators and use the loglikelihood as our metric.
 
 The following is a summary of the error results, more can be found in the section 6.
 
@@ -138,8 +152,11 @@ The following is a summary of the error results, more can be found in the sectio
 	\end{tabular}
 	\caption{The mean classification errors over each of the 5 folds.}
 \end{figure}
+For each data set, we see that the errors are very similar, except for PC logistic regression. We confirm this with a Tukey's multiple pairwise comparision.
 
-When running the Tukey's multiple pairwise comparisons we noticed that in most cases the difference in the errors was insignificantly different with $p$-values around $0.99 \geq \alpha = 0.05$. However, there were a few cases in which PC logistic was significantly different than all the other methods (Audit data and Cryotherapy). This data is given below.
+During this comparison, we noticed that in most cases the difference in the errors was insignificantly different with $p$-values around $0.99 \geq \alpha = 0.05$. However, there were a few cases in which PC logistic was significantly different than all the other methods (Audit data and Cryotherapy). This data is given below. Tables for the results of Tukey's multiple pairwise comparison can be found in section 6.
+
+As a probability density estimator, RgPCC outperforms logistic, PC logistic and Ridge in all of the realworld data sets. In particular, we see that the loglikelihood for RgPCC is half as much as the next best method (Ridge) for the divorce data (\ref{fig:divorce}) and around a tenth as much as the worst method (logistic). 
 
 
 \begin{figure}[H]
@@ -176,5 +193,5 @@ When running the Tukey's multiple pairwise comparisons we noticed that in most c
 	\caption{Results from analyzing ecoli data}
 \end{figure}
 
-Thus, in terms of classification error RgPCC is comparable to logistic and ridge regression in application settings.
+Thus, in terms of classification error RgPCC is comparable to logistic and ridge regression in application settings. As a probability density estimator we see a more significant improvement.
 \end{document}

@@ -9,15 +9,17 @@
 \BOOKMARK [2][-]{subsection.3.2}{Iterative Approximations}{section.3}% 9
 \BOOKMARK [2][-]{subsection.3.3}{Algorithm for LASSO penalty}{section.3}% 10
 \BOOKMARK [1][-]{section.4}{Numerical Studies}{}% 11
-\BOOKMARK [2][-]{subsection.4.1}{Creation of Simulated Data}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.2}{Performance of RgPCC on Simulated Data}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.3}{Performance of RgPCC on Realworld Data}{section.4}% 14
-\BOOKMARK [1][-]{section.5}{Conclusions and Further Research}{}% 15
-\BOOKMARK [2][-]{subsection.5.1}{Conclusions}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.2}{Speed}{section.5}% 17
-\BOOKMARK [2][-]{subsection.5.3}{Cp-type Statistic for Parameter Tuning}{section.5}% 18
-\BOOKMARK [2][-]{subsection.5.4}{Further Generalization}{section.5}% 19
-\BOOKMARK [1][-]{section.6}{Figures}{}% 20
-\BOOKMARK [2][-]{subsection.6.1}{Tables of Simulated Results}{section.6}% 21
-\BOOKMARK [2][-]{subsection.6.2}{Graphs of Tuning}{section.6}% 22
-\BOOKMARK [1][-]{subsection.6.2}{References}{}% 23
+\BOOKMARK [2][-]{subsection.4.1}{Parameters of Experiments}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Creation of Simulated Data}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Performance of RgPCC on Simulated Data}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.4}{Performance of RgPCC on Realworld Data}{section.4}% 15
+\BOOKMARK [1][-]{section.5}{Conclusions and Further Research}{}% 16
+\BOOKMARK [2][-]{subsection.5.1}{Conclusions}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.2}{Further Research}{section.5}% 18
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Speed}{subsection.5.2}% 19
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Cp-type Statistic for Parameter Tuning}{subsection.5.2}% 20
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Further Generalization}{subsection.5.2}% 21
+\BOOKMARK [1][-]{section.6}{Figures}{}% 22
+\BOOKMARK [2][-]{subsection.6.1}{Tables of Simulated Results}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.2}{Graphs of Tuning}{section.6}% 24
+\BOOKMARK [1][-]{subsection.6.2}{References}{}% 25
