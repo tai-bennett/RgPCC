@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{PCA}
+Jolliffe IT.
+\newblock Principal component analysis.
+\newblock Springer; 2011.
+
 \bibitem{langzou}
 Lang W, Zou H.
 \newblock A simple method to improve principal components regression.

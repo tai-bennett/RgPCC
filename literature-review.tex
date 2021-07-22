@@ -2,7 +2,7 @@
 
 \begin{document}
 \section{Literature Review}
-Here we describe some learning methods that have motivated RgPCC. In section 2.1 and 2.2 we summarize PCA and logistic regression respectively. In section 2.3 we motivate and outline RgPCR, a method by Lang and Zou \citep{langzou}.
+RgPCC is a combination of several existing techniques of machine learning. This method improves upon methods of PCA like PCR, uses the likelihood frame works of logistic regression and is ultimately a modification of RgPCR. Here we describe the following methods that have motivate RgPCC. In section 2.1 and 2.2 we summarize PCA and logistic regression respectively. In section 2.3 we motivate and outline RgPCR, a method by Lang and Zou \citep{langzou}.
 
 \subsection{Principal Component Analysis (PCA)}
 Let $\X$ be a $N \times p$ design matrix such that each column has mean 0. The sample covariance matrix is given by $\Sigma = (n-1)^{-1} \X^T \X$. Then we define the principal components to be the matrix $\V$ of the eigenvalue decomposistion $\V \D \V^T = \Sigma$, one can show that up to permutation of the columns, that this $\V$ satisfies $\X = \U \D \V^T$ of the singular value decomposition.

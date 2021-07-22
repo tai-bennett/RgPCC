@@ -20,7 +20,7 @@ We will consider a variety of sample sizes, dimensions and sparsities in $\bgamm
 		12 & 100, 200 & 1, 3, 5 \\
 		50 & 100, 200 & 1, 3 \\
 		\rowcolor{LightCyan}
-		80 & 200, 300 & 3 \\ \hline
+		80 & 200, 300 & 1, 3 \\ \hline
 	\end{tabular}
 	\caption{Parameters of data creation.}
 	\label{figure:params}
@@ -136,7 +136,7 @@ In this section we apply four real datasets to compare the prediction performanc
 	\item Audit (777 instances, 18 predictors, binary response) This data set contains information about the risk factors of fraud firms. The response is whether or not the firm has committed fraud. \cite{audit}
     \item Cryotherapy (90 instances, 7 predictors, binary response) This data set contains information about the use of cryotherapy to treat a variety of warts. The response is whether or not the treatment was successful. \cite{cryo}
     \item Divorce Predictors (170 instances, 54 predictors, binary response) This data set contains numerical answers from a questionnaire to individuals regarding their marriage. The response is whether or not the marriage ended in divorce. \cite{divorce}
-    \item Ecoli (336 instances, 8 predictors, binary response) This data set contains information about ecoli signal sequencing. The response is the localization size of the ecoli. \cite{ecoli}
+    \item Ecoli (336 instances, 8 predictors, binary response) This data set contains information about ecoli signal sequencing. The response is the localization site of the ecoli is cytoplasm or not. \cite{ecoli}
 \end{itemize}
 
 We will compare the methods RgPCC, logistic, PCA logistic and ridge regression. We will tune RgPCC by AIC and BIC. Thus we will compare a total of five different methods. 
