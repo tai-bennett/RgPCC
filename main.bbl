@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{langzou}
+Lang W, Zou H.
+\newblock A simple method to improve principal components regression.
+\newblock Stat. 2020;9(1).
+
+\bibitem{ESL}
+Hastie T, Friedman J, Tisbshirani R.
+\newblock The Elements of statistical learning: data mining, inference, and
+  prediction.
+\newblock Springer; 2017.
+
+\bibitem{wangleng}
+Wang H, Leng C.
+\newblock Unified LASSO Estimation by Least Squares Approximation.
+\newblock Journal of the American Statistical Association.
+  2007;102(479):1039–1048.
+
+\bibitem{audit}
+UCI Machine Learning Repository: Audit Data Data Set;.
+\newblock Available from: \url{https://archive.ics.uci.edu/ml/datasets/Audit
+  Data}.
+
+\bibitem{cryo}
+UCI Machine Learning Repository: Cryotherapy Dataset Data Set;.
+\newblock Available from:
+  \url{https://archive.ics.uci.edu/ml/datasets/Cryotherapy Dataset}.
+
+\bibitem{divorce}
+UCI Machine Learning Repository: Divorce Predictors data set Data;.
+\newblock Available from: \url{https://archive.ics.uci.edu/ml/datasets/Divorce
+  Predictors data set}.
+
+\bibitem{ecoli}
+UCI Machine Learning Repository: Ecoli Data Set;.
+\newblock Available from: \url{https://archive.ics.uci.edu/ml/datasets/Ecoli}.
+
+\end{thebibliography}
