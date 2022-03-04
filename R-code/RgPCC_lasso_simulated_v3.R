@@ -1,9 +1,25 @@
+# =============================================================================
+# =============================================================================
+# =============================================================================
+# Title : RgPCC_lasso simulated v3
+# Author : Duncan Bennett
+# -----------------------------------------------------------------------------
+# Code Description : this code runs RgPCC_lasso_simualated_experiment_function
+# v2 on a set of parameters that vary dimension, sparsity etc.
+# =============================================================================
+# =============================================================================
+# =============================================================================
+
+
+
+
+
+
+
+
+
 # testing the new RgPCC function for simulated data
 
-#source("D:/Dropbox/UA Documents/RTG_duncan_bennett/R_files_spring/RgPCC_lasso_simulated_experiment_function.R")
-#source("D:/Dropbox/UA Documents/RTG_duncan_bennett/R_files_spring/RgPCC_lasso_simulated_experiment_function_v2.R")
-
-#source('RgPCC_lasso_simulated_experiment_function.R')
 source('RgPCC_lasso_simulated_experiment_function_v2.R')
 
 
@@ -11,141 +27,173 @@ source('RgPCC_lasso_simulated_experiment_function_v2.R')
 casedebug = F
 
 #lead cases
-case1 = T #
-case2 = T #
-case3 = F #
-case4 = T #
+case1 = T # sparsity 1
+case2 = F # sparsity 1
+case3 = F # sparsity 3
+case4 = F # sparsity 5
 
 #nonlead cases
-case5 = F #
-case6 = T #
-case7 = T #
-case8 = T #
+case5 = F # sparsity 1 x
+case6 = F # sparsity 1 x
+case7 = F # sparsity 3 x
+case8 = T # sparsity 5
 
-p <- 80 # number of predictor variables
-my.sample_size_set <- c(200,300) # sample size of each sample
 
-# set of true gammas
-my.gamma_set <- rbind(
-  c(25, rep(0, p-1)),
-  c(20, 10, 10, rep(0, p-3)),
-  c(15, 10, 5, 5, 3, rep(0, p-5)),
-  c(20, 0, 0.4, 0.8, 0.8, 1.2, 0.4, rep(0, p-7)),
-  c(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, rep(0, p-12)),
-  c(0, 0, 0.4, 0.8, 0.8, 1.2, 0.4, 0, 0, 0, 0, 20, rep(0, p-12))
-)
+
+# =================================================================================
+# PARAMETERS
+# =================================================================================
+
+p <- 12 # number of predictor variables
+my.sample_size_set <- c(100,200) # sample size of each sample
 
 # covariance matrix generation
 my.rho <- 0.8
 
-
-# ------------------------------------- parameters to vary over each test
 # tolerance of Newton-Ralphson method
-m.ytol_0 <- 0.1
+my.tol <- 0.1
 
-# tuning parameters and sample sizes
-my.lambda_set <- c(50)
+# number of replications of the experiment
+my.N <- 100
 
-my.sample_size_factor <- 5 # how much larger the testing set is than the training set
+# where output gets saved
+mywd <- "simulated"
 
-my.N <- 100 # N is number of samples
-
-
-# =================================================================================
-# =================================================================================
-# DIMENSION p = 12
-# =================================================================================
-# =================================================================================
 
 # =================================================================================
-# sparsity 1, N = 100, p = 12 (1)
+# =================================================================================
+# SPARSITY IN LEADING PRINCIPAL COMPONENTS
+# =================================================================================
+# =================================================================================
+
+# =================================================================================
+# sparsity 1, N = 100
 # =================================================================================
 
 if (case1 == TRUE){
-RgPCC.lasso.simulated.exp.v2(sample_size_set = c(200),
+case1results <- RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set[1],
                           gamma_set = rbind(c(25, rep(0, p-1))),
-                          rho = 0.8, 
+						  gamma_index = "1",
+                          rho = my.rho, 
                           p = p, 
-                          N = 100, 
+                          N = my.N, 
                           lambda_set = seq(0, 60, 2), 
                           time_units = "sec", 
-                          tol_0 = 0.1,
-                          wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments_v2",
-                          save.name="sparsity1-100")
+                          tol_0 = my.tol,
+                          wd = mywd,
+                          save.name="100-lead")						  
 }
 
 # =================================================================================
-# sparsity 1, N = 200, p = 12 (2)
+# sparsity 1, N = 200
 # =================================================================================
 
 if (case2 == TRUE){
-RgPCC.lasso.simulated.exp.v2(sample_size_set = c(300),
+case2results <- RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set[2],
                           gamma_set = rbind(c(25, rep(0, p-1))),
-                          rho = 0.8, 
+						  gamma_index = "1",
+                          rho = my.rho, 
                           p = p, 
-                          N = 100, 
+                          N = my.N, 
                           lambda_set = seq(0, 150, 5), 
                           time_units = "sec", 
-                          tol_0 = 0.1,
-                          wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments_v2",
-                          save.name="sparsity1-200")
+                          tol_0 = my.tol,
+                          wd = mywd,
+                          save.name="200-lead")
 }
 
 # =================================================================================
-# sparsity 3, N = {100, 200}, p = 12
+# sparsity 3, N = {100, 200}
 # =================================================================================
 
 if (case3 == TRUE){
-RgPCC.lasso.simulated.exp.v2(sample_size_set = c(200,300),
+RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set,
                           gamma_set = rbind(c(25, rep(0, p-1))),
-                          rho = 0.8, 
+						  gamma_index = "2",
+                          rho = my.rho, 
                           p = p, 
-                          N = 100, 
+                          N = my.N, 
                           lambda_set = seq(0, 40, 2), 
                           time_units = "sec", 
-                          tol_0 = 0.1,
-                          wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments_v2",
-                          save.name="sparsity3")
+                          tol_0 = my.tol,
+                          wd = mywd,
+                          save.name="lead")
 }
 
 # =================================================================================
-# sparsity 5, N = 100,200, p = 12
+# sparsity 5, N = {100,200}
 # =================================================================================
 
 if (case4 == TRUE){
-RgPCC.lasso.simulated.exp.v2(sample_size_set = c(200,300),
+RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set,
                           gamma_set = rbind(c(15, 10, 5, 5, 3, rep(0, p-5))),
-                          rho = 0.8, 
+						  gamma_index = "3",
+                          rho = my.rho, 
                           p = p, 
-                          N = 100, 
+                          N = my.N, 
                           lambda_set = seq(0, 60, 2), 
                           time_units = "sec", 
-                          tol_0 = 0.1,
-                          wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments_v2",
-                          save.name="sparsity5")
+                          tol_0 = my.tol,
+                          wd = mywd,
+                          save.name="lead")
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # =================================================================================
 # =================================================================================
-# Nonleading sparsity
+# SPARSITY IN NONLEADING PRINCIPAL COMPONENTS
 # =================================================================================
 # =================================================================================
 
 # =================================================================================
-# sparsity 1, N = 100, p = 12 (1)
+# sparsity 1, N = 100
 # =================================================================================
 
 if (case5 == TRUE){
-  RgPCC.lasso.simulated.exp.v2(sample_size_set = c(200),
+  RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set[1],
                             gamma_set = rbind(c(0, 25, rep(0, p-2))),
-                            rho = 0.8, 
+							gamma_index = "1'",
+                            rho = my.rho, 
                             p = p, 
-                            N = 100, 
+                            N = my.N, 
                             lambda_set = seq(0, 60, 2), 
                             time_units = "sec", 
-                            tol_0 = 0.1,
-                            wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments_v2",
-                            save.name="sparsity1-100-nonlead")
+                            tol_0 = my.tol,
+                            wd = mywd,
+                            save.name="nonlead-alt")
 }
 
 
@@ -154,16 +202,17 @@ if (case5 == TRUE){
 # =================================================================================
 
 if (case6 == TRUE){
-  RgPCC.lasso.simulated.exp.v2(sample_size_set = c(200,300),
+  RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set[2],
                             gamma_set = rbind(c(0, 0, 0, 0, 0, 25, rep(0, p-6))),
-                            rho = 0.8, 
+							gamma_index = "1'",
+                            rho = my.rho, 
                             p = p, 
-                            N = 100, 
+                            N = my.N, 
                             lambda_set = seq(0, 100, 10), 
                             time_units = "sec", 
-                            tol_0 = 0.1,
-                            wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments_v2",
-                            save.name="sparsity1-nonlead")
+                            tol_0 = my.tol,
+                            wd = mywd,
+                            save.name="nonlead")
 }
 
 
@@ -174,16 +223,17 @@ if (case6 == TRUE){
 # =================================================================================
 
 if (case7 == TRUE){
-  RgPCC.lasso.simulated.exp.v2(sample_size_set = c(200,300),
+  RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set,
                             gamma_set = rbind(c(0, 0, 0, 0, 0, 20, 10, 10, rep(0, p-8))),
-                            rho = 0.8, 
+							gamma_index = "2'",
+                            rho = my.rho, 
                             p = p, 
-                            N = 100, 
+                            N = my.N, 
                             lambda_set = seq(0, 20, 1), 
                             time_units = "sec", 
-                            tol_0 = 0.1,
-                            wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments_v2",
-                            save.name="sparsity3-nonlead")
+                            tol_0 = my.tol,
+                            wd = mywd,
+                            save.name="nonlead")
 }
 
 
@@ -192,16 +242,17 @@ if (case7 == TRUE){
 # =================================================================================
 
 if (case8 == TRUE){
-  RgPCC.lasso.simulated.exp.v2(sample_size_set = c(200,300),
+  RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set,
                             gamma_set = rbind(c(0, 0, 0, 0, 0, 15, 10, 5, 5, 3, rep(0, p-10))),
-                            rho = 0.8, 
+							gamma_index = "3'",
+                            rho = my.rho, 
                             p = 12, 
-                            N = 100, 
+                            N = my.N, 
                             lambda_set = seq(0, 20, 1), 
                             time_units = "sec", 
-                            tol_0 = 0.1,
-                            wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments_v2",
-                            save.name="sparsity5-nonlead")
+                            tol_0 = my.tol,
+                            wd = mywd,
+                            save.name="nonlead")
 }
 
 # =================================================================================
@@ -236,15 +287,15 @@ if (case8 == TRUE){
 # =================================================================================
 
 if (casedebug == TRUE){
-  RgPCC.lasso.simulated.exp.v2(sample_size_set = c(200,300),
-                            gamma_set = rbind(c(25, rep(0, p-1))),
-                            rho = 0.8, 
-                            p = 12, 
-                            N = 5, 
-                            lambda_set = seq(0, 4, 2), 
-                            time_units = "sec", 
-                            tol_0 = 0.1,
-                            wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/Simulated_Experiments",
-                            save.name="debug")
+case1results <- RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set[1],
+                          gamma_set = rbind(c(25, rep(0, p-1))),
+			  gamma_index = "0",
+                          rho = my.rho, 
+                          p = p, 
+                          N = 5, 
+                          lambda_set = seq(0, 60, 2), 
+                          time_units = "min", 
+                          tol_0 = my.tol,
+                          wd = mywd,
+                          save.name="debug")
 }
-

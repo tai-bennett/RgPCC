@@ -1,3 +1,17 @@
+# =============================================================================
+# =============================================================================
+# =============================================================================
+# Title : RTG_function
+# Author : Duncan Bennett
+# -----------------------------------------------------------------------------
+# Code Description : an assortment of functions used in the RTG with Helen
+# Zhang on Response-guided Principal Component Classification. There are some
+# generic functions and then a section on the evaluation of RgPCC's 
+# performance.
+# =============================================================================
+# =============================================================================
+# =============================================================================
+
 # Functions necessary of RgPCC_lasso
 
 
@@ -5,9 +19,23 @@
 library(MASS)
 library(Rlab)
 library(matlib)
+library(xtable)
+library(glmnet)
+library(elasticnet)
+library(caret)
+library(grid)
+library(gridExtra)
+library(dplyr)
+library(multcomp)
+library(stargazer)
+library(e1071)
 
+# ========================================================================
+# ========================================================================
+# SOME SIMPLE FUNCTION
+# ========================================================================
+# ========================================================================
 
-## --------------------------------------------- various functions
 
 
 #### logistic function
@@ -62,6 +90,17 @@ reflection_matrix <- function (Sigma, data) {
 
 
 
+
+
+
+
+# ========================================================================
+# ========================================================================
+# DATA SIMULATION AND FITTING PROCEDURES
+# ========================================================================
+# ========================================================================
+
+
 ### --------------------------------- simulated data function
 sim_data <- function(size, mean, Sigma, gamma, seed) {
 # ---------------- set seed
@@ -84,7 +123,11 @@ X <- as.matrix(mvrnorm(n = size, mean, Sigma))
   return(output)
 }
 
-
+# =================================================================
+# Zou's ALGO FOR RgPCR
+# =================================================================
+# a variety of versions based on
+# -----------------------------------------------------------------
 
 ### --------------------------------- Zou's RgPCR Algorithm
 # --------- Zou's RgPCR with Lasso
@@ -135,6 +178,12 @@ get.my.metrics <- function(prob, true.prob){
   names(output) <- c("one.norm", "two.norm", "EGKL")
   return(output)
 }
+
+# =================================================================
+# LOGISTIC REGRESSION and PCA LOGISTIC REGRESSION
+# =================================================================
+# 
+# -----------------------------------------------------------------
 
 #training and testing (pca) logistic
 logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
@@ -217,6 +266,63 @@ logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
   return(output)
 }
 
+# =================================================================
+# ELASTIC NET AND RIDGE REGRESSION
+# =================================================================
+# 
+# -----------------------------------------------------------------
+
+# training and testing for enet and ridge fit
+# this trains enet with package 'caret'
+enet.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test, lambda.set){
+  cv_5 <- trainControl(method = "cv", number = 5)
+  enet.grid <- expand.grid(alpha = seq(0,1,0.1),
+                          lambda = lambda.set)
+  ridge.grid <- expand.grid(alpha = 0,
+                          lambda = lambda.set)
+  
+  enet.fit <- train(x = as.data.frame(X.train),
+                    y = as.factor(Y.train),
+                    method = "glmnet",
+                    trControl = cv_5,
+                    tuneGrid = enet.grid)
+
+  p.hat.test.enet <<- predict(enet.fit, newdata = as.data.frame(X.test), type = "prob")[[2]]
+  y.hat.test.enet <<- I(p.hat.test.enet > 0.5)
+  mymetrics.test.enet <- get.my.metrics(p.hat.test.enet, p.test)
+  class.error.test.enet <- mean(I(y.hat.test.enet != Y.test))
+  gamma.size.enet <- sum(enet.fit$coeff != 0)
+  ridge.fit <- train(x = as.data.frame(X.train),
+                    y = as.factor(Y.train),
+                    method = "glmnet",
+                    trControl = cv_5,
+                    tuneGrid = ridge.grid)
+
+  p.hat.test.ridge <- predict(ridge.fit, newdata = as.data.frame(X.test), type = "prob")[[2]]
+  y.hat.test.ridge <- I(p.hat.test.ridge > 0.5)
+  mymetrics.test.ridge <- get.my.metrics(p.hat.test.ridge, p.test)
+  class.error.test.ridge <- mean(I(y.hat.test.ridge != Y.test))
+  gamma.size.ridge <- sum(ridge.fit$coeff != 0)                              
+  
+output <- list(p.hat.test.enet = p.hat.test.enet,
+               y.hat.test.enet = y.hat.test.enet,
+               mymetrics.test.enet = mymetrics.test.enet,
+               class.error.test.enet = class.error.test.enet,
+               gamma.size.enet = gamma.size.enet,
+               p.hat.test.ridge = p.hat.test.ridge,
+               y.hat.test.ridge = y.hat.test.ridge,
+               mymetrics.test.ridge = mymetrics.test.ridge,
+               class.error.test.ridge = class.error.test.ridge,
+               gamma.size.ridge = gamma.size.ridge
+               )
+}
+
+# =================================================================
+# GET.MY.LAMBDA
+# =================================================================
+# to get the optimal lambda for the RgPCC tuning process
+# -----------------------------------------------------------------
+
 get.my.lambda <- function(AIC, BIC, MSE, pMSE, MSECV, lambda.set){
   lambda.AIC <- lambda.set[which.min(colMeans(AIC))]
   lambda.BIC <- lambda.set[which.min(colMeans(BIC))]
@@ -245,6 +351,11 @@ get.my.lambda <- function(AIC, BIC, MSE, pMSE, MSECV, lambda.set){
   return(output)
 }
 
+# =================================================================
+# RgPCC PREDICTION
+# =================================================================
+# to predict and calculate testing error of RgPCC model
+# -----------------------------------------------------------------
 
 RgPCC.predict <- function(X.tune, Y.tune, beta.hat) {
   p.hat <- matrix(0, nrow(X.tune), 1)
@@ -282,6 +393,11 @@ get.MSECV <- function(fold.size, X.train, Y.train, lambda, tol_0, Sigma){
 
 
 
+# =================================================================
+# Collecting the results of the RgPCC
+# =================================================================
+# 
+# -----------------------------------------------------------------
 
 metrics <- function(RgPCC.results, N, X.test, Y.test, p.test) {
   
@@ -305,71 +421,153 @@ metrics <- function(RgPCC.results, N, X.test, Y.test, p.test) {
   return(output)
 }
 
-# ========================================================================
-# GRAPHICS
-# ========================================================================
+# =================================================================
+# a way to get the tuning parameters
+# =================================================================
+# 
+# -----------------------------------------------------------------
+
 
 store.tuning.data <- function(sample.size, lambda.set, tune.data){
   return(cbind(sample.size, lambda.set, colMeans(tune.data)))
 }
 
-tune.visuals <- function(AIC, BIC, MSE, pMSE, MSECV, save.name){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ========================================================================
+# ========================================================================
+# GRAPHICS
+# ========================================================================
+# ========================================================================
+
+
+# =================================================================
+# tune.visuals
+# =================================================================
+# the graphs for tuning process of RgPCC
+# -----------------------------------------------------------------
+
+tune.visuals <- function(AIC, BIC, MSE, pMSE, MSECV, myname = "", mycaption = ""){
   
-  pdf(paste("(", save.name,",", p, ")_graphtuningAIC.pdf", sep = ""))
+  pdf(paste(myname, "-graphtuningAIC.pdf", sep = ""))
   myplotAIC <- ggplot(data = AIC, aes(x = lambda, y = AIC, group = sample_size)) +
     geom_line(aes(color = factor(sample_size))) +
     geom_point(aes(color = factor(sample_size))) +
-    labs(title = "Parameter Tuning AIC", subtitle = paste("(", save.name,",", p, ")"), color = "Sample Size", y = "AIC")
+    labs(title = "Parameter Tuning AIC", subtitle = mycaption, color = "Sample Size", y = "AIC")
   
   print(myplotAIC)
   dev.off()
   
-  pdf(paste("(", save.name,",", p, ")_graphtuningBIC.pdf", sep = ""))
+  pdf(paste(myname, "-graphtuningBIC.pdf", sep = ""))
   myplotBIC <- ggplot(data = BIC, aes(x = lambda, y = BIC, group = sample_size)) +
     geom_line(aes(color = factor(sample_size))) +
     geom_point(aes(color = factor(sample_size))) +
-    labs(title = "Parameter Tuning BIC", subtitle = paste("(", save.name,",", p, ")"), color = "Sample Size", y = "BIC")
+    labs(title = "Parameter Tuning BIC", subtitle = mycaption, color = "Sample Size", y = "BIC")
   
   print(myplotBIC)
   dev.off()
   
-  pdf(paste("(", save.name,",", p, ")_graphtuningMSE.pdf", sep = ""))
+  pdf(paste(myname, "-graphtuningMSE.pdf", sep = ""))
   myplotMSE <- ggplot(data = MSE, aes(x = lambda, y = MSE, group = sample_size)) +
     geom_line(aes(color = factor(sample_size))) +
     geom_point(aes(color = factor(sample_size))) +
-    labs(title = "Parameter Tuning MSE", subtitle = paste("(", save.name,",", p, ")"), color = "Sample Size", y = "MSE")
+    labs(title = "Parameter Tuning MSE", subtitle = mycaption, color = "Sample Size", y = "MSE")
   
   print(myplotMSE)
   dev.off()
   
-  pdf(paste("(", save.name,",", p, ")_graphtuningpMSE.pdf", sep = ""))
+  pdf(paste(myname, "-graphtuningpMSE.pdf", sep = ""))
   myplotpMSE <- ggplot(data = pMSE, aes(x = lambda, y = pMSE, group = sample_size)) +
     geom_line(aes(color = factor(sample_size))) +
     geom_point(aes(color = factor(sample_size))) +
-    labs(title = "Parameter Tuning pMSE", subtitle = paste("(", save.name,",", p, ")"), color = "Sample Size", y = "pMSE")
+    labs(title = "Parameter Tuning pMSE", subtitle = mycaption, color = "Sample Size", y = "pMSE")
   
   print(myplotpMSE)
   dev.off()
   
-  pdf(paste("(", save.name,",", p, ")_graphtuningMSECV.pdf", sep = ""))
+  pdf(paste(myname, "-graphtuningMSECV.pdf", sep = ""))
   myplotMSECV <- ggplot(data = MSECV, aes(x = lambda, y = MSECV, group = sample_size)) +
     geom_line(aes(color = factor(sample_size))) +
     geom_point(aes(color = factor(sample_size))) +
-    labs(title = "Parameter Tuning MSECV", subtitle = paste("(", save.name,",", p, ")"), color = "Sample Size", y = "MSECV")
+    labs(title = "Parameter Tuning MSECV", subtitle = mycaption, color = "Sample Size", y = "MSECV")
   
   print(myplotMSECV)
   dev.off()
   
 }
 
-metric.visuals <- function(results, save.name){
+latex.table <- function(results, save.name, mylabel = "", mycaption = "", myname = ""){
+  capture.output(
+    xtable(as.matrix(results),
+           label = mylabel,
+           caption = mycaption),
+    file = paste(myname, ".tex", sep = ""),
+    type = "output"
+  )
+}
+
+metric.visuals <- function(results, save.name, mylabel = "", mycaption = "", myname = ""){
   
   #results <- results[order(results$method),]
   #results[,-1] <- round(as.numeric(results[,-1]), 4)
-  
+# =================================================================
+# pdf table
+# =================================================================
+#
+# -----------------------------------------------------------------
   g <- tableGrob(results)
   h <- grid::convertHeight(sum(g$heights), "mm", TRUE)
   w <- grid::convertHeight(sum(g$widths), "mm", TRUE)
-  ggplot2::ggsave(paste("(", save.name,",", p, ")_metrics.pdf", sep = ""), g, height = h, width = w+3, units = "mm")
+  ggplot2::ggsave(paste(myname, ".pdf", sep = ""), g, height = h, width = w+3, units = "mm")
+
+
+
+
+
+
+# =================================================================
+# latex table
+# =================================================================
+# 
+# -----------------------------------------------------------------
+
+  capture.output(
+    print(
+      xtable(as.matrix(results),
+             label = mylabel,
+             caption = mycaption),
+      file = paste(myname, ".tex", sep = ""),
+      type = "latex"
+    ),
+    include.rownames = FALSE
+  )
+ 
+ 
+ 
+ 
+ 
+# =================================================================
+# ratio of p's table
+# =================================================================
+# comments
+#
+#
+#
+# -----------------------------------------------------------------
+
+
+
 }
 

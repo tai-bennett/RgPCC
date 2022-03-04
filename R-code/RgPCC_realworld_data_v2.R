@@ -32,17 +32,17 @@ library(readxl)
 data1 = F # the wisconsin breast cancer data (YES but lose to EN)
 data2 = F # all fire data
 data3 = F # coimbra
-data4 = T # divorce data (YES but ties) : this results in a 3 way tie between AIC BIC and ENET
+data4 = T # divorce data (YES but ties) : this results in a 3 way tie between AIC BIC and ENET +++++++++++
 data5 = F # ionosphere
 data6 = F # wpbc wisconsin prognostic breast cancer data
 data7 = F # wdbc wisconsin diagnostic breast cancer data
 data8 = F # hcc-survival data
-data9 = T # audit data (YES) : pretty good results
+data9 = F # audit data (YES) : pretty good results ++++++++++++++++++++
 data10 = F # caesarian data : XXX 
 data11 = F # ceramic data (YES) : pretty good but not great
-data12 = T # cryotherapy data (YES but ties) :
+data12 = F # cryotherapy data (YES but ties) : ++++++++++++++++++++++++
 data13 = F
-data14 = T # ecoli data (OK)
+data14 = F # ecoli data (OK) +++++++++++++++++++++++++++++++++
 data15 = F # enery data XXX
 data16 = F # glass data
 data17 = F # hcv egypt data
@@ -198,7 +198,7 @@ sink(file = NULL)
 
 
 if (data4 == TRUE){
-  divorce.file <- read.csv("C:/Users/Duncan/Downloads/divorce.csv", sep=";")
+  divorce.file <- read.csv("/home/duncan/GitProjects/RgPCC/R-code/data/divorce.csv", sep=";")
   
   set.seed(987)
   random.rows <- sample(nrow(divorce.file), 120)
@@ -220,7 +220,7 @@ if (data4 == TRUE){
     fold.size = 5,
     myseed = 120043,
     "divorce-5CV-errors", 
-    wd = "D:/Dropbox/UA Documents/RTG_duncan_bennett/RealworldData/error-results",
+    wd = "/home/duncan/GitProjects/RgPCC/R-code/data",
     track = TRUE,
     print = TRUE
   )

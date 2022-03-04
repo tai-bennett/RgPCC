@@ -28,9 +28,9 @@ library(readxl)
   
 
 data4 = T # divorce data (YES but ties) : this results in a 3 way tie between AIC BIC and ENET
-data9 = F # audit data (YES) : pretty good results, some issues with loglike
+data9 = T # audit data (YES) : pretty good results, some issues with loglike
 data12 = T # cryotherapy data (YES but ties) :
-data14 = F # ecoli data (OK), some issues with loglike
+data14 = T # ecoli data (OK), some issues with loglike
 
 # ======================================================================================================
 ## 4 DIVORCE DATA
@@ -94,7 +94,7 @@ audit.risk.results <- bin.method.comp(
   lambda.set = seq(0, 10, 0.5),
   fold.size = 5,
   myseed = 111,
-  "audit.risk-5CV", 
+  "audit-risk-5CV",
   wd = 'data',
   track = TRUE,
   print = TRUE
