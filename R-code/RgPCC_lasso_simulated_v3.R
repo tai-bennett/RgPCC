@@ -27,16 +27,16 @@ source('RgPCC_lasso_simulated_experiment_function_v2.R')
 casedebug = F
 
 #lead cases
-case1 = T # sparsity 1
-case2 = F # sparsity 1
-case3 = F # sparsity 3
-case4 = F # sparsity 5
+case1 = F # sparsity 1 x
+case2 = F # sparsity 1 x
+case3 = F # sparsity 3 x
+case4 = T # sparsity 5 x
 
 #nonlead cases
 case5 = F # sparsity 1 x
 case6 = F # sparsity 1 x
 case7 = F # sparsity 3 x
-case8 = T # sparsity 5
+case8 = T # sparsity 5 x
 
 
 
@@ -44,7 +44,7 @@ case8 = T # sparsity 5
 # PARAMETERS
 # =================================================================================
 
-p <- 12 # number of predictor variables
+p <- 50 # number of predictor variables
 my.sample_size_set <- c(100,200) # sample size of each sample
 
 # covariance matrix generation
@@ -135,7 +135,7 @@ RgPCC.lasso.simulated.exp.v2(sample_size_set = my.sample_size_set,
                           time_units = "sec", 
                           tol_0 = my.tol,
                           wd = mywd,
-                          save.name="lead")
+                          save.name="leadnew")
 }
 
 

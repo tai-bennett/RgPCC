@@ -126,7 +126,7 @@ BIC.data <- data.frame(row.names=1:4)
 # the cv loop for getting cv error for each method 
 # ------------------------------------------------------------------------------  
 
-for (j in c(1:fold.size)){ # cycle through each LOO
+for (j in c(1:fold.size)){ # five fold
 start_time <- Sys.time()
   AIC.vec <- rep(0, length(lambda.set))# AIC values for data-jth predictor over all lambdas
   BIC.vec <- rep(0, length(lambda.set))

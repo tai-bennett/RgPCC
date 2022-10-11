@@ -88,6 +88,21 @@ reflection_matrix <- function (Sigma, data) {
   return(s)
 }
 
+# reflection matrix
+reflection_matrix_v2 <- function (U_old, data) {
+  #print(dim(Sigma))
+  v_true <- svd(U_old)$v
+  v_data <- svd(data)$v
+  #printMatrix(v_data)
+  p <- ncol(data)
+  N <- nrow(data)
+  s <- diag(rep(0, min(c(p,N))))
+  for (j in 1:min(c(p,N))) {
+    s[j,j] <- get_reflection(v_true[, j], v_data[, j])
+  }
+  return(s)
+}
+
 
 
 
@@ -161,12 +176,42 @@ RgPCR_lasso_adjusted <- function(X, Y, lambda, Cov_true) {
   gamma_hat <- t(pos_part(abs(gamma_hat_ols) - (0.5 * lambda)*D^(-1)) * sign(gamma_hat_ols))
   s <- t(as.matrix(gamma_hat / D))
   beta_hat <- V %*% (gamma_hat / D)
-  output <- list(gamma_hat, beta_hat)
-  names(output) <- c("gamma_hat", "beta_hat")
+  output <- list(gamma_hat, beta_hat, U)
+  names(output) <- c("gamma_hat", "beta_hat", "U_pseudo")
   #print(V)
   #print(S)
   return(output)
 }
+
+
+### --------------------------------- Zou's RgPCR Algorithm
+# --------- Zou's RgPCR with Lasso
+RgPCR_lasso_adjusted_v2 <- function(X, Y, lambda, U_old) {
+  #cat("\n", "dim S", dim(S))
+  #cat("\n", "dim u", dim(svd(X)$u))
+  p <- ncol(X)
+  U <- svd(X)$u
+  D <- svd(X)$d
+  V <- svd(X)$v
+
+  S <- reflection_matrix_v2(U_old, U)
+  #cat("\n", "dim S", dim(S))
+  #cat("\n", "dim u", dim(svd(X)$u))
+  U <- U %*% S
+  V <- V %*% S
+  
+  gamma_hat_ols <- t(Y) %*% U
+  gamma_hat <- t(pos_part(abs(gamma_hat_ols) - (0.5 * lambda)*D^(-1)) * sign(gamma_hat_ols))
+  s <- t(as.matrix(gamma_hat / D))
+  #beta_hat <- V %*% (gamma_hat / D)
+  output <- list(gamma_hat, U, D, V)
+  names(output) <- c("gamma_hat", "U_pseudo", "D", "V_pseudo")
+  #print(V)
+  #print(S)
+  return(output)
+}
+
+
 
 
 get.my.metrics <- function(prob, true.prob){
@@ -287,8 +332,8 @@ enet.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test, lamb
                     trControl = cv_5,
                     tuneGrid = enet.grid)
 
-  p.hat.test.enet <<- predict(enet.fit, newdata = as.data.frame(X.test), type = "prob")[[2]]
-  y.hat.test.enet <<- I(p.hat.test.enet > 0.5)
+  p.hat.test.enet <- predict(enet.fit, newdata = as.data.frame(X.test), type = "prob")[[2]]
+  y.hat.test.enet <- I(p.hat.test.enet > 0.5)
   mymetrics.test.enet <- get.my.metrics(p.hat.test.enet, p.test)
   class.error.test.enet <- mean(I(y.hat.test.enet != Y.test))
   gamma.size.enet <- sum(enet.fit$coeff != 0)
@@ -383,6 +428,25 @@ get.MSECV <- function(fold.size, X.train, Y.train, lambda, tol_0, Sigma){
     # use model to predict and find error
     #print(RgPCC.predict(X.train[which(folds != j),], Y.train[which(folds != j),], RgPCC_lasso_results$beta_hat)$MSE)
     MSEparts[1,j] <- RgPCC.predict(X.train[which(folds == j),], Y.train[which(folds == j),], RgPCC_lasso_results$beta_hat)$SSE
+  }
+  #print(MSEparts)
+  output <- list(sum(MSEparts)/nrow(X.train))
+  names(output) <- c("CVerror")
+  return(output)
+}
+
+get.MSECValt <- function(fold.size, X.train, Y.train, lambda, tol_0, Sigma){
+  folds <- sample(fold.size, nrow(X.train), replace = T)
+  MSEparts <- matrix(0, 1, fold.size)
+  
+  for (k in c(1:fold.size)){ 
+    # train for each fold
+    RgPCC_lasso_results <- RgPCC_lasso_experimental_v3(
+      X.train[which(folds != k),], Y.train[which(folds != k),], lambda, tol_0, Sigma
+    )
+    # use model to predict and find error
+    #print(RgPCC.predict(X.train[which(folds != j),], Y.train[which(folds != j),], RgPCC_lasso_results$beta_hat)$MSE)
+    MSEparts[1,k] <- RgPCC.predict(X.train[which(folds == k),], Y.train[which(folds == k),], RgPCC_lasso_results$beta_hat)$SSE
   }
   #print(MSEparts)
   output <- list(sum(MSEparts)/nrow(X.train))

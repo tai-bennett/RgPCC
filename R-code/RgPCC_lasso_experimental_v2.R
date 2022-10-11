@@ -80,10 +80,8 @@ while (error > tolerance & j < loop_limit) {
   z <- sqrt(W_temp) %*% X_temp %*% beta + inv(sqrt(W_temp)) %*% (Y_temp-prob_temp)
 # --------------------------------- Call Zou's algo and define new beta
   coeff <- RgPCR_lasso_adjusted(X_pseudo, z, lambda, Sigma_temp)
-  if (ncol(X_pseudo) == 2) {
     ggplot(data = data.frame(X_pseudo), aes(x = X1, y = X2)) + geom_point()
     #print(svd(X_pseudo)$v)
-  }
   
 # --------------------------------- test tolerance
   beta_new <- coeff[[2]]
