@@ -360,8 +360,29 @@ output <- list(p.hat.test.enet = p.hat.test.enet,
                class.error.test.ridge = class.error.test.ridge,
                gamma.size.ridge = gamma.size.ridge
                )
+return(output)
 }
 
+
+# =================================================================
+# LASSO PENALIZED LOGISTIC REGRESSION
+# =================================================================
+# 
+# -----------------------------------------------------------------
+
+lasso.log.process <- function(
+    X.train, 
+    Y.train, 
+    p.train, 
+    X.test, 
+    Y.test, 
+    p.test, 
+    lambda.set
+    )
+{
+  lasso.log.fit <- cv.glmnet(X.train, Y.train, family = "binomial", alpha = 1, type.measure = "class")
+  return(lasso.log.fit)
+}
 # =================================================================
 # GET.MY.LAMBDA
 # =================================================================
