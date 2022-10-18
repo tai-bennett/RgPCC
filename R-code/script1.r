@@ -45,12 +45,15 @@ data.test <- sim_data(
   gamma,
   seed+100
 )
+SVD.train = svd(data.train$X)
+U.train = SVD.train$u
+U.test = data.test$X %*% SVD.train$v
 
 model <- lasso.log.process(
-  data.train$X, 
+  U.train, 
   data.train$Y, 
   data.train$prob, 
-  data.test$X, 
+  U.test,
   data.test$Y, 
   data.test$prob
 )
@@ -58,9 +61,10 @@ model <- lasso.log.process(
 model$lambda.min
 
 # predict and calculate metrics
-data.test.yhat <- predict(model, newx = data.test$X, type='class', s = model$lambda.min)
-data.test.phat <- predict(model, newx = data.test$X, type='response', s = model$lambda.min)
+data.test.yhat <- predict(model, newx = U.test, type='class', s = model$lambda.min)
+data.test.phat <- predict(model, newx = U.test, type='response', s = model$lambda.min)
 
 misclassification_error = mean(I(as.integer(data.test.yhat) != data.test$Y))
 prob_errors = get.my.metrics(data.test$prob, data.test.phat)
 
+gamma = coef(model, s = model$lambda.min)

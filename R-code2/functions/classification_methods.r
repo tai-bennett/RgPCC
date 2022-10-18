@@ -14,6 +14,8 @@ library(multcomp)
 library(stargazer)
 library(e1071)
 
+source("misc_functions.r")
+
 # =================================================================
 # LOGISTIC REGRESSION and PCA LOGISTIC REGRESSION
 # =================================================================
@@ -170,8 +172,29 @@ lasso.log.process <- function(
     lambda.set
     )
 {
-  lasso.log.fit <- cv.glmnet(X.train, Y.train, family = "binomial", alpha = 1, type.measure = "class")
-  return(lasso.log.fit)
+
+  SVD.train <- svd(X.train)
+  U.train <- SVD.train$u
+  U.test <- X.test %*% SVD.train$v
+
+  lasso.log.fit <- cv.glmnet(U.train, Y.train, family = "binomial", alpha = 1, type.measure = "class", intercept=FALSE)
+  y.hat.test <- predict(lasso.log.fit, newx = U.test, type='class', s = lasso.log.fit$lambda.min)
+  p.hat.test <- predict(lasso.log.fit, newx = U.test, type='response', s = lasso.log.fit$lambda.min)
+
+  class.error.test <- mean(I(as.integer(y.hat.test) != Y.test))
+  mymetrics.test <- get.my.metrics(p.hat.test, p.test)
+
+  gamma = coef(lasso.log.fit, s = lasso.log.fit$lambda.min)
+  gamma.size <- sum(gamma != 0)
+
+  output <- list(p.hat.test.lasso.log = p.hat.test,
+		 y.hat.test.lasso.log = y.hat.test,
+		 mymetrics.test.lasso.log = mymetrics.test,
+		 class.error.lasso.log = class.error.test,
+		 gamma.size.lasso.log = gamma.size
+		 )
+
+  return(output)
 }
 # =================================================================
 # GET.MY.LAMBDA

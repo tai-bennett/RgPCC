@@ -84,8 +84,8 @@ RgPCC.lasso.simulated.exp.v4 <-
     
     # FINAL RESULTS STORAGE
     result_size <- length(sample_size_set)*length(lambda_set)
-    result_size_row <- length(sample_size_set)*7
-	result_size_row_pratio <- length(sample_size_set)*6
+    result_size_row <- length(sample_size_set)*8
+	result_size_row_pratio <- length(sample_size_set)*7
     
     AIC.df <- data.frame(
       sample_size = rep(0, result_size),
@@ -156,6 +156,7 @@ RgPCC.lasso.simulated.exp.v4 <-
         # storage matrices
         my.metrics.logistic <- matrix(0, N, 10)
         my.metrics.enet <- matrix(0, N, 10)
+        my.metrics.lasso.log <- matrix(0, N, 10)
         # tuning matrices
         AIC.mat <- matrix(0, N, length(lambda_set))
         BIC.mat <- matrix(0, N, length(lambda_set))
@@ -238,6 +239,23 @@ RgPCC.lasso.simulated.exp.v4 <-
             enet.results$mymetrics.test.ridge,
             enet.results$class.error.test.ridge,
             enet.results$gamma.size.ridge
+          )
+
+
+          lasso.log.results <- lasso.log.process(data.train$X, 
+                                               data.train$Y, 
+                                               data.train$prob, 
+                                               data.test$X, 
+                                               data.test$Y, 
+                                               data.test$prob)
+          
+          
+         
+
+          my.metrics.lasso.log[i,] <- c(
+            lasso.log.results$mymetrics.test.lasso.log,
+            lasso.log.results$class.error.lasso.log,
+            lasso.log.results$gamma.size.lasso.log
           )
           
         # =================================================================
@@ -322,6 +340,7 @@ RgPCC.lasso.simulated.exp.v4 <-
         results.df[7+adjust2,] <- c("RgPCC.MSE", n, round(metrics(best.MSE, N, data.test$X, data.test$Y, data.test$prob), 4))
         results.df[8+adjust2,] <- c("RgPCC.pMSE", n, round(metrics(best.pMSE, N, data.test$X, data.test$Y, data.test$prob), 4))
         results.df[9+adjust2,] <- c("RgPCC.MSECV", n, round(metrics(best.MSECV, N, data.test$X, data.test$Y, data.test$prob), 4))
+	results.df[10+adjust2,] <- c("lasso.log", n, round(colMeans(my.metrics.lasso.log), 4))
 		
 		
 	results.df.ratio[1+adjust3,] <- c("pcalog", n, round(colMeans(my.metrics.logistic)[6:10]/log.metrics, 4))
@@ -332,6 +351,8 @@ RgPCC.lasso.simulated.exp.v4 <-
         results.df.ratio[6+adjust3,] <- c("RgPCC.MSE", n, round(metrics(best.MSE, N, data.test$X, data.test$Y, data.test$prob)/log.metrics, 4))
         results.df.ratio[7+adjust3,] <- c("RgPCC.pMSE", n, round(metrics(best.pMSE, N, data.test$X, data.test$Y, data.test$prob)/log.metrics, 4))
         results.df.ratio[8+adjust3,] <- c("RgPCC.MSECV", n, round(metrics(best.MSECV, N, data.test$X, data.test$Y, data.test$prob)/log.metrics, 4))
+	results.df.ratio[9+adjust2,] <- c("lasso.log", n, round(colMeans(my.metrics.lasso.log)/log.metrics, 4))
+
       }
     }
     

@@ -380,7 +380,7 @@ lasso.log.process <- function(
     lambda.set
     )
 {
-  lasso.log.fit <- cv.glmnet(X.train, Y.train, family = "binomial", alpha = 1, type.measure = "class")
+  lasso.log.fit <- cv.glmnet(X.train, Y.train, family = "binomial", alpha = 1, type.measure = "class", intercept=FALSE)
   return(lasso.log.fit)
 }
 # =================================================================
