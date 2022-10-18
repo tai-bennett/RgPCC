@@ -61,6 +61,6 @@ model$lambda.min
 data.test.yhat <- predict(model, newx = data.test$X, type='class', s = model$lambda.min)
 data.test.phat <- predict(model, newx = data.test$X, type='response', s = model$lambda.min)
 
-misclassification_error = mean((as.integer(data.test.yhat) - data.test$Y)^2)
-prob_error = sum((data.test.phat - data.test$prob)^2)
+misclassification_error = mean(I(as.integer(data.test.yhat) != data.test$Y))
+prob_errors = get.my.metrics(data.test$prob, data.test.phat)
 
