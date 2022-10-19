@@ -128,7 +128,8 @@ enet.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test, lamb
   y.hat.test.enet <- I(p.hat.test.enet > 0.5)
   mymetrics.test.enet <- get.my.metrics(p.hat.test.enet, p.test)
   class.error.test.enet <- mean(I(y.hat.test.enet != Y.test))
-  gamma.size.enet <- sum(enet.fit$coeff != 0)
+  gamma.size.enet <- sum(as.numeric(enet.fit$coeff) != 0)
+  
   ridge.fit <- train(x = as.data.frame(X.train),
                     y = as.factor(Y.train),
                     method = "glmnet",
@@ -139,7 +140,7 @@ enet.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test, lamb
   y.hat.test.ridge <- I(p.hat.test.ridge > 0.5)
   mymetrics.test.ridge <- get.my.metrics(p.hat.test.ridge, p.test)
   class.error.test.ridge <- mean(I(y.hat.test.ridge != Y.test))
-  gamma.size.ridge <- sum(ridge.fit$coeff != 0)                              
+  gamma.size.ridge <- sum(as.numeric(ridge.fit$coeff) != 0)                              
   
 output <- list(p.hat.test.enet = p.hat.test.enet,
                y.hat.test.enet = y.hat.test.enet,

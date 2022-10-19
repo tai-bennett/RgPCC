@@ -84,8 +84,8 @@ RgPCC.lasso.simulated.exp.v4 <-
     
     # FINAL RESULTS STORAGE
     result_size <- length(sample_size_set)*length(lambda_set)
-    result_size_row <- length(sample_size_set)*8
-	result_size_row_pratio <- length(sample_size_set)*7
+    result_size_row <- length(sample_size_set)*10
+	result_size_row_pratio <- length(sample_size_set)*9
     
     AIC.df <- data.frame(
       sample_size = rep(0, result_size),
@@ -318,8 +318,8 @@ RgPCC.lasso.simulated.exp.v4 <-
         # -----------------------------------------------------------------
         
         adjust <- (match(n, sample_size_set)-1)*length(lambda_set)
-        adjust2 <- (match(n, sample_size_set)-1)*9
-        adjust3 <- (match(n, sample_size_set)-1)*8
+        adjust2 <- (match(n, sample_size_set)-1)*10
+        adjust3 <- (match(n, sample_size_set)-1)*9
         current.entries <- 1:length(lambda_set)+adjust
         
         AIC.df[current.entries, ] <- store.tuning.data(n, lambda_set, AIC.mat)
@@ -333,8 +333,8 @@ RgPCC.lasso.simulated.exp.v4 <-
         
         results.df[1+adjust2,] <- c("log", n, round(colMeans(my.metrics.logistic)[1:5], 4))
         results.df[2+adjust2,] <- c("pcalog", n, round(colMeans(my.metrics.logistic)[6:10], 4))
-        results.df[3+adjust2,] <- c("enet", n, round(colMeans(my.metrics.logistic)[1:5], 4))
-        results.df[4+adjust2,] <- c("ridge", n, round(colMeans(my.metrics.logistic)[6:10], 4))
+        results.df[3+adjust2,] <- c("enet", n, round(colMeans(my.metrics.enet)[1:5], 4))
+        results.df[4+adjust2,] <- c("ridge", n, round(colMeans(my.metrics.enet)[6:10], 4))
         results.df[5+adjust2,] <- c("RgPCC.AIC", n, round(metrics(best.AIC, N, data.test$X, data.test$Y, data.test$prob), 4))
         results.df[6+adjust2,] <- c("RgPCC.BIC", n, round(metrics(best.BIC, N, data.test$X, data.test$Y, data.test$prob), 4))
         results.df[7+adjust2,] <- c("RgPCC.MSE", n, round(metrics(best.MSE, N, data.test$X, data.test$Y, data.test$prob), 4))
@@ -344,14 +344,14 @@ RgPCC.lasso.simulated.exp.v4 <-
 		
 		
 	results.df.ratio[1+adjust3,] <- c("pcalog", n, round(colMeans(my.metrics.logistic)[6:10]/log.metrics, 4))
-        results.df.ratio[2+adjust3,] <- c("enet", n, round(colMeans(my.metrics.logistic)[1:5]/log.metrics, 4))
-        results.df.ratio[3+adjust3,] <- c("ridge", n, round(colMeans(my.metrics.logistic)[6:10]/log.metrics, 4))
+        results.df.ratio[2+adjust3,] <- c("enet", n, round(colMeans(my.metrics.enet)[1:5]/log.metrics, 4))
+        results.df.ratio[3+adjust3,] <- c("ridge", n, round(colMeans(my.metrics.enet)[6:10]/log.metrics, 4))
 	results.df.ratio[4+adjust3,] <- c("RgPCC.AIC", n, round(metrics(best.AIC, N, data.test$X, data.test$Y, data.test$prob)/log.metrics, 4))
         results.df.ratio[5+adjust3,] <- c("RgPCC.BIC", n, round(metrics(best.BIC, N, data.test$X, data.test$Y, data.test$prob)/log.metrics, 4))
         results.df.ratio[6+adjust3,] <- c("RgPCC.MSE", n, round(metrics(best.MSE, N, data.test$X, data.test$Y, data.test$prob)/log.metrics, 4))
         results.df.ratio[7+adjust3,] <- c("RgPCC.pMSE", n, round(metrics(best.pMSE, N, data.test$X, data.test$Y, data.test$prob)/log.metrics, 4))
         results.df.ratio[8+adjust3,] <- c("RgPCC.MSECV", n, round(metrics(best.MSECV, N, data.test$X, data.test$Y, data.test$prob)/log.metrics, 4))
-	results.df.ratio[9+adjust2,] <- c("lasso.log", n, round(colMeans(my.metrics.lasso.log)/log.metrics, 4))
+	results.df.ratio[9+adjust3,] <- c("lasso.log", n, round(colMeans(my.metrics.lasso.log)/log.metrics, 4))
 
       }
     }

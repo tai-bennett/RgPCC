@@ -115,7 +115,7 @@ while (error > tolerance & j < loop_limit) {
 #    #cat("\n", "this is gamma", coeff[[1]])
 #    }
   gamma_new <- coeff[[1]]
-    if (j > 1) {error <- ifelse(sum((gamma-gamma_new)^2) == 0, 0, sqrt(sum((gamma - gamma_new)^2)) / sqrt(sum(gamma^2)))}
+    if (j > 1) {error = sqrt(sum((gamma - gamma_new)^2)) / sqrt(sum(gamma^2))}
 # --------------------------------- update potential output
   output <- list(coeff[[1]], coeff[[2]], prob, error, j + 1 == loop_limit, j+1, slim, colSums(as.matrix(coeff[[1]] != 0)))
   #cat("\n", "this is gamma ", coeff[[1]], "\n", "this is beta", coeff[[2]])

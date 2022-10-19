@@ -23,7 +23,7 @@
 source('../functions/simulation_function.r')
 
 # where output gets saved
-mywd <- "results/script2"
+mywd <- "results/script4"
 
 
 
@@ -45,8 +45,8 @@ case4 = F # sparsity 5 x
 #nonlead cases
 case5 = F # sparsity 1 x
 case6 = F # sparsity 1 x
-case7 = F # sparsity 3 x
-case8 = T # sparsity 5 x
+case7 = T # sparsity 3 x
+case8 = F # sparsity 5 x
 
 
 
@@ -64,7 +64,7 @@ my.rho <- 0.8
 my.tol <- 0.1
 
 # number of replications of the experiment
-my.N <- 5
+my.N <- 8
 
 
 
