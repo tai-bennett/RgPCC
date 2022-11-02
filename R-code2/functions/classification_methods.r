@@ -31,7 +31,9 @@ logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
   
   logistictime.start <- Sys.time()
   logistic_fit <- glm(V1 ~ . -1 , data=log_fit_data.frame, family=binomial(link="logit"))
-  
+  logistictime.end <- Sys.time()
+  time = logistictime.end - logistictime.start
+
   D <- svd(X.train)$d
   V <- svd(X.train)$v
   beta <- logistic_fit$coef
@@ -41,7 +43,6 @@ logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
   gamma.size <- sum(gamma != 0)
   #print(logistic_fit)
   
-  logistictime.end <- Sys.time()
   #cat("Logistic time :", difftime(logistictime.end, logistictime.start, units = time_units), time_units, "\n")
   
   p.hat.train.log <- predict(logistic_fit, log_fit_data.frame[2:(p+1)], type = "response")
@@ -50,17 +51,20 @@ logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
   y.hat.test.log <- I(p.hat.test.log > 0.5)
   mymetrics.test.log <- get.my.metrics(p.hat.test.log, p.test)
   class.error.test.log <- mean(I(y.hat.test.log != Y.test))
+  time.log <- time
   
 
   # PCA
+  time.start <- Sys.time()
   pca <- princomp(X.train, cor=F)
   cumsum.var <- cumsum(pca$sdev^2 / sum(pca$sdev^2))
   num.pc <- min(which(cumsum.var > 0.90))
   #cat("\n", "num.pc = ", num.pc)
-  pca.X <- pca$scores[,c(1:num.pc)]
+  pca.X <- pca$scores[,c(1:num.pc)]    # 
   pca.YX <- as.data.frame(cbind(Y.train, pca.X))
   pca.logistic_fit <- glm(V1 ~ . -1 , data=pca.YX, family=binomial(link="logit"))
-  
+  time.stop <- Sys.time()
+  time = time.stop - time.start
   gamma.size.pca <- sum(pca.logistic_fit$coeff != 0)
   pca.X.test <- as.data.frame(X.test %*% pca$loadings)
   pca.X.test <- pca.X.test[,c(1:num.pc)]
@@ -71,6 +75,7 @@ logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
   y.hat.test.logpca <- I(p.hat.test.logpca > 0.5)
   mymetrics.test.logpca <- get.my.metrics(p.hat.test.logpca, p.test)
   class.error.test.logpca <- mean(I(y.hat.test.logpca != Y.test))
+  time.logpca <- time
   
   
   
@@ -87,7 +92,10 @@ logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
                  mymetrics.test.logpca,
                  class.error.test.logpca,
                  gamma.size,
-                 gamma.size.pca)
+                 gamma.size.pca,
+				 time.log,
+				 time.logpca)
+
   
   names(output) <- c("p.hat.test.log",
                      "y.hat.test.log",
@@ -98,8 +106,10 @@ logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
                      "mymetrics.test.logpca",
                      "class.error.test.logpca",
                      "gamma.size.log",
-                     "gamma.size.pcalog")
-  
+                     "gamma.size.pcalog",
+					 "time.log",
+					 "time.logpca")
+
   return(output)
 }
 
@@ -111,7 +121,7 @@ logistic.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test){
 
 # training and testing for enet and ridge fit
 # this trains enet with package 'caret'
-enet.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test, lambda.set){
+enet.process.old <- function(X.train, Y.train, p.train, X.test, Y.test, p.test, lambda.set){
   cv_5 <- trainControl(method = "cv", number = 5)
   enet.grid <- expand.grid(alpha = seq(0,1,0.1),
                           lambda = lambda.set)
@@ -143,10 +153,10 @@ enet.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test, lamb
   gamma.size.ridge <- sum(as.numeric(ridge.fit$coeff) != 0)                              
   
 output <- list(p.hat.test.enet = p.hat.test.enet,
-               y.hat.test.enet = y.hat.test.enet,
+			   y.hat.test.enet = y.hat.test.enet,
                mymetrics.test.enet = mymetrics.test.enet,
                class.error.test.enet = class.error.test.enet,
-               gamma.size.enet = gamma.size.enet,
+			   gamma.size.enet = gamma.size.enet,
                p.hat.test.ridge = p.hat.test.ridge,
                y.hat.test.ridge = y.hat.test.ridge,
                mymetrics.test.ridge = mymetrics.test.ridge,
@@ -156,7 +166,48 @@ output <- list(p.hat.test.enet = p.hat.test.enet,
 return(output)
 }
 
+enet.process <- function(X.train, Y.train, p.train, X.test, Y.test, p.test, lambda.set){
+  time.start <- Sys.time()
+  enet.fit <- cv.glmnet(X.train, Y.train, family = "binomial", type.measure = "class", intercept=FALSE)
+  time.stop <- Sys.time()
+  time.enet <- time.stop - time.start
+  y.hat.test.enet <- predict(enet.fit, newx = X.test, type='class', s = enet.fit$lambda.min)
+  p.hat.test.enet <- predict(enet.fit, newx = X.test, type='response', s = enet.fit$lambda.min)
 
+  class.error.test.enet <- mean(I(as.integer(y.hat.test.enet) != Y.test))
+  mymetrics.test.enet <- get.my.metrics(p.hat.test.enet, p.test)
+
+  gamma = coef(enet.fit, s = enet.fit$lambda.min)
+  gamma.size.enet <- sum(gamma != 0)
+
+  time.start <- Sys.time()
+  ridge.fit <- cv.glmnet(X.train, Y.train, family = "binomial", type.measure = "class", intercept=FALSE)
+  time.stop <- Sys.time()
+  time.ridge <- time.stop - time.start
+  y.hat.test.ridge <- predict(ridge.fit, newx = X.test, type='class', s = ridge.fit$lambda.min)
+  p.hat.test.ridge <- predict(ridge.fit, newx = X.test, type='response', s = ridge.fit$lambda.min)
+
+  class.error.test.ridge <- mean(I(as.integer(y.hat.test.ridge) != Y.test))
+  mymetrics.test.ridge <- get.my.metrics(p.hat.test.ridge, p.test)
+
+  gamma = coef(enet.fit, s = enet.fit$lambda.min)
+  gamma.size.ridge <- sum(gamma != 0)
+
+output <- list(p.hat.test.enet = p.hat.test.enet,
+			   y.hat.test.enet = y.hat.test.enet,
+               mymetrics.test.enet = mymetrics.test.enet,
+               class.error.test.enet = class.error.test.enet,
+			   gamma.size.enet = gamma.size.enet,
+               p.hat.test.ridge = p.hat.test.ridge,
+               y.hat.test.ridge = y.hat.test.ridge,
+               mymetrics.test.ridge = mymetrics.test.ridge,
+               class.error.test.ridge = class.error.test.ridge,
+               gamma.size.ridge = gamma.size.ridge,
+			   time.enet = time.enet,
+			   time.ridge = time.ridge
+               )
+return(output)
+}
 # =================================================================
 # LASSO PENALIZED LOGISTIC REGRESSION
 # =================================================================
@@ -174,11 +225,14 @@ lasso.log.process <- function(
     )
 {
 
+  time.start <- Sys.time()
   SVD.train <- svd(X.train)
   U.train <- SVD.train$u
   U.test <- X.test %*% SVD.train$v
 
   lasso.log.fit <- cv.glmnet(U.train, Y.train, family = "binomial", alpha = 1, type.measure = "class", intercept=FALSE)
+  time.stop <- Sys.time()
+  time.lasso.log <- time.stop - time.start
   y.hat.test <- predict(lasso.log.fit, newx = U.test, type='class', s = lasso.log.fit$lambda.min)
   p.hat.test <- predict(lasso.log.fit, newx = U.test, type='response', s = lasso.log.fit$lambda.min)
 
@@ -192,7 +246,8 @@ lasso.log.process <- function(
 		 y.hat.test.lasso.log = y.hat.test,
 		 mymetrics.test.lasso.log = mymetrics.test,
 		 class.error.lasso.log = class.error.test,
-		 gamma.size.lasso.log = gamma.size
+		 gamma.size.lasso.log = gamma.size,
+		 time.lasso.log = time.lasso.log
 		 )
 
   return(output)
@@ -234,9 +289,10 @@ get.my.lambda <- function(AIC, BIC, MSE, pMSE, MSECV, lambda.set){
 
 
 get.my.metrics <- function(prob, true.prob){
-  one.norm <- sum(abs(prob - true.prob))
-  two.norm <- sum((prob - true.prob)^2)
-  EGKL <- sum(true.prob * log(true.prob/prob))
+  N <- length(prob)
+  one.norm <- sum(abs(prob - true.prob))/N
+  two.norm <- sum((prob - true.prob)^2)/N
+  EGKL <- sum(true.prob * log(true.prob/prob))/N
   
   output <- c(one.norm, two.norm, EGKL)
   names(output) <- c("one.norm", "two.norm", "EGKL")

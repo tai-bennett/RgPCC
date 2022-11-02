@@ -84,7 +84,7 @@ get.MSECValt <- function(fold.size, X.train, Y.train, lambda, tol_0, Sigma){
 metrics <- function(RgPCC.results, N, X.test, Y.test, p.test) {
   
   # storage
-  storage <- matrix(0, N, 5)
+  storage <- matrix(0, N, 7)
   for (i in 1:N){
     # get beta and p
     beta.hat <- RgPCC.results[[i]]$beta_hat
@@ -94,12 +94,15 @@ metrics <- function(RgPCC.results, N, X.test, Y.test, p.test) {
     class.error <- RgPCC.predict(X.test, Y.test, beta.hat)$MSE
     # p info
     p.info <- get.my.metrics(p.hat, p.test)
+	# time and iterations
+	time <- RgPCC.results[[i]]$time
+	iter <- RgPCC.results[[i]]$total_iter
     # store it
-    storage[i,] <- c(p.info, class.error, gamma.size)
+    storage[i,] <- c(p.info, class.error, gamma.size, time, iter)
   }
   # calc mean of each metric
   output <- colMeans(storage)
-  names(output) <- c("one.norm", "two.norm", "EGKL", "class.error", "gamma.size")
+  names(output) <- c("one.norm", "two.norm", "EGKL", "class.error", "gamma.size", "time", "total_iter")
   return(output)
 }
 

@@ -25,6 +25,7 @@ library(matlib)
 #region [RgPCC_lasso algo]
  # ----------------------------------- RgPCC with lasso
 RgPCC_lasso_experimental_v3 <- function(X, Y, lambda, tolerance, print = TRUE, singular.adjust = 0.000001, loop_limit = 50) {
+  time.start <- Sys.time()
   X <- as.matrix(X)
   Y <- as.matrix(Y)
   Sigma <- t(X) %*% X
@@ -131,7 +132,8 @@ while (error > tolerance & j < loop_limit) {
   #cat("\n", "this is beta_new: ", beta_new)
   j <- j + 1
 }
-
+time.stop <- Sys.time()
+time.RgPCC <- time.stop - time.start
 
   
 # ======================================================================
@@ -141,9 +143,11 @@ while (error > tolerance & j < loop_limit) {
 gamma_hat <- gamma
 beta_hat <- coeff[[4]] %*% (gamma_hat / coeff[[3]])
 output[[2]] <- beta_hat
+output[[9]] <- time.RgPCC
+output[[10]] <- j
   
   names(output) <-
-  c("gamma_hat", "beta_hat", "prob_hat", "error", "max_interations?", "iterations", "slim?", "gamma_size")
+  c("gamma_hat", "beta_hat", "prob_hat", "error", "max_interations?", "iterations", "slim?", "gamma_size", "time", "total_iter")
   
   #if (length(zero_list) != 0) {cat("\n","max removed ", max(zero.lengths), " instances from X")}
   

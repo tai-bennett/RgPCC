@@ -19,7 +19,7 @@ my.tol <- 0.1
 my.N <- 35 
 
 # where output gets saved
-mywd <- "results/script1"
+mywd <- "results/script5"
 
 
 # =================================================================================
@@ -27,7 +27,7 @@ mywd <- "results/script1"
 # =================================================================================
 
 case1results <- RgPCC.lasso.simulated.exp.v4(sample_size_set = my.sample_size_set,
-                          gamma_set = rbind(c(0, 0, 0, 0, 0, 20, 10, 10, rep(0, p-8))),
+                          gamma_set = rbind(c(rep(2,5) 20, 10, 10, rep(2, p-8))),
 						  gamma_index = "0",
                           rho = my.rho, 
                           p = p, 
@@ -36,6 +36,6 @@ case1results <- RgPCC.lasso.simulated.exp.v4(sample_size_set = my.sample_size_se
                           time_units = "min", 
                           tol_0 = my.tol,
                           wd = mywd,
-                          save.name="script-1")
+                          save.name="script-5")
 
 
