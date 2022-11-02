@@ -60,8 +60,9 @@ RgPCC.lasso.simulated.exp.v4 <-
     functions.list <- functions.list[!functions.list %in% c('./simulation_function.r')]
 
     sapply(functions.list, source, .GlobalEnv)
-  
-    setwd(paste('../', mywd, sep=''))
+    setwd('../')
+    
+    setwd(mywd)
 
 # ========================================================================
 # ========================================================================

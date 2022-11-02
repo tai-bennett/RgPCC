@@ -27,7 +27,7 @@ mywd <- "results/script5"
 # =================================================================================
 
 case1results <- RgPCC.lasso.simulated.exp.v4(sample_size_set = my.sample_size_set,
-                          gamma_set = rbind(c(rep(2,5) 20, 10, 10, rep(2, p-8))),
+                          gamma_set = rbind(c(rep(2,5), 20, 10, 10, rep(2, p-8))),
 						  gamma_index = "0",
                           rho = my.rho, 
                           p = p, 
