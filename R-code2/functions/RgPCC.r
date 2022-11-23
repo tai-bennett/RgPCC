@@ -145,9 +145,10 @@ beta_hat <- coeff[[4]] %*% (gamma_hat / coeff[[3]])
 output[[2]] <- beta_hat
 output[[9]] <- time.RgPCC
 output[[10]] <- j
+output[[11]] <- W
   
   names(output) <-
-  c("gamma_hat", "beta_hat", "prob_hat", "error", "max_interations?", "iterations", "slim?", "gamma_size", "time", "total_iter")
+  c("gamma_hat", "beta_hat", "prob_hat", "error", "max_interations?", "iterations", "slim?", "gamma_size", "time", "total_iter", "W_final")
   
   #if (length(zero_list) != 0) {cat("\n","max removed ", max(zero.lengths), " instances from X")}
   

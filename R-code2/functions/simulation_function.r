@@ -58,6 +58,7 @@ RgPCC.lasso.simulated.exp.v4 <-
 
     functions.list <- list.files(c('.'), pattern="*.r$", full.names=TRUE, ignore.case=TRUE)
     functions.list <- functions.list[!functions.list %in% c('./simulation_function.r')]
+    functions.list <- functions.list[!functions.list %in% c('./all.r')]
 
     sapply(functions.list, source, .GlobalEnv)
     setwd('../')

@@ -117,4 +117,3 @@ store.tuning.data <- function(sample.size, lambda.set, tune.data){
   return(cbind(sample.size, lambda.set, colMeans(tune.data)))
 }
 
-
