@@ -13,8 +13,8 @@ my_tol <- 0.1
 # number of replications of the experiment
 my_N <- 35
 
-# my_gamma <- c(rep(2, 5), 20, 10, 10, rep(2, my_p - 8))
-my_gamma <- c(rep(0, 5), 20, 10, 10, rep(0, my_p - 8))
+my_gamma <- c(rep(2, 5), 20, 10, 10, rep(2, my_p - 8))
+# my_gamma <- c(rep(0, 5), 20, 10, 10, rep(0, my_p - 8))
 
 # where output gets saved
 results <- tuner_rgpcc(
@@ -25,5 +25,6 @@ results <- tuner_rgpcc(
 )
 
 results
-save_name <- paste("../results/script6/results.rds", sep = "")
+save_name <- paste("../results/script6/results-nonsparse.rds", sep = "")
+# save_name <- paste("../results/script6/resultse.rds", sep = "")
 saveRDS(results, file = save_name)

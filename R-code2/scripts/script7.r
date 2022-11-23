@@ -1,5 +1,15 @@
-results <- readRDS(file = "../results/script6/results.rds")
+library(ggplot2)
+nonsparse <- TRUE
 
+if (nonsparse == TRUE) {
+results <- readRDS(file = "../results/script6/results-nonsparse.rds")
+} else {
+results <- readRDS(file = "../results/script6/results.rds")
+}
+
+# ===========================================================================
+# finding angles between spaces
+# ===========================================================================
 # extract things from the results object
 method_set <- c("AIC", "BIC", "MSE", "pMSE", "MSECV")
 # for each tuning method, get weights and computed weighted data
@@ -29,5 +39,38 @@ for (method in method_set) {
     Vw <- weighted_svd$v[,1:i_Sw]
 
     S <- svd(t(Vo) %*% Vw)$d
+    print(paste(
+                "method = ", method,
+                " with ",
+                " lambda = ", results$best_lambda[[method]],
+                " and ",
+                "nonsparse = ", nonsparse,
+                sep = ""))
+    print(S)
 }
 # for each weighted data compute eigenbasis to compare to eigenbasis of X^T X
+
+# ===========================================================================
+# ploting tuning data
+# ===========================================================================
+df <- data.frame(results$tuning_data)
+df[, 1] <- as.double(df[, 1])
+df[, 2] <- as.double(df[, 2])
+colnames(df) <- c("lambda", "metric", "method")
+for (i in 1:2) {
+    if (i == 1) {
+        df2 <- df[df$method == "AIC" | df$method == "BIC", ]
+    }
+    if (i == 2) {
+        df2 <- df[df$method == "MSE" | df$method == "pMSE" | df$method == "MSECV", ]
+    }
+    plt <- ggplot(data = df2, aes(x = lambda, y = metric, color = method)) +
+        geom_point() + geom_line()
+    if (nonsparse == TRUE) {
+        pdf(paste("../results/script7/tuning_results-nonsparse", i, ".pdf", sep = ""))
+    } else {
+        pdf(paste("../results/script7/tuning_results", i, ".pdf", sep = ""))
+    }
+    print(plt)
+    dev.off()
+}
